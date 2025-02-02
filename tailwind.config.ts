@@ -5,6 +5,14 @@ export default {
   // content: ["./app/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      // colors: {
+      //   'priGray': "#131722"
+      // },
+
+      backgroundImage: {
+        "hero-bg": "url('/images/background.avif')",
+      },
+
       fontFamily: {
         sans: [
           '"Inter"',
