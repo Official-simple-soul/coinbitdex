@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import UnAuthLayout from "../../../layouts/UnAuthLayout";
-// import { IconArrowRight } from "@tabler/icons-react";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { Button, Group, Input, ScrollArea, TextInput } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Flex,
+  Group,
+  Input,
+  ScrollArea,
+  TextInput,
+} from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 
 import {
@@ -39,10 +46,10 @@ const Home: React.FC = () => {
           className="min-h-[100dvh] bg-hero-bg w-full px-0 bg-no-repeat bg-cover bg-center bg-fixed flex"
         >
           <div className="mx-auto w-[90%] md:w-[85%] xl:w-[70%] max-w-[1200px] font-bold">
-            <h1 className="text-7xl font-bold mt-72 mb-16 max-w-[70%]">
+            <h1 className="text-5xl md:text-7xl font-bold mt-72 mb-16 max-w-[70%]">
               One Of The Leading Decentralized Exchanges
             </h1>
-            <div className="flex justify-between w-[70%]">
+            <div className="flex justify-between w-[70%] gap-5 md:gap-3 flex-wrap">
               {heroStats.map((stat) => (
                 <Hero
                   key={stat.id}
@@ -57,7 +64,7 @@ const Home: React.FC = () => {
               Enjoy Trading, Buying, Investing, Copy Trading, And Many More...
             </div>
 
-            <div className="w-[60%] mb-20">
+            <div className="md:w-[60%] mb-20">
               <p className="flex items-end text-[10px] text-green-400 -mb-0.5 ml-1">
                 <span className="mr-0.5">
                   <GiftIcon />
@@ -133,20 +140,20 @@ const Home: React.FC = () => {
           id="captureTrading"
           className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]"
         >
-          <h1 className="text-4xl font-extrabold">
+          <h1 className="text-2xl md:text-4xl font-extrabold">
             Capture Every Trading Opportunity
           </h1>
           <img src={whiteTradeChart} alt="" />
         </section>
 
         <section
-          id="tradingBot-section "
+          id="tradingBot-section"
           className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] py-5"
         >
-          <div className="flex justify-between items-center gap-5  px-10 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-5 px-10 w-full">
             <img
               src={smallTradeChart}
-              className="object-cover w-[55%] h-auto"
+              className="object-cover md:w-[53%] h-auto"
               alt=""
             />
 
@@ -158,7 +165,7 @@ const Home: React.FC = () => {
               />
             </div> */}
 
-            <div className="w-1/2">
+            <div className="md:w-[47%]">
               <div className="mt-[50px]">
                 <h1 className="text-2xl font-bold mb-2">
                   Make Use Of Our Swift AI Trading Bots
@@ -184,8 +191,8 @@ const Home: React.FC = () => {
         </section>
 
         <section id="charts-section" className="mt-2 mb-20">
-          <div className="flex justify-between items-center gap-5 mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
-            <div className="w-[45%]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5 mx-auto w-full md:w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
+            <div className="md:w-[45%] px-10">
               <h1 className="text-2xl font-bold my-5">
                 Join the Largest Copy Trading Community
               </h1>
@@ -213,28 +220,32 @@ const Home: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex justify-center items-center mb-10">
-                <div className="flex">
-                  <div className="">
-                    <OrderBookIcon />
-                  </div>{" "}
-                  <div className="">
-                    <h3>10M+</h3>
-                    <p>Total Order Book</p>
+              <div className="grid">
+                <div className="flex justify-center items-center mb-5 md:mb-10">
+                  <div className="flex">
+                    <div className="">
+                      <OrderBookIcon />
+                    </div>{" "}
+                    <div className="">
+                      <h3>10M+</h3>
+                      <p>Total Order Book</p>
+                    </div>
                   </div>
                 </div>
+                <div className="flex justify-center md:justify-start">
+                  <Button
+                    variant="default"
+                    rightSection={
+                      <IconArrowRight size={16} stroke={1.5} color="blue" />
+                    }
+                  >
+                    Learn More
+                  </Button>
+                </div>
               </div>
-              <Button
-                variant="default"
-                rightSection={
-                  <IconArrowRight size={16} stroke={1.5} color="blue" />
-                }
-              >
-                Learn More
-              </Button>
             </div>
 
-            <div className="w-[40%]">
+            <div className="md:w-[40%] ">
               <ChartCardGrid />
             </div>
           </div>
@@ -248,7 +259,10 @@ const Home: React.FC = () => {
           ></iframe> */}
         </section>
 
-        <section id="card-section" className=" ">
+        <section
+          id="card-section"
+          className="translate-y-[10%] sm:translate-y-0"
+        >
           <div className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] sm:mt-36">
             <h1 className="text-3xl font-bold p-6">
               Explore Our Extensive Product Suite
@@ -257,9 +271,9 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        <section id="getStarted-section" className="flex mt-28">
-          <div className="flex justify-between items-center mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
-            <div className="flex flex-col justify-between w-[55%] h-full">
+        <section id="getStarted-section" className="flex mt-44 sm:mt-28">
+          <div className="flex flex-col md:flex-row justify-between items-center mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] text-center md:text-start">
+            <div className="flex flex-col justify-between w-full md:w-[55%] h-full">
               <h2 className="text-4xl font-extrabold">
                 Get Started in a Few Minutes{" "}
               </h2>
@@ -272,17 +286,19 @@ const Home: React.FC = () => {
                   trade.
                 </p>
               </div>
-              <Button
-                variant="default"
-                className="mb-20 w-[50%] self-start"
-                rightSection={
-                  <IconArrowRight size={16} stroke={1.5} color="blue" />
-                }
-              >
-                Register Now!
-              </Button>
+              <div className="flex justify-center md:justify-start">
+                <Button
+                  variant="default"
+                  className="mb-20 w-[50%] self-start"
+                  rightSection={
+                    <IconArrowRight size={16} stroke={1.5} color="blue" />
+                  }
+                >
+                  Register Now!
+                </Button>
+              </div>
             </div>
-            <div className="mt-20">
+            <div className="md:mt-20">
               {" "}
               <img src={laptopPhone} alt="" className="w-[90%]" />
             </div>
@@ -297,8 +313,8 @@ const Home: React.FC = () => {
         </section>
 
         <section id="giftBox-section" className="px-6 py-12 bg-white">
-          <div className="sm:flex mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
-            <div className="w-[55%]">
+          <div className="flex flex-col sm:flex-row mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
+            <div className="sm:w-[55%]">
               <h1 className="text-3xl font-bold mb-4">
                 Register to Claim Bonuses of up to 9125 USDT.
               </h1>
@@ -353,7 +369,7 @@ const Home: React.FC = () => {
                 </Group>
               </div>
             </div>
-            <div className="mt-8 w-[45%] flex justify-center relative">
+            <div className="mt-8 sm:w-[45%] flex justify-center relative">
               <img
                 src={sparkle}
                 alt="Sparkle"

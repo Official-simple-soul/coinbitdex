@@ -1,23 +1,21 @@
 import React from "react";
 import { Button, Stack, TextInput } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import logo from "/images/logo.avif";
 
 const Footer = () => {
-  const isMediumScreen = useMediaQuery("(min-width: 768px)");
-
   return (
-    <footer className="bg-gray-800 text-white md:bg-white md:text-black py-12 px-6 md:px-16">
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="py-12 px-6 md:px-24">
+      <div className="container grid grid-cols-4 gap-8">
         {/* Column 1: Terms */}
         <div className="flex flex-col justify-between">
+        {/* <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> */}
           <div className="">
             <h3 className="font-semibold mb-4">Terms</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                  className="text-gray-400 hover:text-gray-900 hover:underline"
                 >
                   Privacy & Policy
                 </a>
@@ -25,7 +23,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                  className="text-gray-400 hover:text-gray-900 hover:underline"
                 >
                   Legal Statement
                 </a>
@@ -40,7 +38,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                  className="text-gray-400 hover:text-gray-900 hover:underline"
                 >
                   About Us
                 </a>
@@ -48,7 +46,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                  className="text-gray-400 hover:text-gray-900 hover:underline"
                 >
                   Contact Us
                 </a>
@@ -56,7 +54,7 @@ const Footer = () => {
               <li>
                 <a
                   href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                  className="text-gray-400 hover:text-gray-900 hover:underline"
                 >
                   CoinbitDex Affiliate Program
                 </a>
@@ -69,24 +67,62 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold mb-4">Services</h3>
           <ul className="space-y-2">
-            {[
-              "Crypto Markets",
-              "Crypto News",
-              "Listing Application",
-              "Copy Trading",
-              "AI/Grid Bots",
-              "Buy Crypto",
-              "Bonus & Rewards",
-            ].map((service, index) => (
-              <li key={index}>
-                <a
-                  href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  {service}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Crypto Markets
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Crypto News
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Listing Application
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Copy/Mirror Trading
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                AI/Grid Trading Bots
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Buy Crypto
+              </a>
+            </li>
+            <li>
+              <a
+                href="/"
+                className="text-gray-400 hover:text-gray-900 hover:underline"
+              >
+                Bonus & Rewards
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -94,6 +130,19 @@ const Footer = () => {
         <div className="col-span-2 h-full flex-col">
           <div className="">
             <h3 className="font-semibold mb-4">Subscribe to Our Newsletter</h3>
+            {/* <form>
+              <input
+                type="email"
+                placeholder="Email*"
+                className="w-full px-4 py-2 mb-4 text-black rounded-md"
+              />
+              <button
+                type="submit"
+                className="bg-blue-600 w-full px-4 py-2 text-white rounded-md"
+              >
+                Submit
+              </button>
+            </form> */}
             <form
             //  onSubmit={handleSubmit}
             >
@@ -105,22 +154,12 @@ const Footer = () => {
                   size="md"
                   // value={email}
                   // onChange={(e) => setEmail(e.target.value)}
-                  styles={(theme) => ({
-                    input: {
-                      // backgroundColor: "#1f2937",
-                      // color: "white",
-                      // border: "1px solid #374151",
-
-                      backgroundColor: isMediumScreen ? "white" : "#1f2937",
-                      color: isMediumScreen ? "black" : "white",
-                      border:
-                        "1px solid " + (isMediumScreen ? "#ccc" : "#374151"),
-                      transition: "background-color 0.3s ease",
-                    },
-                  })}
+                  styles={{
+                    input: { backgroundColor: "#3366FF", color: "white" }, // Blue input field
+                  }}
                 />
                 <Button type="submit" color="blue" c="black" w="50%">
-                  Subscribe
+                  Submit
                 </Button>
               </Stack>
             </form>
@@ -134,7 +173,7 @@ const Footer = () => {
               +1 (618) 362-2134 | Support@CoinbitDex.com
             </p>
           </div>
-          <p className="flex items-center justify-center text-gray-300 mt-5 md:mt-0">
+          <p className="flex items-center justify-center">
             500 Terry Francois St, San Francisco, CA 94158
           </p>
         </div>
@@ -142,8 +181,11 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="flex items-center justify-between w-full px-10 py-10">
+        {/* <div className="flex items-center w-auto shrink-0"> */}
         <img src={logo} alt="CoinbitDex" className="-ml-8 h-6 w-auto" />
+        {/* </div> */}
 
+        {/* <div className="border-dotted border-t border-gray-700 mt-8 pt-4 text-center text-sm w-[70%]"></div> */}
         <div className="flex-1 mx-5 border-dotted border-t border-gray-900"></div>
 
         <p className="text-sm text-gray-500">
@@ -151,13 +193,16 @@ const Footer = () => {
           All Rights Reserved
         </p>
       </div>
-
-      <div className="mt-10 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm border-t border-gray-700 pt-6">
-        <img src={logo} alt="CoinbitDex" className="h-6 mb-4 md:mb-0" />
-        <p>&copy; 2019-2023 CoinBitDex.com. All Rights Reserved.</p>
-      </div>
     </footer>
   );
 };
 
 export default Footer;
+
+
+// NA
+// HERE
+// E START
+
+
+

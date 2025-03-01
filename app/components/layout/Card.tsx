@@ -22,8 +22,8 @@ const Card: React.FC<CardProps> = ({ profile }) => {
           className="w-12 h-12 rounded-full mr-4"
         /> */}
         <div>
-          <h2 className="text-3xl font-bold mb-2">{profile.title}</h2>
-          <p className="text-sm text-gray-800">{profile.description}</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">{profile.title}</h2>
+          <p className="text-[12px] md:text-sm text-gray-800">{profile.description}</p>
         </div>
       </div>
 

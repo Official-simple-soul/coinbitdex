@@ -3,12 +3,13 @@ export const InternetSvg = () => (
     preserveAspectRatio="xMidYMid meet"
     data-bbox="27.905 18.501 144.191 163"
     viewBox="27.905 18.501 144.191 163"
-    height="30"
-    width="30"
+    // height="30"
+    // width="30"
     xmlns="http://www.w3.org/2000/svg"
     data-type="color"
     role="presentation"
     aria-hidden="true"
+    className="w-[25px] h-[25px] sm:w-[30px] sm:h-[30px]"
   >
     <g>
       <path
@@ -30,12 +31,13 @@ export const VolumeSvg = () => (
     preserveAspectRatio="xMidYMid meet"
     data-bbox="46.5 36.5 107 127"
     viewBox="46.5 36.5 107 127"
-    height="30"
-    width="30"
+    // height="30"
+    // width="30"
     xmlns="http://www.w3.org/2000/svg"
     data-type="color"
     role="presentation"
     aria-hidden="true"
+    className="w-[25px] h-[25px] sm:w-[30px] sm:h-[30px]"
   >
     <g>
       <path
@@ -72,13 +74,14 @@ export const ListSvg = () => (
     preserveAspectRatio="xMidYMid meet"
     data-bbox="16.5 15.959 167.001 167.941"
     viewBox="16.5 15.959 167.001 167.941"
-    height="30"
-    width="30"
+    // height="30"
+    // width="30"
     xmlns="http://www.w3.org/2000/svg"
     data-type="color"
     role="presentation"
     aria-hidden="true"
     aria-label=""
+    className="w-[25px] h-[25px] sm:w-[30px] sm:h-[30px]"
   >
     <g>
       <path
@@ -884,5 +887,39 @@ export const CircleRightArrow = () => (
       <path d="M140.148 98.229l-1.476-1.476L105.018 63.1c-1.181-1.181-2.657-1.181-3.838 0l-1.476 1.476c-1.181 1.181-1.181 2.657 0 3.838L131.292 100l-31.587 31.587c-1.181 1.181-1.181 2.657 0 3.838l1.476 1.476c1.181 1.181 2.657 1.181 3.838 0l33.653-33.653 1.476-1.476a2.216 2.216 0 0 0 0-3.543z"></path>
       <path d="M111.218 98.229l-1.476-1.476L76.089 63.1c-1.181-1.181-2.657-1.181-3.838 0l-1.476 1.476c-1.181 1.181-1.181 2.657 0 3.838L102.362 100l-31.587 31.587c-1.181 1.181-1.181 2.657 0 3.838l1.476 1.476c1.181 1.181 2.657 1.181 3.838 0l33.653-33.653 1.476-1.476c.885-.886.885-2.658 0-3.543z"></path>
     </g>
+  </svg>
+);
+
+export const MenuButton = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M4 6h16M4 12h16m-7 6h7"
+    />
+  </svg>
+);
+
+export const CloseButton = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );

@@ -9,7 +9,7 @@ const cardImages = [chart1, chart2, chart3, chart4, chart5, chart6];
 
 const ChartCardGrid = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 sm:grid-cols-2 sm:gap-2">
       {cardImages.map((image, index) => (
         <div
           key={index}
