@@ -299,7 +299,11 @@ const Home: React.FC = () => {
                   trade.
                 </p>
               </div>
-              <div className="flex justify-center md:justify-start">
+              {/* <div > */}
+              <Link
+                to="/signup"
+                className="flex justify-center md:justify-start"
+              >
                 <Button
                   variant="default"
                   className="mb-20 w-[50%] self-start"
@@ -309,7 +313,8 @@ const Home: React.FC = () => {
                 >
                   Register Now!
                 </Button>
-              </div>
+              </Link>
+              {/* </div> */}
             </div>
             <div className="md:mt-20">
               {' '}
@@ -369,16 +374,18 @@ const Home: React.FC = () => {
                       input: { border: 'none', borderRadius: 0 },
                     }}
                   />{' '}
-                  <Button
-                    style={{
-                      height: '45px',
-                      borderTopLeftRadius: 8,
-                      borderBottomLeftRadius: 8,
-                    }}
-                    color="blue"
-                  >
-                    Register Now!
-                  </Button>
+                  <Link to="/signup">
+                    <Button
+                      style={{
+                        height: '45px',
+                        borderTopLeftRadius: 8,
+                        borderBottomLeftRadius: 8,
+                      }}
+                      color="blue"
+                    >
+                      Register Now!
+                    </Button>
+                  </Link>
                 </Group>
               </div>
             </div>
