@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-scroll";
-import { Button, type MantineTheme } from "@mantine/core";
-import MobileNav from "./MobileNav";
-import logo from "/images/logo.avif";
+import React, { useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link } from 'react-router';
+import { Button, type MantineTheme } from '@mantine/core';
+import MobileNav from './MobileNav';
+import logo from '/images/logo.avif';
 
 type NavItem = {
   id: number;
@@ -12,28 +13,28 @@ type NavItem = {
 
 // navigations data
 const navigationData: NavItem[] = [
-  { id: 1, label: "Home", href: "hero-section" },
+  { id: 1, label: 'Home', href: 'hero-section' },
   {
     id: 2,
-    label: "Crypto Markets",
-    href: "info-section",
+    label: 'Crypto Markets',
+    href: 'info-section',
   },
   {
     id: 3,
-    label: "Copy Trading",
-    href: "charts-section",
+    label: 'Copy Trading',
+    href: 'charts-section',
   },
-  { id: 4, label: "AI/Grid Bot", href: "card-section" },
+  { id: 4, label: 'AI/Grid Bot', href: 'card-section' },
   {
     id: 5,
-    label: "Buy Crypto",
-    href: "getStarted-section",
+    label: 'Buy Crypto',
+    href: 'getStarted-section',
   },
   // { id: 6, label: "More", href: "#", variant: "light" },
 ];
 
 const NavOne: React.FC = () => {
-  const [active, setActive] = useState("Home");
+  const [active, setActive] = useState('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -48,7 +49,7 @@ const NavOne: React.FC = () => {
         <ul className="hidden md:flex flex-wrap items-center gap-0.5">
           {navigationData.map((item) => (
             <li key={item.id} className="whitespace-nowrap">
-              <Link
+              <ScrollLink
                 to={item.href}
                 spy={true}
                 smooth={true}
@@ -69,16 +70,16 @@ const NavOne: React.FC = () => {
                       backgroundColor:
                         active === item.label
                           ? theme.colors.blue[6]
-                          : "transparent",
+                          : 'transparent',
                       color: active === item.label ? theme.white : theme.black,
-                      padding: "2px 12px",
+                      padding: '2px 12px',
                       borderRadius: theme.radius.sm,
-                      transition: "background-color 0.2s ease, color 0.2s ease",
+                      transition: 'background-color 0.2s ease, color 0.2s ease',
                       // "&:hover": {
                       //   backgroundColor: theme.colors.red[6],
                       //   color: theme.white,
                       // },
-                      "&:hover": {
+                      '&:hover': {
                         backgroundColor: `${theme.colors.blue[6]} !important`,
                         color: `${theme.white} !important`,
                       },
@@ -87,21 +88,25 @@ const NavOne: React.FC = () => {
                 >
                   {item.label}
                 </Button>
-              </Link>
+              </ScrollLink>
             </li>
           ))}
         </ul>
 
         <ul className="hidden md:flex justify-between items-center gap-1">
           <li className="whitespace-nowrap">
-            <Button component="a" href="" variant="outline">
-              Log in
-            </Button>
+            <Link to={'/signup'}>
+              <Button component="a" type="button" variant="outline">
+                Log in
+              </Button>
+            </Link>
           </li>
           <li className="whitespace-nowrap">
-            <Button component="a" href="" variant="">
-              Register
-            </Button>
+            <Link to={'/signup'}>
+              <Button component="a" type="button" variant="">
+                Register
+              </Button>
+            </Link>
           </li>
         </ul>
 

@@ -1,6 +1,6 @@
-import { Box, Divider } from "@mantine/core";
-import React from "react";
-import { Link } from "react-router";
+import { Box, Divider } from '@mantine/core';
+import React from 'react';
+import { Link } from 'react-router';
 
 const News: React.FC<{
   icon: React.ReactNode | string;
@@ -18,7 +18,7 @@ const News: React.FC<{
         </div>
         <div className="flex justify-between items-center w-full">
           <p className="text-sm font-bold">{title}</p>
-          <img src={img} alt="" width={100} height={100} />
+          <img src={img} alt="" className="rounded" width={100} height={100} />
         </div>
         <Divider my="md" />
       </Box>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import UnAuthLayout from "../../../layouts/UnAuthLayout";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import React, { useState } from 'react';
+import UnAuthLayout from '../../../layouts/UnAuthLayout';
+import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import {
   Button,
   Center,
@@ -9,8 +9,8 @@ import {
   Input,
   ScrollArea,
   TextInput,
-} from "@mantine/core";
-import { notifications } from "@mantine/notifications";
+} from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 
 import {
   GiftIcon,
@@ -20,20 +20,21 @@ import {
   OrderBookIcon,
   TradersIcon,
   VolumeSvg,
-} from "~/utils/Svgs";
-import Hero from "~/components/layout/Hero";
-import News from "~/components/layout/News";
-import ChartCardGrid from "~/components/layout/ChartCardGrid";
-import CardGrid from "~/components/layout/CardGrid";
-import PartnerCardGrid from "~/components/layout/PartnerCardGrid";
-import Footer from "~/components/layout/Footer";
+} from '~/utils/Svgs';
+import Hero from '~/components/layout/Hero';
+import News from '~/components/layout/News';
+import ChartCardGrid from '~/components/layout/ChartCardGrid';
+import CardGrid from '~/components/layout/CardGrid';
+import PartnerCardGrid from '~/components/layout/PartnerCardGrid';
+import Footer from '~/components/layout/Footer';
 
 // images import
-import whiteTradeChart from "/images/white-trading-chart.png";
-import smallTradeChart from "/images/small-trading-chart.gif";
-import laptopPhone from "/images/laptop-phone.webp";
-import giftBox from "/images/gift-box.gif";
-import sparkle from "/images/sparkle.gif";
+import whiteTradeChart from '/images/white-trading-chart.png';
+import smallTradeChart from '/images/small-trading-chart.gif';
+import laptopPhone from '/images/laptop-phone.webp';
+import giftBox from '/images/gift-box.gif';
+import sparkle from '/images/sparkle.gif';
+import { Link } from 'react-router';
 
 const Home: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -46,10 +47,16 @@ const Home: React.FC = () => {
           className="min-h-[100dvh] bg-hero-bg w-full px-0 bg-no-repeat bg-cover bg-center bg-fixed flex"
         >
           <div className="mx-auto w-[90%] md:w-[85%] xl:w-[70%] max-w-[1200px] font-bold">
-            <h1 className="text-5xl md:text-7xl font-bold mt-72 mb-16 max-w-[70%]">
-              One Of The Leading Decentralized Exchanges
+            <h1
+              data-aos="zoom-in"
+              className="text-5xl md:text-7xl font-bold mt-10 md:mt-72 mb-16 max-w-[70%]"
+            >
+              One Of The Leading Decentralized Exchangesss
             </h1>
-            <div className="flex justify-between w-[70%] gap-5 md:gap-3 flex-wrap">
+            <div
+              data-aos="fade-right"
+              className="flex justify-between w-[70%] gap-5 md:gap-3 flex-wrap"
+            >
               {heroStats.map((stat) => (
                 <Hero
                   key={stat.id}
@@ -60,55 +67,61 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            <div className="my-16">
+            <div data-aos="fade-right" className="my-16">
               Enjoy Trading, Buying, Investing, Copy Trading, And Many More...
             </div>
 
             <div className="md:w-[60%] mb-20">
-              <p className="flex items-end text-[10px] text-green-400 -mb-0.5 ml-1">
+              <p
+                data-aos="fade-right"
+                className="flex items-end text-[10px] text-green-400 -mb-0.5 ml-1"
+              >
                 <span className="mr-0.5">
                   <GiftIcon />
                 </span>
-                Register now and stand a chance to Claim Bonus of{" "}
+                Register now and stand a chance to Claim Bonus of{' '}
                 <span className="text-red-400">9125 USDT</span>
               </p>
               <Group
                 style={{
-                  border: "1px solid blue",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  display: "flex",
+                  border: '1px solid blue',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  display: 'flex',
                   // flex: 1,
-                  alignItems: "center",
-                  width: "90%",
+                  alignItems: 'center',
+                  width: '90%',
                   // maxWidth: "500px",
                   // minWidth: "300px",
                   gap: 0,
                 }}
               >
-                {" "}
+                {' '}
                 <TextInput
                   placeholder="Please enter your email address"
                   style={{
                     flex: 1,
-                    border: "none",
+                    border: 'none',
                     // height: "45px",
                   }}
                   radius={0}
                   styles={{
-                    input: { border: "none", borderRadius: 0 },
+                    input: { border: 'none', borderRadius: 0 },
                   }}
-                />{" "}
-                <Button
-                  style={{
-                    height: "45px",
-                    borderTopLeftRadius: 8,
-                    borderBottomLeftRadius: 8,
-                  }}
-                  color="blue"
-                >
-                  Register Now!
-                </Button>
+                />{' '}
+                <Link to="/signup">
+                  <Button
+                    style={{
+                      height: '45px',
+                      borderTopLeftRadius: 8,
+                      borderBottomLeftRadius: 8,
+                    }}
+                    color="blue"
+                    type="button"
+                  >
+                    Register Now!
+                  </Button>
+                </Link>
               </Group>
             </div>
           </div>
@@ -116,10 +129,10 @@ const Home: React.FC = () => {
 
         <section
           id="info-section"
-          className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
+          className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-5 md:px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
         >
           <ScrollArea w="100%" h={200} scrollbars="y">
-            {" "}
+            {' '}
             {dummyData.map((data) => {
               const { id, title, path, time, img, icon } = data;
               return (
@@ -225,7 +238,7 @@ const Home: React.FC = () => {
                   <div className="flex">
                     <div className="">
                       <OrderBookIcon />
-                    </div>{" "}
+                    </div>{' '}
                     <div className="">
                       <h3>10M+</h3>
                       <p>Total Order Book</p>
@@ -275,7 +288,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] text-center md:text-start">
             <div className="flex flex-col justify-between w-full md:w-[55%] h-full">
               <h2 className="text-4xl font-extrabold">
-                Get Started in a Few Minutes{" "}
+                Get Started in a Few Minutes{' '}
               </h2>
               <div className="mb-10">
                 <h2 className="text-4xl font-extrabold">
@@ -299,7 +312,7 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="md:mt-20">
-              {" "}
+              {' '}
               <img src={laptopPhone} alt="" className="w-[90%]" />
             </div>
           </div>
@@ -331,34 +344,34 @@ const Home: React.FC = () => {
                  */}
                 <Group
                   style={{
-                    border: "1px solid blue",
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                    display: "flex",
+                    border: '1px solid blue',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    display: 'flex',
                     // flex: 1,
-                    alignItems: "center",
-                    width: "90%",
+                    alignItems: 'center',
+                    width: '90%',
                     // maxWidth: "500px",
                     // minWidth: "300px",
                     gap: 0,
                   }}
                 >
-                  {" "}
+                  {' '}
                   <TextInput
                     placeholder="Please enter your email address"
                     style={{
                       flex: 1,
-                      border: "none",
+                      border: 'none',
                       // height: "45px",
                     }}
                     radius={0}
                     styles={{
-                      input: { border: "none", borderRadius: 0 },
+                      input: { border: 'none', borderRadius: 0 },
                     }}
-                  />{" "}
+                  />{' '}
                   <Button
                     style={{
-                      height: "45px",
+                      height: '45px',
                       borderTopLeftRadius: 8,
                       borderBottomLeftRadius: 8,
                     }}
@@ -451,55 +464,55 @@ const Home: React.FC = () => {
 export default Home;
 
 const heroStats = [
-  { id: 1, icon: <InternetSvg />, value: "1M+", label: "Global Users" },
-  { id: 2, icon: <VolumeSvg />, value: "$4.6B+", label: "24h Volume" },
-  { id: 3, icon: <ListSvg />, value: "220+", label: "Listed Cryptocurrencies" },
+  { id: 1, icon: <InternetSvg />, value: '1M+', label: 'Global Users' },
+  { id: 2, icon: <VolumeSvg />, value: '$4.6B+', label: '24h Volume' },
+  { id: 3, icon: <ListSvg />, value: '220+', label: 'Listed Cryptocurrencies' },
 ];
 
 const dummyData = [
   {
     id: 1,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 2,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 3,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 4,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 5,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
 ];
