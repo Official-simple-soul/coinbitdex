@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UnAuthLayout from '../../../layouts/UnAuthLayout';
-import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
-import {
-  Button,
-  Center,
-  Flex,
-  Group,
-  Input,
-  ScrollArea,
-  TextInput,
-} from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { IconArrowRight } from '@tabler/icons-react';
+import { Button, Group, ScrollArea, TextInput } from '@mantine/core';
 
 import {
   GiftIcon,
@@ -26,19 +17,14 @@ import News from '~/components/layout/News';
 import ChartCardGrid from '~/components/layout/ChartCardGrid';
 import CardGrid from '~/components/layout/CardGrid';
 import PartnerCardGrid from '~/components/layout/PartnerCardGrid';
-import Footer from '~/components/layout/Footer';
 
 // images import
 import whiteTradeChart from '/images/white-trading-chart.png';
 import smallTradeChart from '/images/small-trading-chart.gif';
 import laptopPhone from '/images/laptop-phone.webp';
-import giftBox from '/images/gift-box.gif';
-import sparkle from '/images/sparkle.gif';
 import { Link } from 'react-router';
 
 const Home: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
   return (
     <UnAuthLayout>
       <main className="">
@@ -88,11 +74,8 @@ const Home: React.FC = () => {
                   borderRadius: '8px',
                   overflow: 'hidden',
                   display: 'flex',
-                  // flex: 1,
                   alignItems: 'center',
                   width: '90%',
-                  // maxWidth: "500px",
-                  // minWidth: "300px",
                   gap: 0,
                 }}
               >
@@ -102,7 +85,6 @@ const Home: React.FC = () => {
                   style={{
                     flex: 1,
                     border: 'none',
-                    // height: "45px",
                   }}
                   radius={0}
                   styles={{
@@ -169,15 +151,6 @@ const Home: React.FC = () => {
               className="object-cover md:w-[53%] h-auto"
               alt=""
             />
-
-            {/* <div className="w-1/2 min-h-[350px]">
-              <img
-                src={smallTradeChart}
-                className="w-full h-full object-cover"
-                alt="Trade Chart"
-              />
-            </div> */}
-
             <div className="md:w-[47%]">
               <div className="mt-[50px]">
                 <h1 className="text-2xl font-bold mb-2">
@@ -299,7 +272,6 @@ const Home: React.FC = () => {
                   trade.
                 </p>
               </div>
-              {/* <div > */}
               <Link
                 to="/signup"
                 className="flex justify-center md:justify-start"
@@ -314,7 +286,6 @@ const Home: React.FC = () => {
                   Register Now!
                 </Button>
               </Link>
-              {/* </div> */}
             </div>
             <div className="md:mt-20">
               {' '}
@@ -329,140 +300,6 @@ const Home: React.FC = () => {
         >
           <PartnerCardGrid />
         </section>
-
-        <section id="giftBox-section" className="px-6 py-12 bg-white">
-          <div className="flex flex-col sm:flex-row mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
-            <div className="sm:w-[55%]">
-              <h1 className="text-3xl font-bold mb-4">
-                Register to Claim Bonuses of up to 9125 USDT.
-              </h1>
-              <p className="text-gray-600 mb-6">It only takes a few minutes.</p>
-              <div className="flex items-center">
-                {/* <input
-                  type="email"
-                  placeholder="Please enter your email address"
-                  className="border border-gray-300 px-4 py-2 w-full md:w-2/3 rounded-md"
-                /> */}
-                {/* <button className="bg-blue-600 text-white px-4 py-2 rounded-md">
-                  Register Now!
-                </button>
-                 */}
-                <Group
-                  style={{
-                    border: '1px solid blue',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    // flex: 1,
-                    alignItems: 'center',
-                    width: '90%',
-                    // maxWidth: "500px",
-                    // minWidth: "300px",
-                    gap: 0,
-                  }}
-                >
-                  {' '}
-                  <TextInput
-                    placeholder="Please enter your email address"
-                    style={{
-                      flex: 1,
-                      border: 'none',
-                      // height: "45px",
-                    }}
-                    radius={0}
-                    styles={{
-                      input: { border: 'none', borderRadius: 0 },
-                    }}
-                  />{' '}
-                  <Link to="/signup">
-                    <Button
-                      style={{
-                        height: '45px',
-                        borderTopLeftRadius: 8,
-                        borderBottomLeftRadius: 8,
-                      }}
-                      color="blue"
-                    >
-                      Register Now!
-                    </Button>
-                  </Link>
-                </Group>
-              </div>
-            </div>
-            <div className="mt-8 sm:w-[45%] flex justify-center relative">
-              <img
-                src={sparkle}
-                alt="Sparkle"
-                className="absolute w-[40%] -top-12 left-1"
-              />
-              <img src={giftBox} alt="Gift Box" className="w-[100%]" />
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <main className="items-center justify-between px-20">
-        {/* <section className="hero-section w-[90%] lg:w-[85%] xl:w-[65%] font-bold">
-          <h1 className="text-7xl font-bold mt-72 mb-16">
-            One Of The Leading Decentralized Exchanges
-          </h1>
-          <div className="flex justify-between w-[70%]">
-            {heroStats.map((stat) => (
-              <Hero
-                key={stat.id}
-                icon={stat.icon}
-                value={stat.value}
-                label={stat.label}
-              />
-            ))}
-          </div>
-
-          <div className="my-16">
-            Enjoy Trading, Buying, Investing, Copy Trading, And Many More...
-          </div>
-
-          <div className="w-[60%] mb-20">
-
-            <Group
-              style={{
-                border: "1px solid blue",
-                borderRadius: "8px",
-                overflow: "hidden",
-                display: "flex",
-                // flex: 1,
-                alignItems: "center",
-                width: "90%",
-                // maxWidth: "500px",
-                // minWidth: "300px",
-                gap: 0,
-              }}
-            >
-              {" "}
-              <TextInput
-                placeholder="Please enter your email address"
-                style={{
-                  flex: 1,
-                  border: "none",
-                  // height: "45px",
-                }}
-                radius={0}
-                styles={{
-                  input: { border: "none", borderRadius: 0 },
-                }}
-              />{" "}
-              <Button
-                style={{
-                  height: "45px",
-                  borderTopLeftRadius: 8,
-                  borderBottomLeftRadius: 8,
-                }}
-                color="blue"
-              >
-                Register Now!
-              </Button>
-            </Group>
-          </div>
-        </section> */}
       </main>
     </UnAuthLayout>
   );
