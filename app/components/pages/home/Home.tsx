@@ -1,7 +1,7 @@
 import React from 'react';
 import UnAuthLayout from '../../../layouts/UnAuthLayout';
 import { IconArrowRight } from '@tabler/icons-react';
-import { Button, Group, ScrollArea, TextInput } from '@mantine/core';
+import { Box, Button, Group, ScrollArea, TextInput } from '@mantine/core';
 
 import {
   GiftIcon,
@@ -13,13 +13,10 @@ import {
   VolumeSvg,
 } from '~/utils/Svgs';
 import Hero from '~/components/layout/Hero';
-import News from '~/components/layout/News';
 import ChartCardGrid from '~/components/layout/ChartCardGrid';
 import CardGrid from '~/components/layout/CardGrid';
 import PartnerCardGrid from '~/components/layout/PartnerCardGrid';
 
-// images import
-import whiteTradeChart from '/images/white-trading-chart.png';
 import smallTradeChart from '/images/small-trading-chart.gif';
 import laptopPhone from '/images/laptop-phone.webp';
 import { Link } from 'react-router';
@@ -108,27 +105,23 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
-
         <section
           id="info-section"
           className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-5 md:px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
         >
-          <ScrollArea w="100%" h={200} scrollbars="y">
-            {' '}
-            {dummyData.map((data) => {
-              const { id, title, path, time, img, icon } = data;
-              return (
-                <News
-                  key={id}
-                  icon={icon}
-                  title={title}
-                  img={img}
-                  path={path}
-                  time={time}
-                />
-              );
-            })}
-          </ScrollArea>
+          <div className="md:w-[90%] h-full mx-auto">
+            <iframe
+              sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
+              className="wuksD5"
+              title="Embedded Content"
+              name="htmlComp-iframe"
+              width="100%"
+              height="100%"
+              allow="fullscreen"
+              data-src=""
+              src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_bc9eff8ccdbb07486b1cbf51a260b1d3.html"
+            ></iframe>
+          </div>
         </section>
 
         <section
@@ -138,7 +131,27 @@ const Home: React.FC = () => {
           <h1 className="text-2xl md:text-4xl font-extrabold">
             Capture Every Trading Opportunity
           </h1>
-          <img src={whiteTradeChart} alt="" />
+          <div className="h-[650px] w-full relative">
+            <iframe
+              sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
+              className="wuksD5"
+              title="Embedded Content"
+              name="htmlComp-iframe"
+              width="100%"
+              height="100%"
+              allow="fullscreen"
+              data-src=""
+              src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_00ae1a661f4de6485f22e19aa72e88ff.html"
+            ></iframe>
+            <div className="absolute bottom-11 left-2.5 bg-white flex justify-start items-center h-16 w-full">
+              <Link
+                to={'/signup'}
+                className="rounded border border-gray-400 px-10 text-xl py-2 ml-2 hover:shadow-md hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300"
+              >
+                Start Trading Now
+              </Link>
+            </div>
+          </div>
         </section>
 
         <section
