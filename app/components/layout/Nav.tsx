@@ -42,7 +42,7 @@ const NavOne: React.FC = () => {
       <div className="flex justify-between items-center w-full">
         <img src={logo} onClick={close} alt="Logo" className="-ml-8 h-12" />
 
-        <ul className="hidden md:flex flex-wrap items-center gap-3">
+        <ul className="hidden md:flex flex-wrap items-center gap-5">
           {navigationData.map((item) => (
             <li key={item.id} className="whitespace-nowrap">
               <NavLink

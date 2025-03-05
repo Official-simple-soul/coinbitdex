@@ -248,14 +248,6 @@ const Home: React.FC = () => {
               <ChartCardGrid />
             </div>
           </div>
-          {/* <iframe
-            src="https://ssltvc.investing.com/?pair_ID=945629&height=550&width=1250&interval=3600&plotStyle=area&domain_ID=72&lang_ID=72&timezone_ID=0"
-            width="100%"
-            height="550"
-            // frameborder="0"
-            // allowfullscreen
-            // style="border: 1px solid #ddd;"
-          ></iframe> */}
         </section>
 
         <section
