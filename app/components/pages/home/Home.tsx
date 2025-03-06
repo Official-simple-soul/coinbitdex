@@ -1,7 +1,7 @@
-import React from 'react';
-import UnAuthLayout from '../../../layouts/UnAuthLayout';
-import { IconArrowRight } from '@tabler/icons-react';
-import { Button, Group, ScrollArea, TextInput } from '@mantine/core';
+import React from "react";
+import UnAuthLayout from "../../../layouts/UnAuthLayout";
+import { IconArrowRight } from "@tabler/icons-react";
+import { Button, Group, ScrollArea, TextInput } from "@mantine/core";
 
 import {
   GiftIcon,
@@ -11,18 +11,18 @@ import {
   OrderBookIcon,
   TradersIcon,
   VolumeSvg,
-} from '~/utils/Svgs';
-import Hero from '~/components/layout/Hero';
-import News from '~/components/layout/News';
-import ChartCardGrid from '~/components/layout/ChartCardGrid';
-import CardGrid from '~/components/layout/CardGrid';
-import PartnerCardGrid from '~/components/layout/PartnerCardGrid';
+} from "~/utils/Svgs";
+import Hero from "~/components/layout/Hero";
+import News from "~/components/layout/News";
+import ChartCardGrid from "~/components/layout/ChartCardGrid";
+import CardGrid from "~/components/layout/CardGrid";
+import PartnerCardGrid from "~/components/layout/PartnerCardGrid";
 
 // images import
-import whiteTradeChart from '/images/white-trading-chart.png';
-import smallTradeChart from '/images/small-trading-chart.gif';
-import laptopPhone from '/images/laptop-phone.webp';
-import { Link } from 'react-router';
+import whiteTradeChart from "/images/white-trading-chart.png";
+import smallTradeChart from "/images/small-trading-chart.gif";
+import laptopPhone from "/images/laptop-phone.webp";
+import { Link } from "react-router";
 
 const Home: React.FC = () => {
   return (
@@ -65,36 +65,36 @@ const Home: React.FC = () => {
                 <span className="mr-0.5">
                   <GiftIcon />
                 </span>
-                Register now and stand a chance to Claim Bonus of{' '}
+                Register now and stand a chance to Claim Bonus of{" "}
                 <span className="text-red-400">9125 USDT</span>
               </p>
               <Group
                 style={{
-                  border: '1px solid blue',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center',
-                  width: '90%',
+                  border: "1px solid blue",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "90%",
                   gap: 0,
                 }}
               >
-                {' '}
+                {" "}
                 <TextInput
                   placeholder="Please enter your email address"
                   style={{
                     flex: 1,
-                    border: 'none',
+                    border: "none",
                   }}
                   radius={0}
                   styles={{
-                    input: { border: 'none', borderRadius: 0 },
+                    input: { border: "none", borderRadius: 0 },
                   }}
-                />{' '}
+                />{" "}
                 <Link to="/signup">
                   <Button
                     style={{
-                      height: '45px',
+                      height: "45px",
                       borderTopLeftRadius: 8,
                       borderBottomLeftRadius: 8,
                     }}
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
           className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-5 md:px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
         >
           <ScrollArea w="100%" h={200} scrollbars="y">
-            {' '}
+            {" "}
             {dummyData.map((data) => {
               const { id, title, path, time, img, icon } = data;
               return (
@@ -211,7 +211,7 @@ const Home: React.FC = () => {
                   <div className="flex">
                     <div className="">
                       <OrderBookIcon />
-                    </div>{' '}
+                    </div>{" "}
                     <div className="">
                       <h3>10M+</h3>
                       <p>Total Order Book</p>
@@ -219,14 +219,16 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex justify-center md:justify-start">
-                  <Button
-                    variant="default"
-                    rightSection={
-                      <IconArrowRight size={16} stroke={1.5} color="blue" />
-                    }
-                  >
-                    Learn More
-                  </Button>
+                  <Link to={"/copy-trading"}>
+                    <Button
+                      variant="default"
+                      rightSection={
+                        <IconArrowRight size={16} stroke={1.5} color="blue" />
+                      }
+                    >
+                      Learn More
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -261,7 +263,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] text-center md:text-start">
             <div className="flex flex-col justify-between w-full md:w-[55%] h-full">
               <h2 className="text-4xl font-extrabold">
-                Get Started in a Few Minutes{' '}
+                Get Started in a Few Minutes{" "}
               </h2>
               <div className="mb-10">
                 <h2 className="text-4xl font-extrabold">
@@ -288,7 +290,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
             <div className="md:mt-20">
-              {' '}
+              {" "}
               <img src={laptopPhone} alt="" className="w-[90%]" />
             </div>
           </div>
@@ -308,55 +310,55 @@ const Home: React.FC = () => {
 export default Home;
 
 const heroStats = [
-  { id: 1, icon: <InternetSvg />, value: '1M+', label: 'Global Users' },
-  { id: 2, icon: <VolumeSvg />, value: '$4.6B+', label: '24h Volume' },
-  { id: 3, icon: <ListSvg />, value: '220+', label: 'Listed Cryptocurrencies' },
+  { id: 1, icon: <InternetSvg />, value: "1M+", label: "Global Users" },
+  { id: 2, icon: <VolumeSvg />, value: "$4.6B+", label: "24h Volume" },
+  { id: 3, icon: <ListSvg />, value: "220+", label: "Listed Cryptocurrencies" },
 ];
 
 const dummyData = [
   {
     id: 1,
     title:
-      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
-    path: '/',
-    time: '',
-    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
-    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
+      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
+    path: "/",
+    time: "",
+    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
   },
   {
     id: 2,
     title:
-      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
-    path: '/',
-    time: '',
-    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
-    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
+      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
+    path: "/",
+    time: "",
+    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
   },
   {
     id: 3,
     title:
-      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
-    path: '/',
-    time: '',
-    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
-    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
+      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
+    path: "/",
+    time: "",
+    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
   },
   {
     id: 4,
     title:
-      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
-    path: '/',
-    time: '',
-    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
-    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
+      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
+    path: "/",
+    time: "",
+    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
   },
   {
     id: 5,
     title:
-      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
-    path: '/',
-    time: '',
-    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
-    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
+      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
+    path: "/",
+    time: "",
+    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
   },
 ];

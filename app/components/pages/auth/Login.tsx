@@ -1,28 +1,28 @@
-import { useForm } from '@mantine/form';
-import { TextInput, PasswordInput, Button, Modal, Group } from '@mantine/core';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { useForm } from "@mantine/form";
+import { TextInput, PasswordInput, Button, Modal, Group } from "@mantine/core";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 function Login() {
   const [opened, setOpened] = useState(true);
 
   const form = useForm({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+\.\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => (/^\S+@\S+\.\S+$/.test(value) ? null : "Invalid email"),
       password: (value) =>
-        value.length >= 6 ? null : 'Password must be at least 6 characters',
+        value.length >= 6 ? null : "Password must be at least 6 characters",
     },
   });
 
   const navigate = useNavigate();
   const close = () => {
     // Navigate to home page
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -31,14 +31,14 @@ function Login() {
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput
             placeholder="Email"
-            {...form.getInputProps('email')}
+            {...form.getInputProps("email")}
             required
             mt={14}
           />
 
           <PasswordInput
             placeholder="Password"
-            {...form.getInputProps('password')}
+            {...form.getInputProps("password")}
             required
             mt={14}
           />
@@ -49,8 +49,8 @@ function Login() {
 
           <Group mt="md">
             <div className="text-sm">
-              Not a member?{' '}
-              <Link className="text-blue-600 font-semibold" to={'/signup'}>
+              Not a member?{" "}
+              <Link className="text-blue-600 font-semibold" to={"/signup"}>
                 Sign Up
               </Link>
             </div>
