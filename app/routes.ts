@@ -6,4 +6,6 @@ export default [
   route("login", "routes/login.tsx"),
   route("signup", "routes/signup.tsx"),
   route("copy-trading", "routes/copyTrading.tsx"),
+  route("crypto-market", "routes/crypto_market.tsx"),
+  route("buy-crypto", "routes/buy_crypto.tsx"),
 ] satisfies RouteConfig;

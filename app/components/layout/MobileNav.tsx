@@ -3,7 +3,8 @@ import { Link as ScrollLink } from 'react-scroll';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { MenuButton } from '~/utils/Svgs';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import { navigationData } from './Nav';
 
 interface MobileNavProps {
   isMenuOpen: boolean;
@@ -42,24 +43,15 @@ const MobileNav: React.FC<MobileNavProps> = ({
               <button onClick={close} className="self-end text-gray-700">
                 ✕
               </button>
-              {[
-                { label: 'Home', href: 'hero-section' },
-                { label: 'Crypto Markets', href: 'info-section' },
-                { label: 'Copy Trading', href: 'charts-section' },
-                { label: 'AI/Grid Bot', href: 'card-section' },
-                { label: 'Buy Crypto', href: 'getStarted-section' },
-              ].map((item, index) => (
-                <ScrollLink
+              {navigationData.map((item, index) => (
+                <NavLink
                   key={index}
                   to={item.href}
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
+                  className="text-black font-normal"
                   onClick={close}
                 >
                   {item.label}
-                </ScrollLink>
+                </NavLink>
               ))}
 
               <Link
@@ -72,7 +64,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
               <Link
                 onClick={close}
                 to="/signup"
-                className="bg-blue-400 rounded bg-transparent text-white text-center py-1.5"
+                className="bg-blue-400 rounded text-white text-center py-1.5"
               >
                 Register
               </Link>

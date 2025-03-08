@@ -195,7 +195,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="flex items-center justify-between w-full px-10 py-10">
+      {/* <div className="flex items-center justify-between w-full px-10 py-10">
         <img src={logo} alt="CoinbitDex" className="-ml-8 h-6 w-auto" />
 
         <div className="flex-1 mx-5 border-dotted border-t border-gray-900"></div>
@@ -204,7 +204,7 @@ const Footer = () => {
           &copy; 2019-2023 <span className="font-semibold">CoinBitDex.com</span>{' '}
           All Rights Reserved
         </p>
-      </div>
+      </div> */}
 
       <div className="mt-10 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm border-t border-gray-700 pt-6">
         <img src={logo} alt="CoinbitDex" className="h-6 mb-4 md:mb-0" />
