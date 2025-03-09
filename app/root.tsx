@@ -11,9 +11,9 @@ import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
-
 import type { Route } from './+types/root';
 import stylesheet from './app.css?url';
+import { AuthProvider } from './providers/AuthProvider';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -54,7 +54,9 @@ export default function App() {
     <MantineProvider>
       <Notifications position="top-right" />
       <QueryClientProvider client={queryClient}>
-        <Outlet />
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
       </QueryClientProvider>
     </MantineProvider>
   );

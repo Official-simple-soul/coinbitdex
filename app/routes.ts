@@ -9,4 +9,10 @@ export default [
   route('crypto-market', 'routes/crypto_market.tsx'),
   route('buy-crypto', 'routes/buy_crypto.tsx'),
   route('ai', 'routes/ai.tsx'),
+  route('dashboard', 'routes/dashboard.tsx'),
+  route('dashboard/market', 'routes/market.tsx'),
+  route('dashboard/spot', 'routes/spot.tsx'),
+  route('dashboard/futures', 'routes/futures.tsx'),
+  route('dashboard/copy', 'routes/copy.tsx'),
+  route('dashboard/assets', 'routes/assets.tsx'),
 ] satisfies RouteConfig;

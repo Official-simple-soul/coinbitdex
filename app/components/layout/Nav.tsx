@@ -61,7 +61,7 @@ const NavOne: React.FC = () => {
 
         <ul className="hidden md:flex justify-between items-center gap-1">
           <li className="whitespace-nowrap">
-            <Link to={'/signup'}>
+            <Link to={'/login'}>
               <Button component="a" type="button" variant="outline">
                 Log in
               </Button>
