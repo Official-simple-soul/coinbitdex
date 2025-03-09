@@ -7,14 +7,19 @@ import {
   Button,
   Group,
   Modal,
+  type ComboboxItem,
 } from '@mantine/core';
 import { useState } from 'react';
 import { CountryCode } from './countryCode';
 import { Link, useNavigate } from 'react-router';
+import { useAuth } from '~/providers/AuthProvider';
+import { extractFriendlyFirebaseError } from '~/utils/helper';
+import { notifications } from '@mantine/notifications';
 
 function SignUp() {
   const [opened, setOpened] = useState(true);
-
+  const [prefixValue, setPrefixValue] = useState<ComboboxItem | null>(null);
+  const { register, storeUser, loading } = useAuth();
   const form = useForm({
     initialValues: {
       firstName: '',
@@ -41,14 +46,39 @@ function SignUp() {
 
   const navigate = useNavigate();
   const close = () => {
-    // navigate to home page
     navigate('/');
+  };
+
+  const handleRegister = async (values: any) => {
+    const phone = values.phonePrefix + values.phone;
+    try {
+      const user = await register(values.email, values.password);
+      console.log('user', user);
+
+      await storeUser({
+        email: values.email,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        country: values.country,
+        phone,
+        balance: 0,
+        uid: user.uid,
+      });
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      const error = extractFriendlyFirebaseError(err);
+      notifications.show({
+        title: 'Error',
+        message: error,
+        color: 'red',
+      });
+    }
   };
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-auth-bg bg-no-repeat bg-cover bg-center">
       <Modal opened={opened} onClose={close} title="Register" centered>
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit((values) => handleRegister(values))}>
           <TextInput
             placeholder="First Name"
             {...form.getInputProps('firstName')}
@@ -78,11 +108,11 @@ function SignUp() {
                 label: country.prefix,
               }))}
               {...form.getInputProps('phonePrefix')}
-              onChange={(value) => {
-                const prefix =
-                  CountryCode.find((c) => c.code === value)?.prefix || '';
-                form.setFieldValue('phonePrefix', prefix);
+              onChange={(_value, option) => {
+                form.setFieldValue('phonePrefix', option.label);
+                setPrefixValue(option);
               }}
+              value={prefixValue ? prefixValue.value : null}
               required
               style={{ width: '20%' }}
             />
@@ -121,7 +151,9 @@ function SignUp() {
           />
 
           <Group mt="md">
-            <Button type="submit">Sign up</Button>
+            <Button loading={loading} type="submit">
+              Sign up
+            </Button>
             <div className="text-sm">
               Already a member?{' '}
               <Link className="text-blue-600 font-semibold" to={'/login'}>

@@ -42,7 +42,7 @@ const NavOne: React.FC = () => {
       <div className="flex justify-between items-center w-full">
         <img src={logo} onClick={close} alt="Logo" className="-ml-8 h-12" />
 
-        <ul className="hidden md:flex flex-wrap items-center gap-5">
+        <ul className="hidden md:flex items-center gap-5 overflow-y-hidden overflow-x-auto mr-4 h-12">
           {navigationData.map((item) => (
             <li key={item.id} className="whitespace-nowrap">
               <NavLink
@@ -61,7 +61,7 @@ const NavOne: React.FC = () => {
 
         <ul className="hidden md:flex justify-between items-center gap-1">
           <li className="whitespace-nowrap">
-            <Link to={'/signup'}>
+            <Link to={'/login'}>
               <Button component="a" type="button" variant="outline">
                 Log in
               </Button>

@@ -13,3 +13,12 @@ body {
 
   font-family: 'Roboto Slab', sans-serif;
 }
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  font-family: 'Roboto Slab', sans-serif;
+}

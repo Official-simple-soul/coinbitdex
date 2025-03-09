@@ -58,3 +58,33 @@ export const removeSymbols = (value: any) => {
   }
   return value;
 };
+
+export function extractFriendlyFirebaseError(error: any): string {
+  if (error && error.code) {
+    switch (error.code) {
+      case 'auth/user-not-found':
+        return 'User not found. Please check your email.';
+      case 'auth/wrong-password':
+        return 'Incorrect password. Please try again.';
+      case 'auth/invalid-email':
+        return 'Invalid email address.';
+      case 'auth/email-already-in-use':
+        return 'Email address is already in use.';
+      case 'auth/weak-password':
+        return 'Weak password. Please use a stronger password.';
+      case 'auth/invalid-credential':
+        return 'Invalid login credentials. Please check your email and password.';
+      case 'auth/too-many-requests':
+        return 'Too many login attempts. Please try again later.';
+      case 'auth/popup-closed-by-user':
+        return 'Popup closed by user.';
+      case 'auth/network-request-failed':
+        return 'A network error occurred. Please check your internet connection and try again.';
+      // Add more cases as needed
+      default:
+        return 'An unexpected error occurred. Please try again.';
+    }
+  } else {
+    return 'An unexpected error occurred. Please try again.';
+  }
+}
