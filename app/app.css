@@ -19,19 +19,6 @@ body {
   display: none;
 }
 
-/* Scrollbar track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
-  border-radius: 5px;
-}
-
-/* Scrollbar handle */
-::-webkit-scrollbar-thumb {
-  background: #888; /* Handle color */
-  border-radius: 5px;
-}
-
-/* Scrollbar handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker color on hover */
+* {
+  font-family: 'Roboto Slab', sans-serif;
 }
