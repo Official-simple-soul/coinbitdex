@@ -5,6 +5,15 @@ export default {
   // content: ["./app/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      // colors: {
+      //   'priGray': "#131722"
+      // },
+
+      backgroundImage: {
+        "hero-bg": "url('/images/background.avif')",
+        "auth-bg": "url('/images/authBg.jpeg')",
+      },
+
       fontFamily: {
         sans: [
           '"Inter"',
@@ -17,6 +26,9 @@ export default {
           '"Noto Color Emoji"',
         ],
       },
+      // backgroundImage: {
+      //   'auth-bg': "url('/images/authBg.jpeg')",
+      // },
     },
   },
   plugins: [],

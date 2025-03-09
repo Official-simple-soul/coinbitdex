@@ -1,11 +1,14 @@
-import React from 'react';
-import Nav from './Nav';
+import React, { useState } from 'react';
+import NavOne from './Nav';
+import ScrollingTextAnimation from '../common/ScrollingText';
 
 const Header = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
   return (
-    <header className="flex items-center justify-between px-8 sticky top-0 shadow-md h-16 text-black font-semibold">
-      <h1>My Website</h1>
-      <Nav />
+    <header className="sticky top-0 shadow-md h-auto text-black font-semibold z-50 bg-white">
+      <NavOne />
+      <ScrollingTextAnimation />
     </header>
   );
 };
