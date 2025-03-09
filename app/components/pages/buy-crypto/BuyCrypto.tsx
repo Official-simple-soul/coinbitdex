@@ -37,8 +37,8 @@ function BuyCrypto() {
               </p>
             </div>
           </div>
-          <div className="h-[65vh] md:h-auto md:w-1/3 bg-white shadow-lg rounded-md flex items-center justify-center">
-            <div className="h-[90%] w-[90%] ">
+          <div className="h-[65vh] md:h-auto md:w-1/3 flex items-center justify-center">
+            <div className="h-[90%] w-[90%]">
               <iframe
                 sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
                 className="wuksD5 mx-auto"
