@@ -51,6 +51,7 @@ function Login() {
             {...form.getInputProps('email')}
             required
             mt={14}
+            size="sm"
           />
 
           <PasswordInput
@@ -58,6 +59,7 @@ function Login() {
             {...form.getInputProps('password')}
             required
             mt={14}
+            size="sm"
           />
 
           <Button loading={loading} type="submit" fullWidth mt={14}>

@@ -54,44 +54,33 @@ const Home: React.FC = () => {
               Enjoy Trading, Buying, Investing, Copy Trading, And Many More...
             </div>
 
-            <div className="md:w-[60%] mb-20">
-              <p
-                data-aos="fade-right"
-                className="flex items-end text-[10px] text-green-400 -mb-0.5 ml-1"
-              >
-                <span className="mr-0.5">
-                  <GiftIcon />
-                </span>
-                Register now and stand a chance to Claim Bonus of{" "}
-                <span className="text-red-400">9125 USDT</span>
-              </p>
+            <div className="md:w-[40%] mb-20">
               <Group
                 style={{
-                  border: "1px solid blue",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  width: "90%",
+                  border: '1px solid blue',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
                   gap: 0,
                 }}
               >
-                {" "}
+                {' '}
                 <TextInput
-                  placeholder="Please enter your email address"
+                  placeholder="Enter your email address"
                   style={{
                     flex: 1,
-                    border: "none",
+                    border: 'none',
                   }}
                   radius={0}
                   styles={{
-                    input: { border: "none", borderRadius: 0 },
+                    input: { border: 'none', borderRadius: 0 },
                   }}
-                />{" "}
+                />{' '}
                 <Link to="/signup">
                   <Button
                     style={{
-                      height: "45px",
+                      height: '45px',
                       borderTopLeftRadius: 8,
                       borderBottomLeftRadius: 8,
                     }}
@@ -105,12 +94,12 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
-        
+
         <section
           id="info-section"
           className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-5 md:px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
         >
-          <div className="md:w-[90%] h-full mx-auto">
+          <div className="relative md:w-[90%] h-full mx-auto">
             <iframe
               sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
               className="wuksD5"
@@ -122,12 +111,13 @@ const Home: React.FC = () => {
               data-src=""
               src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_bc9eff8ccdbb07486b1cbf51a260b1d3.html"
             ></iframe>
+            <div className="cover w-full h-9 bg-white absolute bottom-0"></div>
           </div>
         </section>
 
         <section
           id="captureTrading"
-          className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]"
+          className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] hidden md:block"
         >
           <h1 className="text-2xl md:text-4xl font-extrabold">
             Capture Every Trading Opportunity
@@ -157,7 +147,7 @@ const Home: React.FC = () => {
 
         <section
           id="tradingBot-section"
-          className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] py-5"
+          className="mx-auto w-[99%] md:w-[75%] py-5"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-5 px-10 w-full">
             <img
@@ -191,12 +181,12 @@ const Home: React.FC = () => {
         </section>
 
         <section id="charts-section" className="mt-2 mb-20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5 mx-auto w-full md:w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5 mx-auto w-[99%] md:w-[75%]">
             <div className="md:w-[45%] px-10">
-              <h1 className="text-2xl font-bold my-5">
+              <h1 className="text-2xl font-bold my-5 text-center md:text-left">
                 Join the Largest Copy Trading Community
               </h1>
-              <p className="">
+              <p className="text-center md:text-left">
                 Copy elite traders and auto-replicate their trades in real-time
               </p>
               <div className="flex justify-around items-center my-5">
@@ -204,7 +194,7 @@ const Home: React.FC = () => {
                   <div className="">
                     <TradersIcon />
                   </div>
-                  <div className="">
+                  <div className="text-sm md:text-base">
                     <h3>2000+</h3>
                     <p>Elite Teachers</p>
                   </div>
@@ -213,27 +203,27 @@ const Home: React.FC = () => {
                   <div className="">
                     <HandShakeIcon />
                   </div>
-                  <div className="">
+                  <div className="text-sm md:text-base">
                     <h3>2.5M+</h3>
                     <p>Copied Relationship</p>
                   </div>
                 </div>
               </div>
 
-              <div className="grid">
+              <div className="grid mt-12 md:mt-0">
                 <div className="flex justify-center items-center mb-5 md:mb-10">
                   <div className="flex">
                     <div className="">
                       <OrderBookIcon />
-                    </div>{" "}
-                    <div className="">
+                    </div>{' '}
+                    <div className="text-sm md:text-base">
                       <h3>10M+</h3>
                       <p>Total Order Book</p>
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-center md:justify-start">
-                  <Link to={"/copy-trading"}>
+                  <Link to={'/copy-trading'}>
                     <Button
                       variant="default"
                       rightSection={
@@ -269,7 +259,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] text-center md:text-start">
             <div className="flex flex-col justify-between w-full md:w-[55%] h-full">
               <h2 className="text-4xl font-extrabold">
-                Get Started in a Few Minutes{" "}
+                Get Started in a Few Minutes{' '}
               </h2>
               <div className="mb-10">
                 <h2 className="text-4xl font-extrabold">
@@ -296,7 +286,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
             <div className="md:mt-20">
-              {" "}
+              {' '}
               <img src={laptopPhone} alt="" className="w-[90%]" />
             </div>
           </div>
@@ -316,55 +306,55 @@ const Home: React.FC = () => {
 export default Home;
 
 const heroStats = [
-  { id: 1, icon: <InternetSvg />, value: "1M+", label: "Global Users" },
-  { id: 2, icon: <VolumeSvg />, value: "$4.6B+", label: "24h Volume" },
-  { id: 3, icon: <ListSvg />, value: "220+", label: "Listed Cryptocurrencies" },
+  { id: 1, icon: <InternetSvg />, value: '1M+', label: 'Global Users' },
+  { id: 2, icon: <VolumeSvg />, value: '$4.6B+', label: '24h Volume' },
+  { id: 3, icon: <ListSvg />, value: '220+', label: 'Listed Cryptocurrencies' },
 ];
 
 const dummyData = [
   {
     id: 1,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 2,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 3,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 4,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
   {
     id: 5,
     title:
-      "BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs",
-    path: "/",
-    time: "",
-    icon: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-    img: "https://s3.tradingview.com/timeline/btcusd_133234877.jpg",
+      'BTC/USD: Bitcoin Price Slips Toward $100K After Trump Vows to Slap Tariffs',
+    path: '/',
+    time: '',
+    icon: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
+    img: 'https://s3.tradingview.com/timeline/btcusd_133234877.jpg',
   },
 ];

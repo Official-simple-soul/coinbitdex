@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Anchor,
   Box,
@@ -9,19 +9,19 @@ import {
   Space,
   Text,
   Title,
-} from "@mantine/core";
-import { Link } from "react-router";
-import UnAuthLayout from "~/layouts/UnAuthLayout";
+} from '@mantine/core';
+import { Link } from 'react-router';
+import UnAuthLayout from '~/layouts/UnAuthLayout';
 
-import banner from "/images/banner.avif";
-import vahid from "/images/vahid-btc.png";
-import pump from "/images/pump-btc.png";
-import china from "/images/china-btc.png";
-import moneyman from "/images/moneyman-btc.png";
-import lemonbridge from "/images/lemonbridge-btc.png";
-import tumtum from "/images/tumtum-btc.png";
-import smitsergei from "/images/smitsergei-btc.png";
-import fundmanager from "/images/fundmanager-btc.png";
+import banner from '/images/banner.avif';
+import vahid from '/images/vahid-btc.png';
+import pump from '/images/pump-btc.png';
+import china from '/images/china-btc.png';
+import moneyman from '/images/moneyman-btc.png';
+import lemonbridge from '/images/lemonbridge-btc.png';
+import tumtum from '/images/tumtum-btc.png';
+import smitsergei from '/images/smitsergei-btc.png';
+import fundmanager from '/images/fundmanager-btc.png';
 
 const traders1 = [
   {
@@ -57,17 +57,17 @@ const CopyTrading = () => {
   console.log(vahid, banner);
   return (
     <UnAuthLayout>
-      <Container className="" size="xl" sx={{ maxWidth: "1400px" }}>
+      <div className="px-5 md:px-0 w-[99%] md:w-[70%] mx-auto">
         <Box className="md:flex items-center justify-between mt-6">
           <div className="">
             <Title size={38} className="">
               Copy Global Elite Traders
             </Title>
             <Text size="xl">
-              Established{" "}
+              Established{' '}
               <Anchor href="#" color="blue">
                 2,578,536
-              </Anchor>{" "}
+              </Anchor>{' '}
               Copy Relationship
             </Text>
             <Group mt={10} className="py-12">
@@ -89,7 +89,7 @@ const CopyTrading = () => {
           />
         </Box>
 
-        <Box className="">
+        <Box className="mb-6">
           <Title order={3} mt={40}>
             Trending Traders
           </Title>
@@ -97,29 +97,27 @@ const CopyTrading = () => {
         </Box>
 
         {/* Start Here for the first one */}
-        <Flex justify="space-between" wrap="wrap" gap="xl" mb={50}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {traders1.map((trader, index) => (
-            <div key={index} className="py-4 min-h-[350px]">
-              <Image src={trader.image} width={40} height={40} radius="lg" />
-            </div>
+            <Image key={index} src={trader.image} radius="lg" />
           ))}
-        </Flex>
+        </div>
 
-        <Title order={3} mt={30}>
-          Top Exquisite Traders
-        </Title>
-        <Text size="sm" color="gray">
-          Low to no losses, Mostly Swing & Position Trades
-        </Text>
+        <Box className="mb-6">
+          <Title order={3} mt={30}>
+            Top Exquisite Traders
+          </Title>
+          <Text size="sm" color="gray">
+            Low to no losses, Mostly Swing & Position Trades
+          </Text>
+        </Box>
 
         {/* Start Here for the second one */}
-        <Flex justify="space-between" wrap="wrap" gap="xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {traders2.map((trader, index) => (
-            <div key={index} className="py-4 min-h-[350px]">
-              <Image src={trader.image} width={40} height={40} radius="lg" />
-            </div>
+            <Image key={index} src={trader.image} radius="lg" />
           ))}
-        </Flex>
+        </div>
 
         <div className="mt-20">
           <Title className="text-3xl font-bold mb-6">Copy Trading Guide</Title>
@@ -150,7 +148,7 @@ const CopyTrading = () => {
             <Text size="sm">
               <span className="font-semibold mr-2">2.1</span> First time traders
               can familiarise themselves with the financial markets and gain the
-              confidence to trade{" "}
+              confidence to trade{' '}
             </Text>
             <Text size="sm">
               <span className="font-semibold mr-2">2.2</span> New traders can
@@ -161,7 +159,7 @@ const CopyTrading = () => {
               <span className="font-semibold mr-2">2.3</span> Traders can
               participate in the market, even when they are too busy, and not
               able to invest the time and research they should normally devote
-              to trading.{" "}
+              to trading.{' '}
             </Text>
           </div>
 
@@ -193,12 +191,12 @@ const CopyTrading = () => {
           </div>
 
           <Title order={5} className="text-xl font-semibold mb-2">
-            4. How Copy/Mirror Trading is parsed{" "}
+            4. How Copy/Mirror Trading is parsed{' '}
           </Title>
           <div className="mb-3">
             <Text size="sm">
               <span className="text-lg font-semibold">
-                4.1 Copy By Position:-{" "}
+                4.1 Copy By Position:-{' '}
               </span>
               "Copy by position" is a one-of-its-kind feature globally that is
               pioneered and recommended by Coinbitdex to safeguard copiers'
@@ -219,7 +217,7 @@ const CopyTrading = () => {
 
           <Text size="sm">
             <span className="text-lg font-semibold">
-              4.2 Copy By Fixed Margin:-{" "}
+              4.2 Copy By Fixed Margin:-{' '}
             </span>
             "Copy by fixed margin" is limited to copying the trader’s Standard
             Futures account and only copies the signals of trades opened in the
@@ -236,12 +234,12 @@ const CopyTrading = () => {
         </div>
 
         <div className="text-center my-6">
-          <Link to={"#"} className="underline">
-            <span className="">{">>>"}</span>
+          <Link to={'#'} className="underline">
+            <span className="">{'>>>'}</span>
             <span className="text-blue-500">
               Start Copy Trading on CoinbitDex!
             </span>
-            <span className="">{"<<<"}</span>
+            <span className="">{'<<<'}</span>
           </Link>
         </div>
 
@@ -291,15 +289,15 @@ const CopyTrading = () => {
         </div>
 
         <div className="text-center my-6">
-          <Link to={"#"} className="underline">
-            <span className="">{">>>"}</span>
+          <Link to={'#'} className="underline">
+            <span className="">{'>>>'}</span>
             <span className="text-blue-500">
               Start Copy Trading on CoinbitDex!
             </span>
-            <span className="">{"<<<"}</span>
+            <span className="">{'<<<'}</span>
           </Link>
         </div>
-      </Container>
+      </div>
     </UnAuthLayout>
   );
 };

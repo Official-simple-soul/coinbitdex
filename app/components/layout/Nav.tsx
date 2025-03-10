@@ -40,7 +40,12 @@ const NavOne: React.FC = () => {
   return (
     <nav className="flex items-center justify-between px-2 py-2 mx-auto w-[95%] md:w-[88%] lg:w-[90%] xl:w-[70%] max-w-[1300px]">
       <div className="flex justify-between items-center w-full">
-        <img src={logo} onClick={close} alt="Logo" className="-ml-8 h-12" />
+        <img
+          src={logo}
+          onClick={close}
+          alt="Logo"
+          className="-ml-8 h-10 md:h-12"
+        />
 
         <ul className="hidden md:flex items-center gap-5 overflow-y-hidden overflow-x-auto mr-4 h-12">
           {navigationData.map((item) => (
@@ -86,68 +91,4 @@ const NavOne: React.FC = () => {
   );
 };
 
-// export const NavTwo = () => {
-//   return (
-//     <nav>
-//       <ul className="flex justify-between items-center gap-1">
-//         <li className="whitespace-nowrap">
-//           <Button component="a" href="" variant="outline">
-//             Log in
-//           </Button>
-//         </li>
-//         <li className="whitespace-nowrap">
-//           <Button component="a" href="" variant="">
-//             Register
-//           </Button>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// };
-
 export default NavOne;
-
-// {
-//   isMobile ? (
-//     <Button>Menu</Button>
-//   ) : (
-//     <div>
-//       <Button
-//         component={Link}
-//         to="/"
-//         // variant="light"
-//         className="text-black"
-//       >
-//         Home
-//       </Button>
-//       <Link to={"#"}>
-//         <Button variant="light" className="text-black">
-//           Crypto Markets
-//         </Button>
-//       </Link>
-//       <Link to={"#"}>
-//         <Button variant="light" className="text-black">
-//           Copy Trading
-//         </Button>
-//       </Link>
-//       <Link to={"#"}>
-//         <Button variant="light" className="text-black">
-//           AI/Grid Bot
-//         </Button>
-//       </Link>
-//       <Link to={"#"}>
-//         <Button variant="light" className="text-black">
-//           Buy Crypto
-//         </Button>
-//       </Link>
-//       <Link to={"#"}>
-//         <Button variant="light" className="text-black">
-//           More
-//         </Button>
-//       </Link>
-//       <Link to={"#"}>
-//         <Button className="text-black">Register</Button>
-//       </Link>
-//     </div>
-//   );
-// }

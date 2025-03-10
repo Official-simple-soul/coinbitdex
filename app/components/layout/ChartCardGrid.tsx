@@ -9,7 +9,7 @@ const cardImages = [chart1, chart2, chart3, chart4, chart5, chart6];
 
 const ChartCardGrid = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 sm:gap-2">
+    <div className="grid grid-cols-2 gap-2 px-4">
       {cardImages.map((image, index) => (
         <div
           key={index}
@@ -17,7 +17,11 @@ const ChartCardGrid = () => {
             index % 2 === 0 ? 'translate-y-0' : 'translate-y-[50%]'
           } transform transition-transform hover:scale-105`}
         >
-          <img src={image} alt="" className="w-full h-full rounded-m" />
+          <img
+            src={image}
+            alt=""
+            className="md:w-full md:h-full rounded-m mix-blend-screen"
+          />
         </div>
       ))}
     </div>
