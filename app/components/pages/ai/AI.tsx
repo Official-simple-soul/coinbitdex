@@ -56,13 +56,13 @@ function AI() {
         </div>
         <Element name="guide">
           <div id="guide" className="font-sans text-gray-800 p-5 text-justify">
-            <h1 className="text-3xl font-bold mb-6 text-gray-900">
+            <h1 className="text-3xl text-left font-bold mb-6 text-gray-900">
               AI Trading Bot Guide
             </h1>
 
             <div className="space-y-6">
               <div className="">
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-xl text-left font-semibold mb-3">
                   1. What Is AI Trading Bot? And How Does it Work?
                 </h2>
                 <p className="mb-4">
@@ -120,7 +120,7 @@ function AI() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-xl text-left font-semibold mb-3">
                   2. Why Should I Try Trading Bots in the Crypto Market?
                 </h2>
                 <p className="mb-4">
@@ -152,7 +152,7 @@ function AI() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-xl text-left font-semibold mb-3">
                   3. Is There Any Possibility of Losing Money in Grid Trading?
                 </h2>
                 <p className="mb-4">

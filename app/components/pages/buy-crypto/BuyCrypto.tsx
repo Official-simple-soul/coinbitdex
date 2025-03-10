@@ -37,19 +37,14 @@ function BuyCrypto() {
               </p>
             </div>
           </div>
-          <div className="h-[65vh] md:h-auto md:w-1/3 flex items-center justify-center">
-            <div className="h-[90%] w-[90%]">
+          <div className="h-[45vh] md:h-auto md:w-1/3 relative flex items-center justify-center">
+            <div className="h-[90%] bg-slate-800 absolute -right-8 md:static md:w-[58%]">
               <iframe
-                sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
-                className="wuksD5 mx-auto"
-                title="Embedded Content"
-                name="htmlComp-iframe"
-                // width="100%"
-                height="100%"
-                allow="fullscreen"
-                data-src=""
                 src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_eb9f1c5c2877446f790e1cee698ba5c7.html"
+                width="100%"
+                height="100%"
               ></iframe>
+              <div className="absolute bg-[#56667F] w-[200px] right-16 h-4 bottom-2.5 md:hidden"></div>
             </div>
           </div>
         </div>
@@ -60,7 +55,7 @@ function BuyCrypto() {
           <div className="grid md:grid-cols-2 gap-2">
             {paymentData.map((item, index) => (
               <a href={item.link} key={index}>
-                <img src={item.logo} alt="" className="object-cover " />
+                <img src={item.logo} alt="" className="object-center" />
               </a>
             ))}
           </div>

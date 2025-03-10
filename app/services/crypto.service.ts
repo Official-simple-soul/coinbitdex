@@ -1,12 +1,9 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchCryptocurrencyData } from './axios';
-import type { lastPage } from './types';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMarketData } from './axios';
 
-export const useCryptocurrencyData = () => {
-  return useInfiniteQuery({
-    queryKey: ['cryptocurrencyData'],
-    queryFn: ({ pageParam = 1 }) => fetchCryptocurrencyData({ pageParam }),
-    getNextPageParam: (lastPage: lastPage) => lastPage.data,
-    initialPageParam: 1,
+export const useFetchMarketData = () => {
+  return useQuery({
+    queryKey: ['marketData'],
+    queryFn: fetchMarketData,
   });
 };

@@ -30,19 +30,19 @@ const paymentData = [
     link: 'https://www.coinbitdex.online/',
   },
   {
-    logo: 'https://static.wixstatic.com/media/c9104a_277e0d8e1161410b995523a4a9b0e304~mv2.png/v1/crop/x_4,y_268,w_1205,h_241/fill/w_645,h_129,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202023-02-17%20065048%20m%2Coonpay.png',
+    logo: '/images/paybis.png',
     title: 'Paybis',
     paymentMethods: ['MasterCard', 'VISA', 'Apple Pay', 'Google Pay'],
     link: 'https://paybis.com/',
   },
   {
-    logo: 'https://static.wixstatic.com/media/c9104a_277e0d8e1161410b995523a4a9b0e304~mv2.png/v1/crop/x_2,y_266,w_1207,h_243/fill/w_661,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202023-02-17%20065048%20m%2Coonpay.png',
+    logo: '/images/simplex.png',
     title: 'Simplex',
     paymentMethods: ['MasterCard', 'VISA', 'Apple Pay', 'Google Pay', 'SEPA'],
     link: 'https://www.simplex.com/account/buy',
   },
   {
-    logo: 'https://static.wixstatic.com/media/c9104a_277e0d8e1161410b995523a4a9b0e304~mv2.png/v1/crop/x_2,y_266,w_1207,h_243/fill/w_661,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202023-02-17%20065048%20m%2Coonpay.png',
+    logo: '/images/wyre.png',
     title: 'Wyre',
     paymentMethods: ['MasterCard', 'VISA', 'Apple Pay', 'Google Pay'],
     link: 'https://www.sendwyre.com/buy/btc/step-1',

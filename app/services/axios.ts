@@ -1,28 +1,29 @@
 import axios from 'axios';
+import type { MarketDataItem } from './types';
+import { crypto_list } from './data';
 
-export async function fetchCryptocurrencyData({ pageParam = 2 }) {
-  const options = {
-    method: 'GET',
-    url: 'https://investing-cryptocurrency-markets.p.rapidapi.com/coins/list',
-    params: {
-      edition_currency_id: '12',
-      time_utc_offset: '28800',
-      lang_ID: '1',
-      sort: 'PERC1D_DN',
-      page: pageParam,
-    },
-    headers: {
-      //   'X-RapidAPI-Key': 'aa9fe9fa58msh53c01e7eb8c954ap12c810jsn1571c226b0f4',
-      'X-RapidAPI-Key': '5687e2b969mshc6e7ff50692d7abp1b3ee6jsn6c0dc748e2cd',
-      'X-RapidAPI-Host': 'investing-cryptocurrency-markets.p.rapidapi.com',
-    },
-  };
-
+export const fetchMarketData = async (): Promise<MarketDataItem[] | null> => {
   try {
-    const response = await axios.request(options);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Failed to fetch cryptocurrency data');
+    const response = await axios.get(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${crypto_list.join(
+        ','
+      )}&vs_currencies=usd&include_24hr_change=true`
+    );
+
+    const result: { [key: string]: { usd: number; usd_24h_change: number } } =
+      response.data;
+
+    const array: MarketDataItem[] = Object.keys(result).map((key: string) => {
+      return {
+        symbol: key,
+        price: result[key].usd,
+        change: result[key].usd_24h_change,
+      };
+    });
+
+    return array;
+  } catch (err: any) {
+    console.error('Unexpected error:', err);
+    return null;
   }
-}
+};
