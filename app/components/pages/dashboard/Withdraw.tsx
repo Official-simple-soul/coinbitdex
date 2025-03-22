@@ -12,7 +12,7 @@ function Withdraw() {
           Current Balance: {user?.balance || '25.00'} USD
         </p>
         <div className="pt-4">
-          <p className="mb-2">Withdraw Charge</p>
+          <p className="mb-2">Withdraw Method</p>
           <Select
             placeholder="Withdraw Method"
             data={['BTC', 'ETH', 'USDT (TRC20)', 'USDT (ERC20)']}
