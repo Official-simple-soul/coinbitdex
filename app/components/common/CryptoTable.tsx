@@ -11,7 +11,7 @@ const CryptoTable = () => {
         allow="fullscreen"
         src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_6ecc99ae3d271e535a962764541f3ab4.html"
       ></iframe>
-      <div className="cover w-full h-9 bg-white absolute bottom-4"></div>
+      <div className="cover w-full h-20 bg-white absolute bottom-0"></div>
     </div>
   );
 };

@@ -32,30 +32,33 @@ function AI() {
           <img src="/images/ai-gif.gif" alt="" />
           <img src="/images/spot-pro.png" alt="" />
         </div>
-        <div className="grid md:grid-cols-4 justify-center gap-4 my-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 justify-center gap-4 my-10 md:my-20">
           <img
             src="/images/btc.png"
             alt=""
-            className="hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
+            className="w-full hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
           />
           <img
             src="/images/eth.png"
             alt=""
-            className="hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
+            className="w-full hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
           />
           <img
             src="/images/sol.png"
             alt=""
-            className="hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
+            className="w-full hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
           />
           <img
             src="/images/ach.png"
             alt=""
-            className="hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
+            className="w-full hover:scale-110 transition-all ease-in-out duration-300 cursor-pointer"
           />
         </div>
         <Element name="guide">
-          <div id="guide" className="font-sans text-gray-800 p-5 text-justify">
+          <div
+            id="guide"
+            className="font-sans text-gray-800 md:p-5 text-justify"
+          >
             <h1 className="text-3xl text-left font-bold mb-6 text-gray-900">
               AI Trading Bot Guide
             </h1>

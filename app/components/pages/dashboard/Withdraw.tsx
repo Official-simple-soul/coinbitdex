@@ -15,20 +15,19 @@ function Withdraw() {
           <p className="mb-2">Withdraw Charge</p>
           <Select
             placeholder="Withdraw Method"
-            data={['React', 'Angular', 'Vue', 'Svelte']}
-            size="lg"
+            data={['BTC', 'ETH', 'USDT (TRC20)', 'USDT (ERC20)']}
           />
         </div>
         <div className="space-y-2 pt-5">
           <p>
             Withdrawal Amount <span className="text-red-500 font-bold">*</span>
           </p>
-          <TextInput size="lg" />
-          <p className="text-gray-500">
+          <TextInput />
+          <p className="text-gray-500 text-xs">
             Min Amount: 100.00 and Max Amount: 500,000
           </p>
         </div>
-        <div className="pt-4">
+        {/* <div className="pt-4">
           <p className="mb-2">Withdraw Charge</p>
           <Input
             rightSection={
@@ -60,13 +59,13 @@ function Withdraw() {
             readOnly
             value={'0.00'}
           />
-        </div>
+        </div> */}
         <div className="pt-4">
           <p className="mb-2">
             Enter Your Password{' '}
             <span className="text-red-500 font-bold">*</span>
           </p>
-          <TextInput size="lg" />
+          <TextInput type="password" />
         </div>
         <Button w={'100%'} h={'45px'} radius={'md'} mt={'40px'}>
           Withdraw Now

@@ -14,12 +14,12 @@ function Referral() {
         </NavLink>
         <Frame>
           <div className="flex items-center w-full">
-            <div className="w-full border rounded-l h-10 bg-gray-100 flex items-center justify-center">
+            <div className="w-full border rounded-l h-8 bg-gray-100 flex items-center justify-center pl-2 overflow-hidden">
               <p className="text-gray-700">{'referal_link'}</p>
             </div>
             <CopyButton value={'referal_link'}>
               {({ copied, copy }) => (
-                <div className="size-10 bg-blue-500 flex items-center justify-center rounded-r">
+                <div className="size-8 bg-blue-500 flex items-center justify-center rounded-r">
                   <IconFolders color="white" onClick={copy} />
                 </div>
               )}
@@ -28,27 +28,27 @@ function Referral() {
         </Frame>
         <Frame>
           <div className="grid grid-cols-2 gap-3">
-            <Button size="lg" radius={'lg'}>
+            <Button size="xs" radius={'md'}>
               Total Team: {'0'}
             </Button>
-            <Button size="lg" radius={'lg'}>
+            <Button size="xs" radius={'md'}>
               Earned: {'$0.00'}
             </Button>
-            <Button size="lg" radius={'lg'} className="col-span-2">
+            <Button size="xs" radius={'md'} className="col-span-2">
               Work Team: {'0'}
             </Button>
           </div>
         </Frame>
         <Frame>
-          <p>Your current referral level</p>
+          <p className="text-sm">Your current referral level</p>
           <div className="grid grid-cols-3 gap-2">
-            <Button size="" radius={'md'} className="">
+            <Button size="xs" radius={'md'} className="">
               Level 1: {'0'}
             </Button>
-            <Button size="" radius={'md'} className="">
+            <Button size="xs" radius={'md'} className="">
               Level 2: {'0'}
             </Button>
-            <Button size="" radius={'md'} className="">
+            <Button size="xs" radius={'md'} className="">
               Level 3: {'0'}
             </Button>
           </div>

@@ -72,18 +72,16 @@ function KYC() {
           <p>Account</p>
         </NavLink>
         <Frame>
-          <p className="text-center pb-2 border-b text-lg font-semibold">
-            KYC Status
-          </p>
+          <p className="text-center pb-1 border-b font-semibold">KYC Status</p>
         </Frame>
 
         {tiers.map((tier, index) => (
           <Frame key={index}>
-            <div className="flex items-center space-x-4 p-4">
+            <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">{tier.icon}</div>
-              <div className="flex-1">
+              <div className="flex-1 space-y-2">
                 <div className="flex justify-between items-center">
-                  <p className="text-lg font-semibold">{tier.tier}</p>
+                  <p className="font-semibold">{tier.tier}</p>
                   {tier.status === 'active' && (
                     <span className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-full">
                       Active
@@ -100,15 +98,17 @@ function KYC() {
                     </span>
                   )}
                 </div>
-                <p className="text-gray-600 mt-1">{tier.description}</p>
+                <p className="text-gray-600 mt-1 text-xs">{tier.description}</p>
 
                 {tier.status === 'pending' && (
-                  <Button mt={5} onClick={() => setOpened(true)}>
+                  <Button mt={5} size="xs" onClick={() => setOpened(true)}>
                     Upload Document
                   </Button>
                 )}
                 {tier.status === 'locked' && (
-                  <Button mt={5}>Contact Support</Button>
+                  <Button mt={5} size="xs">
+                    Contact Support
+                  </Button>
                 )}
               </div>
             </div>

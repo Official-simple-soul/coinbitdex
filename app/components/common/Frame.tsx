@@ -6,7 +6,7 @@ interface FrameProps {
 
 function Frame({ children }: FrameProps) {
   return (
-    <div className="p-5 bg-white shadow-md border rounded-xl space-y-3">
+    <div className="px-5 py-3 bg-white shadow-md border rounded-xl space-y-3">
       {children}
     </div>
   );

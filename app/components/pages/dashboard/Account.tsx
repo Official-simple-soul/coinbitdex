@@ -5,6 +5,7 @@ import { NavLink } from 'react-router';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useAuth } from '~/providers/AuthProvider';
+import { menuItems } from './data';
 
 function Account() {
   const { user, logout } = useAuth();
@@ -28,13 +29,13 @@ function Account() {
         <Frame>
           <div className="flex flex-col items-center justify-center">
             <div className="bg-gray-100 rounded-full p-3">
-              <IconUser size={'150px'} color="gray" />
+              <IconUser size={'70px'} color="gray" />
             </div>
-            <p className="mt-4 font-semibold text-lg">
+            <p className="mt-4 font-semibold text-sm">
               {user?.firstName} {user?.lastName}
             </p>
-            <p className="mt-1 text-lg text-gray-500">{user?.email}</p>
-            <p className="mt-1 text-lg text-gray-500">{user?.phone}</p>
+            <p className="mt-1 text-sm text-gray-500">{user?.email}</p>
+            <p className="mt-1 text-sm text-gray-500">{user?.phone}</p>
           </div>
         </Frame>
         <div className="px-5 py-3 bg-white shadow-md border rounded-xl space-y-3">
@@ -45,21 +46,26 @@ function Account() {
                 key={item.id}
                 className="py-2 flex items-center gap-5 border-b"
               >
-                <img src={item.icon} alt="" className="size-8" />
+                <img src={item.icon} alt="" className="size-5" />
                 <div className="flex justify-between items-center w-full">
-                  <p className="text-lg">{item.label}</p>
-                  <IconArrowBadgeRight size={'40px'} color="gray" />
+                  <p className="text-sm">{item.label}</p>
+                  <IconArrowBadgeRight size={'30px'} color="gray" />
                 </div>
               </NavLink>
             ))}
+            <div className="py-2.5 flex items-center gap-5 border-b">
+              <img src={'/images/contact-us.png'} alt="" className="size-5" />
+              <div className="flex justify-between items-center w-full">
+                <p className="text-sm">{'Contact Support'}</p>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
       <Button
-        radius={'lg'}
+        radius={'md'}
         w={'100%'}
         mt={'40px'}
-        size="lg"
         color="red"
         onClick={handleLogout}
       >
@@ -70,30 +76,3 @@ function Account() {
 }
 
 export default Account;
-
-const menuItems = [
-  {
-    id: 1,
-    icon: '/images/account-icon.png',
-    label: 'Account Info',
-    to: '/dashboard/account_info',
-  },
-  {
-    id: 2,
-    icon: '/images/kyc.png',
-    label: 'KYC Status',
-    to: '/dashboard/kyc',
-  },
-  {
-    id: 3,
-    icon: '/images/referrals.png',
-    label: 'Referrals (10%)',
-    to: '/dashboard/referral',
-  },
-  {
-    id: 4,
-    icon: '/images/contact-us.png',
-    label: 'Contact Support',
-    to: '/dashboard/contact_us',
-  },
-];

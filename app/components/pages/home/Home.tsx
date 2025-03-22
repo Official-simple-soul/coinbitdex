@@ -21,6 +21,14 @@ import smallTradeChart from '/images/small-trading-chart.gif';
 import laptopPhone from '/images/laptop-phone.webp';
 import { Link } from 'react-router';
 
+const myStyle = {
+  userSelect: 'none',
+  // boxSizing: 'border-box',
+  // display: 'block',
+  height: 'calc(100% - 32px)',
+  width: '100%',
+};
+
 const Home: React.FC = () => {
   return (
     <UnAuthLayout>
@@ -34,7 +42,7 @@ const Home: React.FC = () => {
               data-aos="zoom-in"
               className="text-5xl md:text-7xl font-bold mt-10 md:mt-72 mb-16 max-w-[70%]"
             >
-              One Of The Leading Decentralized Exchangesss
+              One Of The Leading Decentralized Exchanges
             </h1>
             <div
               data-aos="fade-right"
@@ -97,44 +105,36 @@ const Home: React.FC = () => {
 
         <section
           id="info-section"
-          className="w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] mx-auto px-5 md:px-20 py-2 my-10 border rounded-lg h-60 overflow-hidden"
+          className="w-full md:w-[70%] mx-auto py-5 md:py-20 border rounded-md p-1"
         >
-          <div className="relative md:w-[90%] h-full mx-auto">
+          <div className="relative md:w-[90%] h-80 mx-auto">
             <iframe
-              sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
-              className="wuksD5"
-              title="Embedded Content"
-              name="htmlComp-iframe"
-              width="100%"
-              height="100%"
-              allow="fullscreen"
-              data-src=""
-              src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_bc9eff8ccdbb07486b1cbf51a260b1d3.html"
+              allowtransparency="true"
+              frameborder="0"
+              src="https://www.tradingview-widget.com/embed-widget/timeline/#%7B%22colorTheme%22%3A%22light%22%2C%22isTransparent%22%3Atrue%2C%22displayMode%22%3A%22adaptive%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22utm_source%22%3A%22tilapia2k19-wixsite-com.filesusr.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22timeline%22%2C%22page-uri%22%3A%22tilapia2k19-wixsite-com.filesusr.com%2Fhtml%2Fc9104a_bc9eff8ccdbb07486b1cbf51a260b1d3.html%22%7D"
+              title="timeline TradingView widget"
+              lang="en"
+              style={myStyle}
+              height={'100%'}
             ></iframe>
-            <div className="cover w-full h-9 bg-white absolute bottom-0"></div>
+            <div className="cover w-[50%] h-10 bg-white absolute top-0 right-0"></div>
           </div>
         </section>
 
         <section
           id="captureTrading"
-          className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] hidden md:block"
+          className="mx-auto w-[90%] lg:w-[85%] xl:w-[65%] max-w-[1200px] hidden md:block mt-12"
         >
           <h1 className="text-2xl md:text-4xl font-extrabold">
             Capture Every Trading Opportunity
           </h1>
-          <div className="h-[650px] w-full relative">
+          <div className="relative mt-4">
             <iframe
-              sandbox="allow-same-origin allow-forms allow-popups allow-modals allow-scripts allow-pointer-lock"
-              className="wuksD5"
-              title="Embedded Content"
-              name="htmlComp-iframe"
+              height="600"
               width="100%"
-              height="100%"
-              allow="fullscreen"
-              data-src=""
-              src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_00ae1a661f4de6485f22e19aa72e88ff.html"
+              src="https://ssltvc.investing.com/?pair_ID=945629&amp;height=550&amp;width=1250&amp;interval=3600&amp;plotStyle=area&amp;domain_ID=72&amp;lang_ID=72&amp;timezone_ID=0"
             ></iframe>
-            <div className="absolute bottom-11 left-2.5 bg-white flex justify-start items-center h-16 w-full">
+            <div className="absolute bottom-16 left-14 bg-white flex justify-start items-center h-16 w-full">
               <Link
                 to={'/signup'}
                 className="rounded border border-gray-400 px-10 text-xl py-2 ml-2 hover:shadow-md hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300"

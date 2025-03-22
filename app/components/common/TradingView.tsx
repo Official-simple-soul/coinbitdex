@@ -17,11 +17,9 @@ const TradingViewChart = () => {
           }}
         ></iframe>
       </div>
-      <div className="grid grid-cols-2 gap-4 mt-10 fixed bottom-20 w-[94%]">
-        <Button size="lg">Open Long</Button>
-        <Button size="lg" color="red">
-          Open Short
-        </Button>
+      <div className="grid grid-cols-2 gap-4 mt-10 fixed bottom-24 w-[94%]">
+        <Button>Open Long</Button>
+        <Button color="red">Open Short</Button>
       </div>
     </div>
   );
