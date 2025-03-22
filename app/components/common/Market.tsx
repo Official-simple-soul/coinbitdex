@@ -1,98 +1,27 @@
-import { useEffect, useState } from 'react';
+import { Button } from '@mantine/core';
+import React from 'react';
 
-interface MarketData {
-  symbol: string;
-  lastPrice: string;
-  priceChangePercent: string;
-}
-
-interface Key {
-  [key: string]: string;
-  usd: string;
-  usd_24h_change: string;
-}
+const style: React.CSSProperties = {
+  userSelect: 'none',
+  boxSizing: 'border-box',
+  display: 'block',
+  height: '100%',
+  width: '100%',
+  pointerEvents: 'none',
+};
 
 const Market: React.FC = () => {
-  const [data, setData] = useState<
-    { symbol: string; price: string; change: string }[]
-  >([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchMarketData = async () => {
-      try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,xrp,cardano,dogecoin,polkadot,polygon,shiba-inu,litecoin,chainlink,avalanche,uniswap,tron,cosmos,stellar,internet-computer,monero,bitcoin-cash,filecoin,the-graph,vechain&vs_currencies=usd&include_24hr_change=true'
-        );
-        console.log({ response });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const result: { [key: string]: Key } = await response.json();
-        console.log('API Response:', result);
-
-        const array = Object.keys(result).map((key: string) => {
-          return {
-            symbol: key,
-            price: result[key].usd,
-            change: result[key].usd_24h_change,
-          };
-        });
-
-        setData(array);
-      } catch (err) {
-        if (err instanceof Error) {
-          console.error('Error fetching market data:', err.message);
-          setError(err.message);
-        } else {
-          console.error('Unexpected error:', err);
-          setError('An unexpected error occurred');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMarketData();
-  }, []);
-
   return (
-    <div className="py-10 text-sm">
-      <h2 className="text font-bold">Perp Futures</h2>
-
-      {loading && <p>Loading market data...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
-
-      {!loading && !error && (
-        <table className="w-full mt-2 border-collapse">
-          <tbody>
-            {data.map((coin) => (
-              <tr key={coin.symbol} className="border-b">
-                <td className="p-2 capitalize">{coin.symbol}</td>
-                <td className="p-2">
-                  <p>${coin.price.toLocaleString()}</p>
-                  <p className="text-[10px] text-gray-500">
-                    ₦{(parseFloat(coin.price) * 1200).toLocaleString()}
-                  </p>
-                </td>
-                <td className="">
-                  <span
-                    className={`p-1  text-white rounded ${
-                      parseFloat(coin.change) >= 0
-                        ? 'bg-green-500'
-                        : 'bg-red-500'
-                    }`}
-                  >
-                    {parseFloat(coin.change).toFixed(2)}%
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div className="my-10 p-2 text-sm bg-white rounded-md shadow-md border overflow-hidden">
+      <div className="h-[65vh] w-full">
+        <iframe
+          src="https://www.tradingview-widget.com/embed-widget/market-overview/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22dateRange%22%3A%2212M%22%2C%22showChart%22%3Atrue%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22largeChartUrl%22%3A%22%22%2C%22isTransparent%22%3Atrue%2C%22showSymbolLogo%22%3Atrue%2C%22showFloatingTooltip%22%3Atrue%2C%22tabs%22%3A%5B%7B%22title%22%3A%22Crypto%22%2C%22symbols%22%3A%5B%7B%22s%22%3A%22BINANCE%3ABTCUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3ASOLUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3AETHUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3AXRPUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3AMATICUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3AAVAXUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3AFTMUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3ADOGEUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3ASHIBUSDT%22%7D%2C%7B%22s%22%3A%22BINANCE%3ATRXUSDT%22%7D%5D%2C%22originalTitle%22%3A%22Forex%22%7D%5D%2C%22utm_source%22%3A%22aitrading.grokprofit.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22market-overview%22%2C%22page-uri%22%3A%22aitrading.grokprofit.com%2F%22%7D"
+          title="market overview TradingView widget"
+          lang="en"
+          style={style}
+        ></iframe>
+        <div className="bg-white size-10 rounded-full absolute right-0"></div>
+      </div>
     </div>
   );
 };

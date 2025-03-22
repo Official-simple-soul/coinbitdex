@@ -14,5 +14,11 @@ export default [
   route('dashboard/spot', 'routes/spot.tsx'),
   route('dashboard/futures', 'routes/futures.tsx'),
   route('dashboard/copy', 'routes/copy.tsx'),
-  route('dashboard/assets', 'routes/assets.tsx'),
+  route('dashboard/deposit', 'routes/deposit.tsx'),
+  route('dashboard/withdraw', 'routes/withdraw.tsx'),
+  route('dashboard/transactions', 'routes/transactions.tsx'),
+  route('dashboard/accounts', 'routes/accounts.tsx'),
+  route('dashboard/kyc', 'routes/kyc.tsx'),
+  route('dashboard/account_info', 'routes/account_info.tsx'),
+  route('dashboard/referral', 'routes/referral.tsx'),
 ] satisfies RouteConfig;
