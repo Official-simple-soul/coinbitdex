@@ -1,6 +1,14 @@
 import Marquee from 'react-fast-marquee';
 import { useFetchMarketData } from '~/services/crypto.service';
 
+interface MarketData {
+  name: string;
+  image: string;
+  symbol: string;
+  price: string;
+  change: number;
+}
+
 const ScrollingTextAnimation = () => {
   const { data: cryptoElement, isLoading } = useFetchMarketData();
 
@@ -10,9 +18,9 @@ const ScrollingTextAnimation = () => {
         <div className="text-xs text-white text-center">...</div>
       ) : (
         <Marquee>
-          {cryptoElement?.map((data, index) => (
+          {cryptoElement?.map((data: MarketData, index: number) => (
             <div className="text-[10px] mx-3 flex items-center" key={index}>
-              <h1 className="mx-1 text-blue-800">{data?.symbol}</h1>
+              <h1 className="mx-1 text-blue-800">{data?.name}</h1>
               <h1 className="mx-1">${data?.price}</h1>
               <h1 style={{ color: data?.change < 0 ? 'red' : 'green' }}>
                 {data?.change}

@@ -61,7 +61,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <div className="flex-1 flex flex-col">
         <Header toggleSidebar={toggleSidebar} />
 
-        <main className="flex-1 p-4 md:p-8 bg-gray-100">{children}</main>
+        <main className="flex-1 px-4 pt-4 pb-24 md:p-8 bg-gray-50 min-h-screen">
+          {children}
+        </main>
       </div>
     </div>
   );

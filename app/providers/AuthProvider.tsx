@@ -17,6 +17,8 @@ interface UserData {
   country?: string;
   phone?: string;
   balance?: number;
+  referral_id?: string;
+  kyc_status?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
