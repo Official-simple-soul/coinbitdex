@@ -23,16 +23,16 @@ function SummaryDataComp({ summaryData }: SUMMARYDATA) {
               <img
                 src={summaryItem.icon}
                 alt=""
-                className="size-8 opacity-80"
+                className="size-6 opacity-80"
               />
               <div
                 className={`${
                   summaryItem.id % 2 === 0 ? 'text-left' : 'text-right'
                 }`}
               >
-                <p className="font-bold text-sm">{summaryItem.title}</p>
+                <p className="font-bold text-xs">{summaryItem.title}</p>
                 <p
-                  className={`font-bold ${
+                  className={`font-bold text-sm ${
                     summaryItem.slug === 'deposit'
                       ? 'text-red-500'
                       : summaryItem.slug === 'withdraw'

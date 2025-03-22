@@ -32,7 +32,7 @@ export const summaryItems = (data: any) => {
     },
     {
       id: 2,
-      title: 'Total Withdrawal',
+      title: 'Total Withdraw',
       amount: 0.0,
       icon: '/images/withdraw-summary.png',
       slug: 'withdraw',
@@ -238,5 +238,26 @@ export const traders = [
     cumulativePnl: '+10,987.23',
     copiers: 543,
     winRatio: '88.6%',
+  },
+];
+
+export const menuItems = [
+  {
+    id: 1,
+    icon: '/images/account-icon.png',
+    label: 'Account Info',
+    to: '/dashboard/account_info',
+  },
+  {
+    id: 2,
+    icon: '/images/kyc.png',
+    label: 'KYC Status',
+    to: '/dashboard/kyc',
+  },
+  {
+    id: 3,
+    icon: '/images/referrals.png',
+    label: 'Referrals (10%)',
+    to: '/dashboard/referral',
   },
 ];

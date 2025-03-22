@@ -40,8 +40,8 @@ function CopyTrading() {
       <div className="space-y-5">
         <Frame>
           <div className="pb-2 border-b">
-            <p className="font-semibold text-lg">Trending Traders</p>
-            <p className="text-gray-500 mt-1">
+            <p className="font-semibold">Trending Traders</p>
+            <p className="text-gray-500 mt-1 text-sm">
               Trending traders in the last 7 days
             </p>
           </div>
@@ -59,30 +59,32 @@ function CopyTrading() {
                       className="size-16"
                     />
                     <div className="">
-                      <h1 className="font-bold text-lg text-gray-800">
-                        {trader.name}
-                      </h1>
-                      <p className="text-gray-500">{trader.strategy}</p>
+                      <h1 className="font-bold text-gray-800">{trader.name}</h1>
+                      <p className="text-gray-500 text-sm">{trader.strategy}</p>
                     </div>
                   </div>
                 </div>
                 {/* Copy Button */}
-                <Button radius={'lg'} onClick={() => handleCopyClick(trader)}>
+                <Button
+                  radius={'md'}
+                  size="xs"
+                  onClick={() => handleCopyClick(trader)}
+                >
                   Copy
                 </Button>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-center">
-                  <p className="text-lg font-bold">{trader.cumulativePnl}</p>
-                  <p className="text text-gray-500">Cummulative PnL</p>
+                <div className="">
+                  <p className="font-bold text-sm">{trader.cumulativePnl}</p>
+                  <p className="text-xs text-gray-500">Cummulative PnL</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-lg font-bold">{trader.copiers}</p>
-                  <p className="text text-gray-500">Copiers</p>
+                  <p className="font-bold text-sm">{trader.copiers}</p>
+                  <p className="text-xs text-gray-500">Copiers</p>
                 </div>
-                <div className="text-center">
-                  <p className="text-lg font-bold">{trader.winRatio}</p>
-                  <p className="text text-gray-500">Win Ratio</p>
+                <div className="text-right">
+                  <p className="font-bold text-sm">{trader.winRatio}</p>
+                  <p className="text-xs text-gray-500">Win Ratio</p>
                 </div>
               </div>
             </div>
@@ -106,10 +108,12 @@ function CopyTrading() {
                   className="size-16"
                 />
                 <div className="">
-                  <h1 className="font-bold text-lg text-gray-800">
+                  <h1 className="font-bold text-gray-800">
                     {selectedTrader.name}
                   </h1>
-                  <p className="text-gray-500">{selectedTrader.strategy}</p>
+                  <p className="text-gray-500 text-sm">
+                    {selectedTrader.strategy}
+                  </p>
                 </div>
               </div>
 
@@ -123,7 +127,7 @@ function CopyTrading() {
                 onChange={(value) =>
                   setCopyRatio(typeof value === 'number' ? value : 0)
                 }
-                size="lg"
+                size="sm"
               />
 
               {/* Copy Trading Agreement */}
@@ -131,6 +135,7 @@ function CopyTrading() {
                 label="I agree to the Copy Trading Customer Agreement"
                 checked={agreementChecked}
                 onChange={(e) => setAgreementChecked(e.currentTarget.checked)}
+                size="xs"
               />
 
               {/* Risk Disclaimer */}
@@ -140,12 +145,12 @@ function CopyTrading() {
                 onChange={(e) =>
                   setRiskDisclaimerChecked(e.currentTarget.checked)
                 }
+                size="xs"
               />
 
               {/* Copy Button */}
               <Button
                 fullWidth
-                size="lg"
                 onClick={handleCopySubmit}
                 disabled={
                   !agreementChecked || !riskDisclaimerChecked || copyRatio <= 0

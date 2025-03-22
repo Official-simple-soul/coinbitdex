@@ -23,7 +23,7 @@ function CryptoMarket() {
             data-src=""
             src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_ad2a1359d70f0851d18ce759d128ef20.html"
           ></iframe>
-          <div className="cover w-48 h-9 bg-white absolute bottom-4 right-0"></div>
+          <div className="cover w-48 h-9 bg-white absolute bottom-8 right-0"></div>
         </div>
 
         <>

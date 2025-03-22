@@ -12,6 +12,6 @@ export const sidebarItems = [
   { icon: IconChartCandle, label: 'Market', href: '/dashboard/market' },
   { icon: IconCoin, label: 'Deposit', href: '/dashboard/deposit' },
   { icon: IconTrendingUp, label: 'Withdraw', href: '/dashboard/withdraw' },
-  { icon: IconCopy, label: 'Copy Trading', href: '/dashboard/copy' },
+  { icon: IconCopy, label: 'CopyTrading', href: '/dashboard/copy' },
   { icon: IconWallet, label: 'Transactions', href: '/dashboard/transactions' },
 ];

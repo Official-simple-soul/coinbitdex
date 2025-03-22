@@ -6,7 +6,7 @@ function BuyCrypto() {
   return (
     <UnAuthLayout>
       <div className="px-5 md:px-0 py-5 md:py-14 md:w-[70%] mx-auto">
-        <div className="flex flex-col-reverse md:flex-row p-4 md:p-10">
+        <div className="flex flex-col-reverse md:flex-row  md:p-10">
           <div className="left w-full md:w-2/3 space-y-20">
             <div className="left-top space-y-14">
               <div className="space-y-6 text-center">
@@ -37,19 +37,27 @@ function BuyCrypto() {
               </p>
             </div>
           </div>
-          <div className="h-[45vh] md:h-auto md:w-1/3 relative flex items-center justify-center">
-            <div className="h-[90%] bg-slate-800 absolute -right-8 md:static md:w-[58%]">
+          <div className="bg-green-200 h-[17rem] w-full md:h-auto md:w-1/3 relative flex items-center justify-center">
+            <div className="h-full w-full">
               <iframe
-                src="https://tilapia2k19-wixsite-com.filesusr.com/html/c9104a_eb9f1c5c2877446f790e1cee698ba5c7.html"
+                src="https://widget.coinlib.io/widget?type=converter&amp;theme=light"
                 width="100%"
                 height="100%"
+                marginwidth="0"
+                marginheight="0"
+                frameborder="0"
+                border="0"
+                style={{
+                  border: 'none',
+                  margin: 0,
+                  padding: 0,
+                }}
               ></iframe>
-              <div className="absolute bg-[#56667F] w-[200px] right-16 h-4 bottom-2.5 md:hidden"></div>
             </div>
           </div>
         </div>
         <div className="">
-          <h3 className="text-center md:text-start md:ml-12 font-bold my-6 text-2xl">
+          <h3 className="text-center md:text-start md:ml-12 font-bold mb-6 text-2xl">
             Please select any service provider below and you will be redirected.
           </h3>
           <div className="grid md:grid-cols-2 gap-2">

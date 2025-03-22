@@ -31,8 +31,8 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
         </button>
       </div>
       <div className="my-4 px-4">
-        <h1 className="text-lg text-gray-400 font-semibold">{'Balance'}</h1>
-        <p className="text-2xl font-bold">{user?.balance || '$ 20.0'}</p>
+        <h1 className=" text-gray-400 font-semibold">{'Balance'}</h1>
+        <p className="text-xl font-bold">{user?.balance || '$ 20.0'}</p>
       </div>
       <nav className="flex-1 p-4">
         <ul className="space-y-8">
