@@ -1,4 +1,4 @@
-import { Button, Modal, Checkbox, NumberInput } from '@mantine/core';
+import { Button, Modal, Checkbox, NumberInput, Progress } from '@mantine/core';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useState } from 'react';
@@ -15,6 +15,7 @@ interface SELECTUSER {
   cumulativePnl: string;
   copiers: number;
   winRatio: string;
+  riskScore: number;
 }
 function CopyTrading() {
   const [opened, setOpened] = useState(false);
@@ -230,6 +231,62 @@ function CopyTrading() {
               >
                 Confirm Copy
               </Button>
+              <div className="mt-6 bg-blue-50 p-3 rounded text-xs space-y-2">
+                <h4 className="font-semibold text-blue-800">
+                  Copy Trading Tips
+                </h4>
+                <ul className="list-disc pl-4 space-y-1 text-blue-700">
+                  <li>Start with small amounts to test the strategy</li>
+                  <li>Diversify by copying multiple traders</li>
+                  <li>Monitor performance weekly</li>
+                  <li>Contact support for more tip on trade copying</li>
+                </ul>
+              </div>
+              <div className="mt-4">
+                <div className="flex justify-between text-xs mb-1">
+                  <span>Risk Level</span>
+                  <span>Moderate</span>
+                </div>
+                <Progress
+                  value={selectedTrader.riskScore || 65}
+                  color={
+                    selectedTrader.riskScore > 80
+                      ? 'red'
+                      : selectedTrader.riskScore > 50
+                      ? 'yellow'
+                      : 'green'
+                  }
+                />
+              </div>
+              <div className="mt-6 space-y-4">
+                {/* Performance Metrics */}
+                <div className="border-t pt-4">
+                  <h3 className="font-semibold text-sm mb-2">
+                    Trader Statistics
+                  </h3>
+                  {/* ... metrics grid from suggestion 1 ... */}
+                </div>
+
+                {/* Risk Assessment */}
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span>Risk Assessment</span>
+                    <span className="font-medium">{'Medium Risk'}</span>
+                  </div>
+                  {/* ... progress bar from suggestion 2 ... */}
+                </div>
+
+                {/* Educational Tips */}
+                <div className="bg-yellow-50 p-3 rounded border border-yellow-100">
+                  <h4 className="font-semibold text-sm mb-1">
+                    ⚠️ Important Notice
+                  </h4>
+                  <p className="text-xs text-yellow-800">
+                    Past performance doesn't guarantee future results. Consider
+                    diversifying your copy trading portfolio.
+                  </p>
+                </div>
+              </div>
             </div>
           )}
         </Modal>
