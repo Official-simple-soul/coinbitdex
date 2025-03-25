@@ -8,7 +8,8 @@ import { notifications } from '@mantine/notifications';
 
 function Login() {
   const [opened, setOpened] = useState(true);
-  const { login, loading } = useAuth();
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm({
     initialValues: {
@@ -29,6 +30,7 @@ function Login() {
   };
 
   const handleLogin = async (values: any) => {
+    setLoading(true);
     try {
       await login(values.email, values.password);
       // navigate('/dashboard', { replace: true });
@@ -40,6 +42,9 @@ function Login() {
         message: error,
         color: 'red',
       });
+    } finally {
+      setLoading(false);
+      form.reset();
     }
   };
 
