@@ -31,7 +31,8 @@ function Login() {
   const handleLogin = async (values: any) => {
     try {
       await login(values.email, values.password);
-      navigate('/dashboard', { replace: true });
+      // navigate('/dashboard', { replace: true });
+      window.location.replace('/dashboard');
     } catch (err) {
       const error = extractFriendlyFirebaseError(err);
       notifications.show({
