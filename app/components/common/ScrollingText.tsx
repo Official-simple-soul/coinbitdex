@@ -6,7 +6,7 @@ const ScrollingTextAnimation = () => {
   const { data: cryptoElement, isLoading } = useFetchMarketData();
 
   return (
-    <div className="scrolling-text-container space-x-3 bg-white py-1.5">
+    <div className="scrolling-text-container space-x-3 bg-white py-1.5 md:max-w-[80vw]">
       {isLoading ? (
         <div className="text-xs text-white text-center">...</div>
       ) : (
