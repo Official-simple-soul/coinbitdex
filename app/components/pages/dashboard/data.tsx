@@ -168,6 +168,7 @@ export const traders = [
     cumulativePnl: '+92,378.12',
     copiers: 1923,
     winRatio: '58.4%',
+    riskScore: 20,
   },
   {
     id: 2,
@@ -176,6 +177,7 @@ export const traders = [
     cumulativePnl: '+85,764.45',
     copiers: 1654,
     winRatio: '72.1%',
+    riskScore: 15,
   },
   {
     id: 3,
@@ -184,6 +186,7 @@ export const traders = [
     cumulativePnl: '+74,221.37',
     copiers: 1442,
     winRatio: '65.3%',
+    riskScore: 25,
   },
   {
     id: 4,
@@ -192,6 +195,7 @@ export const traders = [
     cumulativePnl: '+67,542.89',
     copiers: 1321,
     winRatio: '74.9%',
+    riskScore: 44,
   },
   {
     id: 5,
@@ -200,6 +204,7 @@ export const traders = [
     cumulativePnl: '+120,987.42',
     copiers: 1210,
     winRatio: '91.7%',
+    riskScore: 6,
   },
   {
     id: 6,
@@ -208,6 +213,7 @@ export const traders = [
     cumulativePnl: '+48,765.10',
     copiers: 1056,
     winRatio: '82.5%',
+    riskScore: 20,
   },
   {
     id: 7,
@@ -216,6 +222,7 @@ export const traders = [
     cumulativePnl: '+40,432.33',
     copiers: 923,
     winRatio: '77.8%',
+    riskScore: 22,
   },
   {
     id: 8,
@@ -224,6 +231,7 @@ export const traders = [
     cumulativePnl: '+29,874.66',
     copiers: 812,
     winRatio: '85.2%',
+    riskScore: 41,
   },
   {
     id: 9,
@@ -232,6 +240,7 @@ export const traders = [
     cumulativePnl: '+18,542.78',
     copiers: 678,
     winRatio: '83.9%',
+    riskScore: 55,
   },
   {
     id: 10,
@@ -240,6 +249,7 @@ export const traders = [
     cumulativePnl: '+10,987.23',
     copiers: 543,
     winRatio: '88.6%',
+    riskScore: 34,
   },
 ];
 
