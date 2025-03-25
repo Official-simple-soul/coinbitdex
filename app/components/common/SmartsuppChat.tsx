@@ -19,7 +19,7 @@ export function SmartsuppChat() {
     if (typeof window !== 'undefined') {
       window._smartsupp = window._smartsupp || {};
       window._smartsupp.key = 'a255f797ab0907f22e8d262d8502c3fffb4beb33';
-      window._smartsupp.hideWidget = !shouldShowChat;
+      window._smartsupp.hideWidget = shouldShowChat;
 
       if (!window.smartsupp) {
         const script = document.createElement('script');
@@ -30,7 +30,7 @@ export function SmartsuppChat() {
         document.body.appendChild(script);
       }
     }
-  }, [shouldShowChat]);
+  }, []);
 
   return null;
 }
