@@ -1,4 +1,11 @@
-import { Button, Modal, Checkbox, NumberInput, Progress } from '@mantine/core';
+import {
+  Button,
+  Modal,
+  Checkbox,
+  NumberInput,
+  Progress,
+  TextInput,
+} from '@mantine/core';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useState } from 'react';
@@ -16,6 +23,7 @@ interface SELECTUSER {
   copiers: number;
   winRatio: string;
   riskScore: number;
+  copyCode: string;
 }
 function CopyTrading() {
   const [opened, setOpened] = useState(false);
@@ -27,6 +35,7 @@ function CopyTrading() {
   const { user, updateUser } = useAuth();
   const { storeRecord } = useFunctions();
   const [successModalOpen, setSuccessModalOpen] = useState(false);
+  // const [traderCopyCode, setTraderCopyCode] = useState('');
 
   const handleCopyClick = (trader: any) => {
     setSelectedTrader(trader);
@@ -56,6 +65,15 @@ function CopyTrading() {
       });
       return;
     }
+
+    // if (traderCopyCode !== selectedTrader?.copyCode) {
+    //   notifications.show({
+    //     title: 'Error',
+    //     message: 'Invalid copy code',
+    //     color: 'red',
+    //   });
+    //   return;
+    // }
 
     if (!user?.uid || !user?.balance) {
       throw new Error('User ID is required to store the record');
@@ -99,7 +117,7 @@ function CopyTrading() {
           <div className="pb-2 border-b">
             <p className="font-semibold">Trending Traders</p>
             <p className="text-gray-500 mt-1 text-sm">
-              Trending traders in the last 7 days
+              Trending 10 traders in the last 30 days
             </p>
           </div>
         </Frame>
@@ -186,7 +204,7 @@ function CopyTrading() {
               </div>
               <NumberInput
                 label=""
-                placeholder="Enter percentage"
+                placeholder="Enter amount"
                 min={500}
                 max={1000000}
                 value={copyRatio}
@@ -198,17 +216,17 @@ function CopyTrading() {
               <p className="text-xs text-gray-500">
                 Min: $500 and Max: $1,000,000
               </p>
-
+              {/* <TextInput
+                placeholder="Trader copying code"
+                onChange={(e) => setTraderCopyCode(e.target.value)}
+              /> */}
               <div className="pt-7 space-y-4">
-                {/* Copy Trading Agreement */}
                 <Checkbox
                   label="I agree to the Copy Trading Customer Agreement"
                   checked={agreementChecked}
                   onChange={(e) => setAgreementChecked(e.currentTarget.checked)}
                   size="xs"
                 />
-
-                {/* Risk Disclaimer */}
                 <Checkbox
                   label="I acknowledge the risks involved in copy trading"
                   checked={riskDisclaimerChecked}
@@ -218,8 +236,6 @@ function CopyTrading() {
                   size="xs"
                 />
               </div>
-
-              {/* Copy Button */}
               <Button
                 fullWidth
                 onClick={handleCopySubmit}
@@ -236,7 +252,6 @@ function CopyTrading() {
                   Copy Trading Tips
                 </h4>
                 <ul className="list-disc pl-4 space-y-1 text-blue-700">
-                  <li>Start with small amounts to test the strategy</li>
                   <li>Diversify by copying multiple traders</li>
                   <li>Monitor performance weekly</li>
                   <li>Contact support for more tip on trade copying</li>

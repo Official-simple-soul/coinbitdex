@@ -37,7 +37,7 @@ function BuyCrypto() {
               </p>
             </div>
           </div>
-          <div className="bg-green-200 h-[17rem] w-full md:h-auto md:w-1/3 relative flex items-center justify-center">
+          <div className="h-[17rem] w-full md:h-auto md:w-1/3 relative flex items-center justify-center">
             <div className="h-full w-full">
               <iframe
                 src="https://widget.coinlib.io/widget?type=converter&amp;theme=light"

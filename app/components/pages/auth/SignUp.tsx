@@ -9,8 +9,8 @@ import {
   Modal,
   type ComboboxItem,
 } from '@mantine/core';
-import { useState } from 'react';
-import { CountryCode } from './countryCode';
+import { useEffect, useState } from 'react';
+import { CountryCode, countryData, ObjCountryCode } from './countryCode';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
@@ -75,6 +75,19 @@ function SignUp() {
     }
   };
 
+  useEffect(() => {
+    if (
+      form.values.country &&
+      ObjCountryCode[form.values.country as keyof typeof ObjCountryCode]
+    ) {
+      form.setValues({
+        phonePrefix:
+          ObjCountryCode[form.values.country as keyof typeof ObjCountryCode]
+            ?.prefix || '',
+      });
+    }
+  }, [form.values.country]);
+
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-auth-bg bg-no-repeat bg-cover bg-center">
       <Modal opened={opened} onClose={close} title="Register" centered>
@@ -93,30 +106,29 @@ function SignUp() {
             mt={14}
           />
 
-          <TextInput
-            placeholder="Enter your country"
+          <Select
+            placeholder="Select country"
+            data={countryData}
             {...form.getInputProps('country')}
             required
             mt={14}
           />
 
           <div className="flex items-center gap-1 mt-4">
-            <Select
+            <TextInput
               placeholder="+1"
-              data={CountryCode.map((country) => ({
-                value: country.code,
-                label: country.prefix,
-              }))}
               {...form.getInputProps('phonePrefix')}
-              onChange={(_value, option) => {
-                form.setFieldValue('phonePrefix', option.label);
-                setPrefixValue(option);
-              }}
-              value={prefixValue ? prefixValue.value : null}
               required
               style={{ width: '20%' }}
+              onClick={() =>
+                notifications.show({
+                  title: 'Hello',
+                  message: 'Please select your country',
+                  color: 'yellow',
+                })
+              }
+              readOnly
             />
-
             <TextInput
               placeholder="Phone Number"
               {...form.getInputProps('phone')}

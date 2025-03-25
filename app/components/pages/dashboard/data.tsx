@@ -169,6 +169,7 @@ export const traders = [
     copiers: 1923,
     winRatio: '58.4%',
     riskScore: 20,
+    copyCode: '3291Hassan0Omar1',
   },
   {
     id: 2,
@@ -178,6 +179,7 @@ export const traders = [
     copiers: 1654,
     winRatio: '72.1%',
     riskScore: 15,
+    copyCode: '4516Schmidt0Lena2',
   },
   {
     id: 3,
@@ -187,6 +189,7 @@ export const traders = [
     copiers: 1442,
     winRatio: '65.3%',
     riskScore: 25,
+    copyCode: '2441Xiang0Wei3',
   },
   {
     id: 4,
@@ -196,6 +199,7 @@ export const traders = [
     copiers: 1321,
     winRatio: '74.9%',
     riskScore: 44,
+    copyCode: '1312Martinez0Diego4',
   },
   {
     id: 5,
@@ -205,6 +209,7 @@ export const traders = [
     copiers: 1210,
     winRatio: '91.7%',
     riskScore: 6,
+    copyCode: '2110Up&Down0Involio5',
   },
   {
     id: 6,
@@ -214,6 +219,7 @@ export const traders = [
     copiers: 1056,
     winRatio: '82.5%',
     riskScore: 20,
+    copyCode: '1065Tanaka0Kenji7',
   },
   {
     id: 7,
@@ -223,6 +229,7 @@ export const traders = [
     copiers: 923,
     winRatio: '77.8%',
     riskScore: 22,
+    copyCode: '239Larsen0Sven7',
   },
   {
     id: 8,
@@ -232,6 +239,7 @@ export const traders = [
     copiers: 812,
     winRatio: '85.2%',
     riskScore: 41,
+    copyCode: '812Kone0Aisha8',
   },
   {
     id: 9,
@@ -241,6 +249,7 @@ export const traders = [
     copiers: 678,
     winRatio: '83.9%',
     riskScore: 55,
+    copyCode: '867Ivanov0Dmitry9',
   },
   {
     id: 10,
@@ -250,6 +259,7 @@ export const traders = [
     copiers: 543,
     winRatio: '88.6%',
     riskScore: 34,
+    copyCode: '345Williams0Nia10',
   },
 ];
 

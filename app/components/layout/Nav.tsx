@@ -32,7 +32,6 @@ export const navigationData: NavItem[] = [
 
 const NavOne: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const close = () => setIsMenuOpen(false);
@@ -46,7 +45,6 @@ const NavOne: React.FC = () => {
           alt="Logo"
           className="-ml-8 h-10 md:h-12"
         />
-
         <ul className="hidden md:flex items-center gap-5 overflow-y-hidden overflow-x-auto mr-4 h-12">
           {navigationData.map((item) => (
             <li key={item.id} className="whitespace-nowrap">
