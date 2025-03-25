@@ -1,32 +1,6 @@
 import axios from 'axios';
-import type { MarketDataItem } from './types';
-import { crypto_list } from './data';
-
-// export const fetchMarketData = async (): Promise<MarketDataItem[] | null> => {
-//   try {
-//     const response = await axios.get(
-//       `https://api.coingecko.com/api/v3/simple/price?ids=${crypto_list.join(
-//         ','
-//       )}&vs_currencies=usd&include_24hr_change=true`
-//     );
-
-//     const result: { [key: string]: { usd: number; usd_24h_change: number } } =
-//       response.data;
-
-//     const array: MarketDataItem[] = Object.keys(result).map((key: string) => {
-//       return {
-//         symbol: key,
-//         price: result[key].usd,
-//         change: result[key].usd_24h_change,
-//       };
-//     });
-
-//     return array;
-//   } catch (err: any) {
-//     console.error('Unexpected error:', err);
-//     return null;
-//   }
-// };
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '~/config/firebase';
 
 export async function fetchMarketData() {
   try {
@@ -48,9 +22,25 @@ export async function fetchMarketData() {
           tether_image,
         };
       });
-    console.log({ array });
+
     return array;
   } catch (error) {
     console.error(error);
   }
 }
+
+export const listRecords = async (uid: string) => {
+  try {
+    const userRecordsCollection = collection(db, 'users', uid, 'userRecords');
+    const q = query(userRecordsCollection, orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q);
+    const records = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return records;
+  } catch (error) {
+    console.error('Error retrieving user records:', error);
+    throw error;
+  }
+};

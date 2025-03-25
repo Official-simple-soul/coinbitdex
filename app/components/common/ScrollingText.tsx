@@ -1,13 +1,6 @@
 import Marquee from 'react-fast-marquee';
 import { useFetchMarketData } from '~/services/crypto.service';
-
-interface MarketData {
-  name: string;
-  image: string;
-  symbol: string;
-  price: string;
-  change: number;
-}
+import type { MarketData } from './types';
 
 const ScrollingTextAnimation = () => {
   const { data: cryptoElement, isLoading } = useFetchMarketData();

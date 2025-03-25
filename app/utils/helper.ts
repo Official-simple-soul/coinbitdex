@@ -88,3 +88,49 @@ export function extractFriendlyFirebaseError(error: any): string {
     return 'An unexpected error occurred. Please try again.';
   }
 }
+
+export const convertToBase64 = (file: File) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+export const base64ToImage = (
+  base64String: string
+): HTMLImageElement | null => {
+  try {
+    const img = new Image();
+    img.src = base64String;
+    return img;
+  } catch (error) {
+    console.error('Error converting base64 to image', error);
+    return null;
+  }
+};
+
+export function convertFirestoreTimestampToDate(timestamp: {
+  seconds: number;
+  nanoseconds: number;
+}): string {
+  if (!timestamp || typeof timestamp.seconds !== 'number') {
+    return 'N/A';
+  }
+
+  const date = new Date(
+    timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+  );
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
+
+  return date.toLocaleDateString(undefined, options);
+}

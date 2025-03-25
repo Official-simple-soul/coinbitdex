@@ -1,32 +1,40 @@
 import { Button, CopyButton, FileInput, Input, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconFolders } from '@tabler/icons-react';
+import { IconFolders, IconChevronDown } from '@tabler/icons-react';
 import { useState } from 'react';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useAuth } from '~/providers/AuthProvider';
 import { methods } from './data';
+import SuccessDeposit from '~/components/common/modals/SuccessDeposit';
+import { useFunctions } from '~/providers/FunctionsProvider';
+import { notifications } from '@mantine/notifications';
+import { convertToBase64 } from '~/utils/helper';
 
 function Deposit() {
   const { user } = useAuth();
+  const { storeDeposit, storeRecord } = useFunctions();
   const [openMethods, setOpenMethods] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [successDeposit, setSuccessDeposit] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState({
-    type: 'usdt-eth',
-    icon: '/images/tether.png',
-    qr: '/wallet/usdt-eth.jpeg',
-    wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
+    type: 'btc',
+    icon: '/images/bitcoin.png',
+    qr: '/wallet/btc.jpeg',
+    wallet_address: 'bc1qgknfvf0tm6kkurcgs3v9tjashqkvy493ns7eva',
   });
 
   const form = useForm({
     initialValues: {
       amount: '',
       paymentScreenshot: null,
+      transactionId: '',
     },
     validate: {
       amount: (value) => {
         const amount = parseFloat(value);
         if (isNaN(amount)) return 'Amount must be a number';
-        if (amount < 1000) return 'Minimum amount is 1000 USD';
+        if (amount < 100) return 'Minimum amount is 1000 USD';
         if (amount > 10000000) return 'Maximum amount is 10,000,000 USD';
         return null;
       },
@@ -36,12 +44,64 @@ function Deposit() {
         if (!validTypes.includes(value.type)) return 'Invalid file type';
         return null;
       },
+      transactionId: (value) => {
+        if (!value) return 'Transaction ID is required';
+        return null;
+      },
     },
   });
 
-  const handleSubmit = (values: any) => {
-    console.log('Form values:', values);
-    // You can add your submission logic here
+  const handleSubmit = async (values: any) => {
+    if (values?.paymentScreenshot?.size > 500000) {
+      notifications.show({
+        title: 'Error',
+        message:
+          'Your SSN card file size exceeds the limit (500kb). Please try again.',
+        color: 'red',
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const paymentScreenshotFile = values.paymentScreenshot;
+      const paymentScreenshotUrl = await convertToBase64(paymentScreenshotFile);
+
+      if (!user?.uid) {
+        throw new Error('User ID is required to store the record');
+      }
+
+      const deposit = await storeDeposit(user?.uid, {
+        amount: parseInt(values.amount),
+        type: 'deposit',
+        status: 'pending',
+        transactionId: values.transactionId,
+        paymentScreenshot: paymentScreenshotUrl as string,
+      });
+
+      console.log('Deposit successful', deposit);
+
+      const depositRecord = await storeRecord(user.uid, {
+        type: 'deposit',
+        amount: parseInt(values.amount),
+        transactionType: 'in',
+        description: 'Deposit Request',
+        transactionId: values.transactionId,
+      });
+
+      console.log('depositRecord', depositRecord);
+
+      setSuccessDeposit(true);
+    } catch (err) {
+      notifications.show({
+        title: 'Error',
+        message: 'Failed to deposit funds',
+        color: 'red',
+      });
+    } finally {
+      form.reset();
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,11 +109,14 @@ function Deposit() {
       <div className="space-y-4">
         <Frame>
           <div
-            className={`flex items-center gap-4`}
+            className="flex items-center justify-between"
             onClick={() => setOpenMethods(!openMethods)}
           >
-            <img src="/images/tether.png" alt="" className="size-8" />
-            <h1 className="font-bold uppercase">{paymentMethod.type}</h1>
+            <div className={`flex items-center gap-4`}>
+              <img src={paymentMethod.icon} alt="" className="size-8" />
+              <h1 className="font-bold uppercase">{paymentMethod.type}</h1>
+            </div>
+            <IconChevronDown size={'25px'} />
           </div>
         </Frame>
         <div
@@ -73,7 +136,7 @@ function Deposit() {
                       setOpenMethods(false);
                     }}
                   >
-                    <img src="/images/tether.png" alt="" className="size-8" />
+                    <img src={method.icon} alt="" className="size-8" />
                     <h1 className="font-bold uppercase">{method.type}</h1>
                   </div>
                 );
@@ -84,9 +147,7 @@ function Deposit() {
         <Frame>
           <h1 className="font-bold mb-7">
             Balance:{' '}
-            <span className="text-yellow-700">
-              {user?.balance || '25.00'} USD
-            </span>
+            <span className="text-yellow-700">{user?.balance} USD</span>
           </h1>
           <div className="flex flex-col items-center space-y-4 pb-3">
             <div className="text-center text-sm">
@@ -115,6 +176,9 @@ function Deposit() {
               </div>
             </div>
           </div>
+          <p className="text-xs text-center text-gray-600">
+            Fill the below information after making your payment
+          </p>
           <form onSubmit={form.onSubmit(handleSubmit)}>
             <div className="">
               <p className="mb-1 text-sm">Amount:</p>
@@ -134,8 +198,12 @@ function Deposit() {
                 </Text>
               )}
               <p className="text-center text-gray-500 text-xs mt-1">
-                Min: 1000.00 USD & Max: 10,000,000.00 USD
+                Min: 100.00 USD & Max: 10,000,000.00 USD
               </p>
+            </div>
+            <div className="pt-4">
+              <p className="mb-1 text-sm">Transaction ID/Reference:</p>
+              <Input {...form.getInputProps('transactionId')} type="text" />
             </div>
             <div className="pt-5">
               <p className="mb-1 text-sm">Payment Screenshot:</p>
@@ -147,7 +215,7 @@ function Deposit() {
                   </div>
                 }
                 leftSectionWidth={'120px'}
-                accept=".jpg,.jpeg,.png,.pdf"
+                accept=".jpg,.jpeg,.png"
               />
               {form.errors.paymentScreenshot && (
                 <Text color="red" size="sm">
@@ -161,12 +229,18 @@ function Deposit() {
               h={'45px'}
               radius={'md'}
               mt={'40px'}
+              loading={loading}
+              loaderProps={{ type: 'bars' }}
             >
               Confirm Now
             </Button>
           </form>
         </Frame>
       </div>
+      <SuccessDeposit
+        open={successDeposit}
+        onClose={() => setSuccessDeposit(false)}
+      />
     </DashboardLayout>
   );
 }

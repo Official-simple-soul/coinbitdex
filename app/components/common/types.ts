@@ -19,3 +19,28 @@ export interface CryptoCardProps {
   change: string;
   changeDirection: string;
 }
+
+export interface TransactionDataCompProps {
+  active: number;
+  tradeHistoryItems: { id: string; [key: string]: any }[];
+}
+
+export interface summary {
+  id: number;
+  title: string;
+  icon: string;
+  slug: string;
+  amount?: number;
+}
+
+export interface SUMMARYDATA {
+  summaryData: summary[];
+}
+
+export interface MarketData {
+  name: string;
+  image: string;
+  symbol: string;
+  price: string;
+  change: number;
+}

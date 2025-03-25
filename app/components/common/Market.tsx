@@ -1,4 +1,3 @@
-import { Button } from '@mantine/core';
 import React from 'react';
 
 const style: React.CSSProperties = {

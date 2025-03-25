@@ -1,3 +1,5 @@
+import type { UserData } from '~/providers/types';
+
 export const mainWalletItems = [
   {
     title: 'Deposit',
@@ -21,19 +23,19 @@ export const mainWalletItems = [
   },
 ];
 
-export const summaryItems = (data: any) => {
+export const summaryItems = (data: UserData) => {
   return [
     {
       id: 1,
       title: 'Total Deposit',
-      amount: 0.0,
+      amount: data?.total_deposit,
       icon: '/images/deposit-summary.png',
       slug: 'deposit',
     },
     {
       id: 2,
       title: 'Total Withdraw',
-      amount: 0.0,
+      amount: data?.total_withdraw,
       icon: '/images/withdraw-summary.png',
       slug: 'withdraw',
     },
@@ -41,14 +43,14 @@ export const summaryItems = (data: any) => {
     {
       id: 3,
       title: 'CopyTrade Profit',
-      amount: 0.0,
+      amount: data?.copy_trading_profit,
       icon: '/images/copy-profit-summary.png',
       slug: '',
     },
     {
       id: 4,
       title: 'Total Profit',
-      amount: 0.0,
+      amount: data?.total_profit,
       icon: '/images/profit-summary.png',
       slug: '',
     },
@@ -57,26 +59,26 @@ export const summaryItems = (data: any) => {
 
 export const methods = [
   {
+    type: 'btc',
+    icon: '/images/bitcoin.png',
+    qr: '/wallet/btc.jpeg',
+    wallet_address: 'bc1qgknfvf0tm6kkurcgs3v9tjashqkvy493ns7eva',
+  },
+  {
+    type: 'eth',
+    icon: '/images/ethereum.png',
+    qr: '/wallet/eth.jpeg',
+    wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
+  },
+  {
     type: 'usdt-eth',
     icon: '/images/tether.png',
     qr: '/wallet/usdt-eth.jpeg',
     wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
   },
   {
-    type: 'btc',
-    icon: '',
-    qr: '/wallet/btc.jpeg',
-    wallet_address: 'bc1qgknfvf0tm6kkurcgs3v9tjashqkvy493ns7eva',
-  },
-  {
-    type: 'eth',
-    icon: '',
-    qr: '/wallet/eth.jpeg',
-    wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
-  },
-  {
     type: 'usdt-tron',
-    icon: '',
+    icon: '/images/tether.png',
     qr: '/wallet/usdt-tron.jpeg',
     wallet_address: 'TZAVxf3qpQ1LCb8H8ZAz4Ci3jQiVJDVTd8',
   },
@@ -151,11 +153,11 @@ export const recordOptions = [
     id: 3,
     key: 'withdraw',
   },
-  {
-    label: 'Commission',
-    id: 4,
-    key: 'commission',
-  },
+  // {
+  //   label: 'Commission',
+  //   id: 4,
+  //   key: 'commission',
+  // },
 ];
 
 export const traders = [
@@ -193,11 +195,11 @@ export const traders = [
   },
   {
     id: 5,
-    name: 'FatimaAli',
+    name: 'Up&Down Involio',
     strategy: 'Perpetual Futures',
-    cumulativePnl: '+59,987.42',
+    cumulativePnl: '+120,987.42',
     copiers: 1210,
-    winRatio: '69.7%',
+    winRatio: '91.7%',
   },
   {
     id: 6,

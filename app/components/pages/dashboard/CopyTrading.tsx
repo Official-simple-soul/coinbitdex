@@ -3,6 +3,10 @@ import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useState } from 'react';
 import { traders } from './data';
+import { useAuth } from '~/providers/AuthProvider';
+import { notifications } from '@mantine/notifications';
+import SuccessModal from '~/components/common/SuccessModal';
+import { useFunctions } from '~/providers/FunctionsProvider';
 
 interface SELECTUSER {
   id: number;
@@ -18,21 +22,73 @@ function CopyTrading() {
   const [agreementChecked, setAgreementChecked] = useState(false);
   const [riskDisclaimerChecked, setRiskDisclaimerChecked] = useState(false);
   const [copyRatio, setCopyRatio] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const { user, updateUser } = useAuth();
+  const { storeRecord } = useFunctions();
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const handleCopyClick = (trader: any) => {
     setSelectedTrader(trader);
     setOpened(true);
   };
 
-  const handleCopySubmit = () => {
+  const handleCopySubmit = async () => {
     if (!agreementChecked || !riskDisclaimerChecked || copyRatio <= 0) {
       alert('Please agree to the terms and specify a valid copy ratio.');
       return;
     }
 
-    console.log('Copying trader:', selectedTrader?.name);
-    console.log('Copy ratio:', copyRatio);
-    setOpened(false);
+    if ((user?.balance ?? 0) < 500) {
+      notifications.show({
+        title: 'Insufficient balance',
+        message: 'Balance must be up to $500',
+        color: 'red',
+      });
+      return;
+    }
+
+    if ((user?.balance ?? 0) < copyRatio) {
+      notifications.show({
+        title: 'Insufficient balance',
+        message: 'Balance must be higher that ' + copyRatio,
+        color: 'red',
+      });
+      return;
+    }
+
+    if (!user?.uid || !user?.balance) {
+      throw new Error('User ID is required to store the record');
+    }
+
+    setIsLoading(true);
+
+    try {
+      await storeRecord(user.uid, {
+        type: 'copyTrade',
+        amount: copyRatio,
+        transactionType: 'out',
+        description: 'Copied Trade',
+        transactionId: selectedTrader?.name,
+      });
+
+      const newBalance = user.balance - copyRatio;
+
+      await updateUser(user.uid, {
+        balance: newBalance,
+      });
+
+      setOpened(false);
+      setSuccessModalOpen(true);
+    } catch (err) {
+      notifications.show({
+        title: 'Error',
+        message: 'Failed to withdraw funds',
+        color: 'red',
+      });
+    } finally {
+      setIsLoading(false);
+      setOpened(false);
+    }
   };
 
   return (
@@ -75,15 +131,21 @@ function CopyTrading() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="">
-                  <p className="font-bold text-sm">{trader.cumulativePnl}</p>
+                  <p className="font-bold text-sm text-green-500">
+                    {trader.cumulativePnl}
+                  </p>
                   <p className="text-xs text-gray-500">Cummulative PnL</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-sm">{trader.copiers}</p>
+                  <p className="font-bold text-sm text-green-500">
+                    {trader.copiers}
+                  </p>
                   <p className="text-xs text-gray-500">Copiers</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-sm">{trader.winRatio}</p>
+                  <p className="font-bold text-sm text-green-500">
+                    {trader.winRatio}
+                  </p>
                   <p className="text-xs text-gray-500">Win Ratio</p>
                 </div>
               </div>
@@ -118,35 +180,43 @@ function CopyTrading() {
               </div>
 
               {/* Copy-by-Position Ratio */}
+              <div className="flex text-xs items-center justify-between">
+                <p>Copy by Balance</p>${user?.balance?.toLocaleString()}
+              </div>
               <NumberInput
-                label="Copy-by-Position Ratio (%)"
+                label=""
                 placeholder="Enter percentage"
-                min={0}
-                max={100}
+                min={500}
+                max={1000000}
                 value={copyRatio}
                 onChange={(value) =>
                   setCopyRatio(typeof value === 'number' ? value : 0)
                 }
                 size="sm"
               />
+              <p className="text-xs text-gray-500">
+                Min: $500 and Max: $1,000,000
+              </p>
 
-              {/* Copy Trading Agreement */}
-              <Checkbox
-                label="I agree to the Copy Trading Customer Agreement"
-                checked={agreementChecked}
-                onChange={(e) => setAgreementChecked(e.currentTarget.checked)}
-                size="xs"
-              />
+              <div className="pt-7 space-y-4">
+                {/* Copy Trading Agreement */}
+                <Checkbox
+                  label="I agree to the Copy Trading Customer Agreement"
+                  checked={agreementChecked}
+                  onChange={(e) => setAgreementChecked(e.currentTarget.checked)}
+                  size="xs"
+                />
 
-              {/* Risk Disclaimer */}
-              <Checkbox
-                label="I acknowledge the risks involved in copy trading"
-                checked={riskDisclaimerChecked}
-                onChange={(e) =>
-                  setRiskDisclaimerChecked(e.currentTarget.checked)
-                }
-                size="xs"
-              />
+                {/* Risk Disclaimer */}
+                <Checkbox
+                  label="I acknowledge the risks involved in copy trading"
+                  checked={riskDisclaimerChecked}
+                  onChange={(e) =>
+                    setRiskDisclaimerChecked(e.currentTarget.checked)
+                  }
+                  size="xs"
+                />
+              </div>
 
               {/* Copy Button */}
               <Button
@@ -155,12 +225,18 @@ function CopyTrading() {
                 disabled={
                   !agreementChecked || !riskDisclaimerChecked || copyRatio <= 0
                 }
+                loaderProps={{ type: 'bars' }}
+                loading={isLoading}
               >
                 Confirm Copy
               </Button>
             </div>
           )}
         </Modal>
+        <SuccessModal
+          open={successModalOpen}
+          onClose={() => setSuccessModalOpen(false)}
+        />
       </div>
     </DashboardLayout>
   );

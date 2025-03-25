@@ -3,8 +3,10 @@ import { IconArrowLeft, IconFolders } from '@tabler/icons-react';
 import { NavLink } from 'react-router';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
+import { useAuth } from '~/providers/AuthProvider';
 
 function Referral() {
+  const { user } = useAuth();
   return (
     <DashboardLayout>
       <div className="space-y-5">
@@ -15,7 +17,9 @@ function Referral() {
         <Frame>
           <div className="flex items-center w-full">
             <div className="w-full border rounded-l h-8 bg-gray-100 flex items-center justify-center pl-2 overflow-hidden">
-              <p className="text-gray-700">{'referal_link'}</p>
+              <p className="text-gray-700">
+                https://coinbitdex/{user?.referral_id}
+              </p>
             </div>
             <CopyButton value={'referal_link'}>
               {({ copied, copy }) => (

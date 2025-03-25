@@ -61,8 +61,8 @@ function SignUp() {
         lastName: values.lastName,
         country: values.country,
         phone,
-        balance: 0,
         uid: user.uid,
+        password: values.password,
       });
       navigate('/dashboard', { replace: true });
     } catch (err) {

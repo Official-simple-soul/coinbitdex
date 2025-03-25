@@ -7,21 +7,8 @@ import {
   type User,
 } from 'firebase/auth';
 import { auth, db } from '~/config/firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-
-interface UserData {
-  uid: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  country?: string;
-  phone?: string;
-  balance?: number;
-  referral_id?: string;
-  kyc_status?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+import { doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import type { UserData } from './types';
 
 export interface AuthContextInterface {
   user: UserData | null;
@@ -29,6 +16,7 @@ export interface AuthContextInterface {
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<User>;
   storeUser: (user: UserData) => Promise<void>;
+  updateUser: (uid: string, userData: Partial<UserData>) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -40,32 +28,36 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      setLoading(true);
       if (firebaseUser) {
-        const userData = await fetchUserData(firebaseUser.uid);
-        setUser(userData);
+        const unsubscribeFirestore = fetchUserData(firebaseUser.uid, setUser);
+        return () => {
+          unsubscribeFirestore();
+        };
       } else {
         setUser(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const fetchUserData = async (uid: string): Promise<UserData | null> => {
-    try {
-      const userRef = doc(db, 'users', uid);
-      const userSnap = await getDoc(userRef);
+  const fetchUserData = (
+    uid: string,
+    setUser: React.Dispatch<React.SetStateAction<UserData | null>>
+  ) => {
+    const userRef = doc(db, 'users', uid);
 
-      if (userSnap.exists()) {
-        return userSnap.data() as UserData;
+    const unsubscribe = onSnapshot(userRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setUser(docSnap.data() as UserData);
       } else {
-        return null;
+        setUser(null);
       }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      return null;
-    }
+      setLoading(false);
+    });
+    return unsubscribe;
   };
 
   const login = async (email: string, password: string) => {
@@ -102,11 +94,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const userRef = doc(db, 'users', userData.uid);
       await setDoc(userRef, {
         ...userData,
+        balance: 0,
+        copy_trading_balance: 0,
+        referral_id: `${userData.firstName}_${userData.phone}`,
+        kyc_status: 1,
+        referral_earn: 0,
+        total_deposit: 0,
+        total_withdraw: 0,
+        copy_trading_profit: 0,
+        total_profit: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
     } catch (error) {
       console.error('Error storing user data:', error);
+      throw error;
+    }
+  };
+
+  const updateUser = async (uid: string, userData: Partial<UserData>) => {
+    try {
+      const userRef = doc(db, 'users', uid);
+      await updateDoc(userRef, {
+        ...userData,
+        updatedAt: new Date(),
+      });
+    } catch (error) {
+      console.error('Error updating user:', error);
       throw error;
     }
   };
@@ -123,7 +137,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, storeUser, logout }}
+      value={{ user, loading, login, register, storeUser, logout, updateUser }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,11 +1,12 @@
-import { Button } from '@mantine/core';
+import { Avatar, Button } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconAngle, IconArrowBadgeRight, IconUser } from '@tabler/icons-react';
+import { IconArrowBadgeRight, IconUser } from '@tabler/icons-react';
 import { NavLink } from 'react-router';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useAuth } from '~/providers/AuthProvider';
 import { menuItems } from './data';
+import { base64ToImage } from '~/utils/helper';
 
 function Account() {
   const { user, logout } = useAuth();
@@ -23,13 +24,22 @@ function Account() {
     }
   };
 
+  const avatar_url = base64ToImage(user?.avatar_url || '');
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
         <Frame>
           <div className="flex flex-col items-center justify-center">
             <div className="bg-gray-100 rounded-full p-3">
-              <IconUser size={'70px'} color="gray" />
+              <Avatar
+                src={avatar_url?.src || null}
+                alt={user?.firstName}
+                size={100}
+                className="rounded-full"
+              >
+                <IconUser size={'70px'} color="gray" />
+              </Avatar>
             </div>
             <p className="mt-4 font-semibold text-sm">
               {user?.firstName} {user?.lastName}

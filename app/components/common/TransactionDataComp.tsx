@@ -1,12 +1,11 @@
-import React from 'react';
-import { tradeHistoryItems } from '../pages/dashboard/data';
+import { convertFirestoreTimestampToDate } from '~/utils/helper';
+import type { TransactionDataCompProps } from './types';
 
-interface TransactionDataCompProps {
-  active: number;
-}
-
-function TransactionDataComp({ active }: TransactionDataCompProps) {
-  const filteredTransactions = tradeHistoryItems.filter((record) => {
+function TransactionDataComp({
+  active,
+  tradeHistoryItems,
+}: TransactionDataCompProps) {
+  const filteredTransactions = tradeHistoryItems?.filter((record) => {
     if (active === 1) return true;
     if (active === 2) return record.type === 'deposit';
     if (active === 3) return record.type === 'withdraw';
@@ -16,7 +15,7 @@ function TransactionDataComp({ active }: TransactionDataCompProps) {
 
   return (
     <div className="space-y-3">
-      {filteredTransactions.map((record) => {
+      {filteredTransactions?.map((record) => {
         const amountColor =
           record.transactionType === 'in' ? 'text-green-600' : 'text-red-600';
         const amountSign = record.transactionType === 'in' ? '+' : '-';
@@ -28,19 +27,19 @@ function TransactionDataComp({ active }: TransactionDataCompProps) {
           >
             <div className="flex items-center space-x-3 justify-between">
               <div className="flex items-center space-x-3">
-                <img src="/images/record.png" alt="" className="size-12" />
+                <img src="/images/record.png" alt="" className="size-10" />
                 <div className="">
-                  <h1 className="font-bold text-lg text-gray-800">
+                  <h1 className="font-bold text-gray-800">
                     {record.description}
                   </h1>
                   <p>
                     <span className="text-gray-500 text-xs">Trx: </span>
                     <span className="text-xs text-green-600">
-                      {record.trxId}
+                      {record.transactionId}
                     </span>
                   </p>
                   <p className="text-gray-500 text-xs">
-                    {record.date} | {record.timeAgo}
+                    {convertFirestoreTimestampToDate(record.createdAt)}
                   </p>
                 </div>
               </div>
