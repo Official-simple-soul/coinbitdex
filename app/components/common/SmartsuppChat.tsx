@@ -30,7 +30,7 @@ export function SmartsuppChat() {
         document.body.appendChild(script);
       }
     }
-  }, []);
+  }, [shouldShowChat]);
 
   return null;
 }
