@@ -27,9 +27,9 @@ function SummaryDataComp({ summaryData }: SUMMARYDATA) {
                 <p className="font-bold text-xs">{summaryItem?.title}</p>
                 <p
                   className={`font-bold text-sm ${
-                    summaryItem?.slug === 'deposit'
+                    summaryItem?.slug === 'withdraw'
                       ? 'text-red-500'
-                      : summaryItem.slug === 'withdraw'
+                      : summaryItem.slug === 'deposit'
                       ? 'text-green-500'
                       : ''
                   }`}
