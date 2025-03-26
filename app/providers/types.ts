@@ -36,6 +36,7 @@ export interface RecordData {
   amount?: number;
   transactionType?: string;
   description?: string;
+  status?: string;
   transactionId?: string;
   createdAt?: Date;
   updatedAt?: Date;

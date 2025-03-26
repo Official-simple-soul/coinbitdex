@@ -1,5 +1,6 @@
 import { convertFirestoreTimestampToDate } from '~/utils/helper';
 import type { TransactionDataCompProps } from './types';
+import { IconCheck, IconClock } from '@tabler/icons-react';
 
 function TransactionDataComp({
   active,
@@ -17,8 +18,17 @@ function TransactionDataComp({
     <div className="space-y-3">
       {filteredTransactions?.map((record) => {
         const amountColor =
-          record.transactionType === 'in' ? 'text-green-600' : 'text-red-600';
-        const amountSign = record.transactionType === 'in' ? '+' : '-';
+          record.type !== 'copyTrade'
+            ? record.transactionType === 'in'
+              ? 'text-green-600'
+              : 'text-red-600'
+            : 'text-gray-600';
+        const amountSign =
+          record.type !== 'copyTrade'
+            ? record.transactionType === 'in'
+              ? '+'
+              : '-'
+            : '';
 
         return (
           <div
@@ -34,18 +44,30 @@ function TransactionDataComp({
                   </h1>
                   <p>
                     <span className="text-gray-500 text-xs">Trx: </span>
-                    <span className="text-xs text-green-600">
+                    <p className="text-xs text-green-600 max-w-64 line-clamp-1">
                       {record.transactionId}
-                    </span>
+                    </p>
                   </p>
                   <p className="text-gray-500 text-xs">
                     {convertFirestoreTimestampToDate(record.createdAt)}
                   </p>
                 </div>
               </div>
-              <p className={`text-right font-semibold ${amountColor}`}>
-                {amountSign} {record.amount.toLocaleString()}$
-              </p>
+              <div className="space-y-2">
+                {record.status === 'completed' && (
+                  <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full flex items-center gap-1">
+                    <IconCheck size={12} /> Completed
+                  </span>
+                )}
+                {record.status === 'pending' && (
+                  <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full flex items-center gap-1">
+                    <IconClock size={12} /> Pending
+                  </span>
+                )}
+                <p className={`text-right font-semibold ${amountColor}`}>
+                  {amountSign} {record.amount.toLocaleString()}$
+                </p>
+              </div>
             </div>
           </div>
         );

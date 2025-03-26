@@ -1,13 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { db } from '~/config/firebase';
-import {
-  addDoc,
-  collection,
-  getDocs,
-  orderBy,
-  query,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import type { DepositData, KYCData, RecordData } from './types';
 
 export interface FunctionsContextInterface {

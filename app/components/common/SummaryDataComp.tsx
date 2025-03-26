@@ -34,7 +34,7 @@ function SummaryDataComp({ summaryData }: SUMMARYDATA) {
                       : ''
                   }`}
                 >
-                  $ {summaryItem?.amount}
+                  $ {summaryItem?.amount?.toLocaleString()}
                 </p>
               </div>
             </div>

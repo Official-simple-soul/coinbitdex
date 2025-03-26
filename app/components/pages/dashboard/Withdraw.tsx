@@ -54,15 +54,15 @@ function Withdraw() {
     setLoading(true);
 
     try {
-      const depositRecord = await storeRecord(user.uid, {
+      await storeRecord(user.uid, {
         type: 'withdraw',
         amount: parseInt(values.amount),
         transactionType: 'out',
+        status: 'pending',
         description: 'Withdraw Request',
         transactionId: values.walletAddress,
       });
 
-      console.log('depositRecord', depositRecord);
       open();
     } catch (err) {
       notifications.show({
@@ -80,7 +80,7 @@ function Withdraw() {
     <DashboardLayout>
       <Frame>
         <p className="pb-2 border-b font-semibold">
-          Current Balance: {user?.balance} USD
+          Current Balance: {user?.balance?.toLocaleString()} USD
         </p>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <div className="pt-4">

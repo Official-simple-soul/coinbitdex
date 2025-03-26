@@ -85,6 +85,7 @@ function Deposit() {
         type: 'deposit',
         amount: parseInt(values.amount),
         transactionType: 'in',
+        status: 'pending',
         description: 'Deposit Request',
         transactionId: values.transactionId,
       });
@@ -147,7 +148,9 @@ function Deposit() {
         <Frame>
           <h1 className="font-bold mb-7">
             Balance:{' '}
-            <span className="text-yellow-700">{user?.balance} USD</span>
+            <span className="text-yellow-700">
+              {user?.balance?.toLocaleString()} USD
+            </span>
           </h1>
           <div className="flex flex-col items-center space-y-4 pb-3">
             <div className="text-center text-sm">

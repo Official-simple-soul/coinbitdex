@@ -7,8 +7,10 @@ interface SuccessModalProps {
 
 function SuccessModal({ open, onClose }: SuccessModalProps) {
   return (
-    <Modal opened={open} onClose={onClose} title={'Success'} size="lg" centered>
-      <h1 className="font-bold text-center text-xl">Copying Successful!</h1>
+    <Modal opened={open} onClose={onClose} title={''} size="lg" centered>
+      <h1 className="font-bold text-center text-xl text-green-500">
+        Copying Successful!
+      </h1>
       <p className="mt-4 text-center text-sm text-yellow-700">
         AI Trade Schedule:
       </p>
