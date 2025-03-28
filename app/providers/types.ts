@@ -13,6 +13,8 @@ export interface UserData {
   avatar_url?: string;
   referral_earn?: number;
   total_deposit?: number;
+  isBlocked?: boolean;
+  role?: string;
   total_withdraw?: number;
   copy_trading_profit?: number;
   total_profit?: number;
@@ -38,6 +40,7 @@ export interface RecordData {
   description?: string;
   status?: string;
   transactionId?: string;
+  userEmail?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

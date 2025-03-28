@@ -21,4 +21,7 @@ export default [
   route('dashboard/kyc', 'routes/kyc.tsx'),
   route('dashboard/account_info', 'routes/account_info.tsx'),
   route('dashboard/referral', 'routes/referral.tsx'),
+  route('admin/login', 'routes/admin_login.tsx'),
+  route('admin/dashboard', 'routes/admin.tsx'),
+  route('admin/dashboard/user/:uid', 'routes/user_details.tsx'),
 ] satisfies RouteConfig;

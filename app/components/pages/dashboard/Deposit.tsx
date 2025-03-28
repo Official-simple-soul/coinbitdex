@@ -71,7 +71,7 @@ function Deposit() {
         throw new Error('User ID is required to store the record');
       }
 
-      const deposit = await storeDeposit(user?.uid, {
+      await storeDeposit(user?.uid, {
         amount: parseInt(values.amount),
         type: 'deposit',
         status: 'pending',
@@ -79,9 +79,7 @@ function Deposit() {
         paymentScreenshot: paymentScreenshotUrl as string,
       });
 
-      console.log('Deposit successful', deposit);
-
-      const depositRecord = await storeRecord(user.uid, {
+      await storeRecord(user.uid, {
         type: 'deposit',
         amount: parseInt(values.amount),
         transactionType: 'in',
@@ -89,8 +87,6 @@ function Deposit() {
         description: 'Deposit Request',
         transactionId: values.transactionId,
       });
-
-      console.log('depositRecord', depositRecord);
 
       setSuccessDeposit(true);
     } catch (err) {

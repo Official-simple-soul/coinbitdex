@@ -101,6 +101,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         kyc_level: 1,
         referral_earn: 0,
         total_deposit: 0,
+        role: 'user',
         total_withdraw: 0,
         copy_trading_profit: 0,
         total_profit: 0,
@@ -130,6 +131,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await signOut(auth);
       setUser(null);
+      window.location.replace('/');
     } catch (error) {
       console.error('Logout error:', error);
       throw error;

@@ -1,6 +1,7 @@
 import { convertFirestoreTimestampToDate } from '~/utils/helper';
 import type { TransactionDataCompProps } from './types';
 import { IconCheck, IconClock } from '@tabler/icons-react';
+import { Card, Text } from '@mantine/core';
 
 function TransactionDataComp({
   active,
@@ -31,17 +32,14 @@ function TransactionDataComp({
             : '';
 
         return (
-          <div
-            key={record.id}
-            className="px-5 py-3 bg-white shadow-md border rounded-xl space-y-3"
-          >
+          <Card shadow="sm" padding="lg" radius="md" withBorder>
             <div className="flex items-center space-x-3 justify-between">
               <div className="flex items-center space-x-3">
                 <img src="/images/record.png" alt="" className="size-10" />
                 <div className="">
-                  <h1 className="font-bold text-gray-800">
+                  <Text className="font-bold text-gray-800">
                     {record.description}
-                  </h1>
+                  </Text>
                   <p>
                     <span className="text-gray-500 text-xs">Trx: </span>
                     <p className="text-xs text-green-600 max-w-64 line-clamp-1">
@@ -69,7 +67,7 @@ function TransactionDataComp({
                 </p>
               </div>
             </div>
-          </div>
+          </Card>
         );
       })}
     </div>

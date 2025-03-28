@@ -1,5 +1,14 @@
 import axios from 'axios';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import type { User } from 'firebase/auth';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
 import { db } from '~/config/firebase';
 
 export async function fetchMarketData() {
@@ -43,4 +52,39 @@ export const listRecords = async (uid: string) => {
     console.error('Error retrieving user records:', error);
     throw error;
   }
+};
+
+export async function fetchUsers(): Promise<User[]> {
+  const q = query(collection(db, 'users'));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Partial<User>),
+  })) as User[];
+}
+
+export const fetchUser = async (uid: string) => {
+  const docSnap = await getDoc(doc(db, 'users', uid));
+  return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
+};
+
+export const fetchKYC = async (uid: string) => {
+  const kycCollectionRef = collection(db, 'users', uid, 'kyc');
+  const q = query(kycCollectionRef);
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
+export const fetchDeposits = async (uid: string) => {
+  const depositsCollectionRef = collection(db, 'users', uid, 'userDeposits');
+  const q = query(depositsCollectionRef);
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
+export const fetchTransactions = async (uid: string) => {
+  const recordsCollectionRef = collection(db, 'users', uid, 'userRecords');
+  const q = query(recordsCollectionRef);
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };

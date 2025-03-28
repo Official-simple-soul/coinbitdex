@@ -53,7 +53,6 @@ function SignUp() {
     const phone = values.phonePrefix + values.phone;
     try {
       const user = await register(values.email, values.password);
-      console.log('user', user);
 
       await storeUser({
         email: values.email,
