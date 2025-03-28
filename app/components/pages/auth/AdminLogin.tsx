@@ -5,10 +5,11 @@ import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
 import { notifications } from '@mantine/notifications';
+import { fetchUser } from '~/services/axios';
 
 function AdminLogin() {
-  const [opened, setOpened] = useState(true);
-  const { login, user, logout } = useAuth();
+  const [opened] = useState(true);
+  const { login, logout } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
@@ -32,9 +33,10 @@ function AdminLogin() {
   const handleLogin = async (values: any) => {
     setLoading(true);
     try {
-      await login(values.email, values.password);
+      const user = await login(values.email, values.password);
 
-      if (user?.role === 'admin') {
+      const adminUser = await fetchUser(user.user.uid);
+      if (adminUser?.role === 'admin') {
         window.location.replace('/admin/dashboard');
       } else {
         notifications.show({

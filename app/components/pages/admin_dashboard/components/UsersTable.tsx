@@ -6,12 +6,15 @@ import type { UserData } from '~/providers/types';
 
 interface UsersTableProps {
   users: UserData[];
-  onBlock: (userId: string) => void;
-  onCredit: (userId: string) => void;
+  isLoading: boolean;
 }
 
-export function UsersTable({ users, onBlock, onCredit }: UsersTableProps) {
+export function UsersTable({ users, isLoading }: UsersTableProps) {
   const theme = useMantineTheme();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="space-y-2">

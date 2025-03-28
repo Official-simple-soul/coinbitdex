@@ -4,7 +4,7 @@ import { UsersTable } from './components/UsersTable';
 import Frame from '~/components/common/Frame';
 
 function Admin() {
-  const { data: users } = useListUsers();
+  const { data: users, isLoading } = useListUsers();
 
   return (
     <AdminLayout>
@@ -14,7 +14,7 @@ function Admin() {
             <h1 className="font-semibold pb-1 border-b text-center">Users</h1>
           </div>
         </Frame>
-        <UsersTable users={users} />
+        <UsersTable users={users} isLoading={isLoading} />
       </div>
     </AdminLayout>
   );
