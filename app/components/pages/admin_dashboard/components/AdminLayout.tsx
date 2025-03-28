@@ -11,7 +11,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
 
   useEffect(() => {
-    if (user?.role !== 'admin') {
+    if (user && user?.role !== 'admin') {
       logout();
       window.location.replace('/');
     }
