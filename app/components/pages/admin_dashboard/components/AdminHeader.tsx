@@ -1,11 +1,4 @@
-// components/admin/Layout/Header.tsx
-import {
-  AppShell,
-  Group,
-  Text,
-  ActionIcon,
-  useMantineColorScheme,
-} from '@mantine/core';
+import { AppShell, Group, Text, ActionIcon } from '@mantine/core';
 import {
   IconSun,
   IconMoonStars,
@@ -15,23 +8,12 @@ import {
 import { useAuth } from '~/providers/AuthProvider';
 
 export function AdminHeader() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { logout } = useAuth();
-  const dark = colorScheme === 'dark';
 
   return (
     <AppShell.Header p="md">
       <Group justify="space-between" style={{ height: '100%' }}>
         <Group>
-          <ActionIcon
-            variant="outline"
-            color={dark ? 'yellow' : 'blue'}
-            onClick={() => toggleColorScheme()}
-            title="Toggle color scheme"
-          >
-            {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
-          </ActionIcon>
-
           <ActionIcon variant="outline" color="gray" title="Notifications">
             <IconBell size={18} />
           </ActionIcon>

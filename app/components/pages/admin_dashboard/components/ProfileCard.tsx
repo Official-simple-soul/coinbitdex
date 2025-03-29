@@ -3,7 +3,7 @@ import { convertFirestoreTimestampToDate } from '~/utils/helper';
 
 function ProfileCard({ user }) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card shadow="sm" padding="md" radius="md" withBorder>
       <Group justify="space-between">
         <Title order={3} size={'md'}>
           Profile

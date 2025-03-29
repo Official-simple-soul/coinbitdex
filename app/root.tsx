@@ -13,12 +13,11 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import type { Route } from './+types/root';
 import stylesheet from './app.css?url';
-import { AuthProvider, useAuth } from './providers/AuthProvider';
+import { AuthProvider } from './providers/AuthProvider';
 import { FunctionsProvider } from './providers/FunctionsProvider';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { SmartsuppChat } from './components/common/SmartsuppChat';
-import { auth } from './config/firebase';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

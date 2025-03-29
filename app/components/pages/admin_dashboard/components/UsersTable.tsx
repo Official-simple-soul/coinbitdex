@@ -1,7 +1,6 @@
-import { useMantineTheme } from '@mantine/core';
+import { useMantineTheme, Card } from '@mantine/core';
 import {} from '@tabler/icons-react';
 import { NavLink } from 'react-router';
-import Frame from '~/components/common/Frame';
 import type { UserData } from '~/providers/types';
 
 interface UsersTableProps {
@@ -10,16 +9,14 @@ interface UsersTableProps {
 }
 
 export function UsersTable({ users, isLoading }: UsersTableProps) {
-  const theme = useMantineTheme();
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {users?.map((user, index) => (
-        <Frame key={index}>
+        <Card key={index} shadow="sm" padding="md" radius="md" withBorder>
           <NavLink to={`/admin/dashboard/user/${user.uid}`}>
             <div className="text-xs space-y-1">
               <p className="text-xs">
@@ -53,9 +50,10 @@ export function UsersTable({ users, isLoading }: UsersTableProps) {
                   </span>
                 </p>
               </div>
+              <p className="text-center mt-2 text-green-600">View User</p>
             </div>
           </NavLink>
-        </Frame>
+        </Card>
       ))}
     </div>
   );

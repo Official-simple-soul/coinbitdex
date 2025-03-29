@@ -1,12 +1,10 @@
 // components/admin/Layout/AdminLayout.tsx
-import { AppShell, Burger, useMantineTheme } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { AdminNavbar } from './AdminNavbar';
 import { AdminHeader } from './AdminHeader';
 import { useAuth } from '~/providers/AuthProvider';
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
-  const theme = useMantineTheme();
   const [opened] = useState(false);
   const { user, logout } = useAuth();
 
@@ -31,7 +29,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       </AppShell.Header>
 
       <AppShell.Main>
-        <div className="p-4">{children}</div>
+        <div className="p-4 bg-white">{children}</div>
       </AppShell.Main>
     </AppShell>
   );

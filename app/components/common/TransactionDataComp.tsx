@@ -15,6 +15,10 @@ function TransactionDataComp({
     return false;
   });
 
+  if (tradeHistoryItems < 1) {
+    return <Text size="xs">No deposit from this user</Text>;
+  }
+
   return (
     <div className="space-y-3">
       {filteredTransactions?.map((record) => {
@@ -32,39 +36,41 @@ function TransactionDataComp({
             : '';
 
         return (
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <div className="flex items-center space-x-3 justify-between">
-              <div className="flex items-center space-x-3">
-                <img src="/images/record.png" alt="" className="size-10" />
-                <div className="">
+          <Card shadow="sm" padding="md" radius="md" withBorder>
+            <div className="flex items-center space-x-3 w-full">
+              <img src="/images/record.png" alt="" className="size-10" />
+              <div className="w-full">
+                <div className="flex justify-between items-center w-full">
                   <Text className="font-bold text-gray-800">
                     {record.description}
                   </Text>
-                  <p>
-                    <span className="text-gray-500 text-xs">Trx: </span>
-                    <p className="text-xs text-green-600 max-w-64 line-clamp-1">
-                      {record.transactionId}
-                    </p>
-                  </p>
-                  <p className="text-gray-500 text-xs">
-                    {convertFirestoreTimestampToDate(record.createdAt)}
+                  {record.status === 'completed' && (
+                    <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full flex items-center gap-1">
+                      <IconCheck size={12} /> Completed
+                    </span>
+                  )}
+                  {record.status === 'pending' && (
+                    <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full flex items-center gap-1">
+                      <IconClock size={12} /> Pending
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-gray-500 text-xs">Trx: </span>
+                  <p className="text-xs text-green-600 w-40 overflow-hidden">
+                    {record.transactionId}
                   </p>
                 </div>
-              </div>
-              <div className="space-y-2">
-                {record.status === 'completed' && (
-                  <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full flex items-center gap-1">
-                    <IconCheck size={12} /> Completed
-                  </span>
-                )}
-                {record.status === 'pending' && (
-                  <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full flex items-center gap-1">
-                    <IconClock size={12} /> Pending
-                  </span>
-                )}
-                <p className={`text-right font-semibold ${amountColor}`}>
-                  {amountSign} {record.amount.toLocaleString()}$
-                </p>
+                <div className="flex justify-between items-center">
+                  <p className="text-gray-500 text-[10px]">
+                    {convertFirestoreTimestampToDate(record.createdAt)}
+                  </p>
+                  <p
+                    className={`text-right text-sm font-semibold ${amountColor}`}
+                  >
+                    {amountSign} {record.amount.toLocaleString()}$
+                  </p>
+                </div>
               </div>
             </div>
           </Card>

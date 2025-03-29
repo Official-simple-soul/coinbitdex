@@ -120,6 +120,10 @@ const DepositHistory = ({ deposits, uid }) => {
           Deposit History
         </Title>
 
+        {deposits?.length < 1 && (
+          <Text size="xs">No deposit from this user</Text>
+        )}
+
         <Stack gap={4} pos="relative">
           <LoadingOverlay visible={loading} overlayBlur={2} />
 

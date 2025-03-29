@@ -200,7 +200,7 @@ function UserDetails() {
 
   return (
     <AdminLayout>
-      <Stack gap="xl">
+      <Stack gap="xl" className="min-h-screen bg-white">
         <Group justify="space-between">
           <Button
             leftSection={<IconArrowLeft size={18} />}
