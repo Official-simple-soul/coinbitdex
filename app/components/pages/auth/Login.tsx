@@ -9,7 +9,7 @@ import { fetchUser } from '~/services/axios';
 
 function Login() {
   const [opened, setOpened] = useState(true);
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
@@ -36,8 +36,16 @@ function Login() {
       const user = await login(values.email, values.password);
       const userInfo = await fetchUser(user.user.uid);
 
-      if (userInfo?.firstName) {
+      if (!userInfo?.isBlocked) {
         window.location.replace('/dashboard');
+      } else {
+        logout();
+        notifications.show({
+          title: 'Account Blocked',
+          message:
+            'Your account has been blocked. Please contact support for further assistance.',
+          color: 'red',
+        });
       }
     } catch (err) {
       const error = extractFriendlyFirebaseError(err);
