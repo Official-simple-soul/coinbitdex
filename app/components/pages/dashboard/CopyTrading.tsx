@@ -91,11 +91,11 @@ function CopyTrading() {
         transactionId: selectedTrader?.name,
       });
 
-      // const newBalance = user.balance - copyRatio;
+      const newBalance = user.balance - copyRatio;
 
-      // await updateUser(user.uid, {
-      //   balance: newBalance,
-      // });
+      await updateUser(user.uid, {
+        balance: newBalance,
+      });
 
       setOpened(false);
       setSuccessModalOpen(true);

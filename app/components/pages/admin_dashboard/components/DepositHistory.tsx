@@ -114,8 +114,6 @@ const DepositHistory = ({ deposits, uid }) => {
     }
   };
 
-  console.log(deposits);
-
   return (
     <>
       <div>
