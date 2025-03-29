@@ -42,6 +42,16 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
     }
   };
 
+  const handleChangeLanguageVisibility = () => {
+    toggleSidebar();
+    const google_box = document.getElementById('google-box');
+    console.log('box', google_box);
+    if (google_box) {
+      google_box.style.display =
+        google_box.style.display === 'none' ? 'block' : 'none';
+    }
+  };
+
   if (loading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">
@@ -57,6 +67,7 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
         isOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         onLogout={handleLogout}
+        handleChangeLanguageVisibility={handleChangeLanguageVisibility}
       />
 
       <div className="flex-1 flex flex-col">

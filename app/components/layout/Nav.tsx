@@ -36,6 +36,16 @@ const NavOne: React.FC = () => {
 
   const close = () => setIsMenuOpen(false);
 
+  const handleChangeLanguageVisibility = () => {
+    close();
+    const google_box = document.getElementById('google-box');
+    console.log('box', google_box);
+    if (google_box) {
+      google_box.style.display =
+        google_box.style.display === 'none' ? 'block' : 'none';
+    }
+  };
+
   return (
     <nav className="flex items-center justify-between px-2 py-2 mx-auto w-[95%] md:w-[88%] lg:w-[90%] xl:w-[70%] max-w-[1300px]">
       <div className="flex justify-between items-center w-full">
@@ -63,6 +73,12 @@ const NavOne: React.FC = () => {
         </ul>
 
         <ul className="hidden md:flex justify-between items-center gap-1">
+          <button
+            className="w-full text-left text-sm font-normal underline mr-2"
+            onClick={handleChangeLanguageVisibility}
+          >
+            Change Language
+          </button>
           <li className="whitespace-nowrap">
             <Link to={'/login'}>
               <Button component="a" type="button" variant="outline">
@@ -83,6 +99,7 @@ const NavOne: React.FC = () => {
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}
           close={close}
+          handleChangeLanguageVisibility={handleChangeLanguageVisibility}
         />
       </div>
     </nav>

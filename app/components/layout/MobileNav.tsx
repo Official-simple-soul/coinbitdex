@@ -10,12 +10,14 @@ interface MobileNavProps {
   isMenuOpen: boolean;
   toggleMenu: () => void;
   close: () => void;
+  handleChangeLanguageVisibility: () => void;
 }
 
 const MobileNav: React.FC<MobileNavProps> = ({
   isMenuOpen,
   toggleMenu,
   close,
+  handleChangeLanguageVisibility,
 }) => {
   return (
     <div className="md:hidden relative">
@@ -53,7 +55,12 @@ const MobileNav: React.FC<MobileNavProps> = ({
                   {item.label}
                 </NavLink>
               ))}
-
+              <button
+                className="w-full text-left"
+                onClick={handleChangeLanguageVisibility}
+              >
+                Change Language
+              </button>
               <Link
                 onClick={close}
                 to="/login"

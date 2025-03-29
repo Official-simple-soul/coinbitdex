@@ -15,9 +15,15 @@ interface SidebarProps {
   isOpen: boolean;
   toggleSidebar: () => void;
   onLogout: () => void;
+  handleChangeLanguageVisibility: () => void;
 }
 
-const Sidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
+const Sidebar = ({
+  isOpen,
+  toggleSidebar,
+  onLogout,
+  handleChangeLanguageVisibility,
+}: SidebarProps) => {
   const { user } = useAuth();
   const avatar_url = base64ToImage(user?.avatar_url || '');
 
@@ -75,6 +81,12 @@ const Sidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
           <IconPhone className="w-6 h-6" />
           <span>{'Support'}</span>
         </NavLink>
+        <button
+          className="w-full text-left text-sm font-normal underline mt-4"
+          onClick={handleChangeLanguageVisibility}
+        >
+          Change Language
+        </button>
         <button
           onClick={onLogout}
           className="flex items-center space-x-2 text-red-500 hover:text-gray-400 mt-7"

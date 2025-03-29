@@ -18,6 +18,7 @@ import { FunctionsProvider } from './providers/FunctionsProvider';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { SmartsuppChat } from './components/common/SmartsuppChat';
+import GoogleTranslateWidget from './components/common/GoogleTranslateWidget';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -53,6 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <GoogleTranslateWidget />
         <ScrollRestoration />
         <Scripts />
         <SmartsuppChat />
