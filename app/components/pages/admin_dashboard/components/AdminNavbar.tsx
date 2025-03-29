@@ -12,10 +12,10 @@ import { useLocation, useNavigate } from 'react-router';
 
 const navItems = [
   { icon: IconDashboard, label: 'Dashboard', href: '/admin/dashboard' },
-  { icon: IconUsers, label: 'Users', href: '/admin/users' },
-  { icon: IconCash, label: 'Balances', href: '/admin/balances' },
-  { icon: IconList, label: 'Transactions', href: '/admin/transactions' },
-  { icon: IconSettings, label: 'Settings', href: '/admin/settings' },
+  //   { icon: IconUsers, label: 'Users', href: '/admin/users' },
+  //   { icon: IconCash, label: 'Balances', href: '/admin/balances' },
+  //   { icon: IconList, label: 'Transactions', href: '/admin/transactions' },
+  //   { icon: IconSettings, label: 'Settings', href: '/admin/settings' },
 ];
 
 export function AdminNavbar() {
@@ -40,7 +40,7 @@ export function AdminNavbar() {
         ))}
       </div>
 
-      <div>
+      {/* <div>
         <NavLink
           label="Logout"
           leftSection={<IconLogout size={18} />}
@@ -50,7 +50,7 @@ export function AdminNavbar() {
           }}
           className="rounded-md hover:bg-red-50 dark:hover:bg-red-900/20"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

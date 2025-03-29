@@ -13,12 +13,14 @@ function Withdraw() {
   const { storeRecord } = useFunctions();
   const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
+
   const form = useForm({
     initialValues: {
       method: '',
       amount: '',
       walletAddress: '',
       password: '',
+      balanceType: 'main', // 'main' or 'copy_trading'
     },
 
     validate: {
@@ -26,22 +28,22 @@ function Withdraw() {
       amount: (value) => {
         if (!value) return 'Please enter an amount';
         const amountNum = parseFloat(value);
-        const userBalance = user?.balance || 0;
+        const availableBalance =
+          form.values.balanceType === 'main'
+            ? user?.balance || 0
+            : user?.copy_trading_profit || 0;
 
         if (isNaN(amountNum)) return 'Please enter a valid number';
         if (amountNum < 100) return 'Minimum withdrawal is 100 USD';
         if (amountNum > 500000) return 'Maximum withdrawal is 500,000 USD';
-        if (amountNum > userBalance) return 'Insufficient balance.';
+        if (amountNum > availableBalance) return 'Insufficient balance.';
         return null;
       },
       walletAddress: (value) => (value ? null : 'Please enter wallet address'),
       password: (value) => {
-        if (!value) {
-          return 'Please enter your password';
-        }
-        if (value !== user?.password) {
+        if (!value) return 'Please enter your password';
+        if (value !== user?.password)
           return 'Incorrect password. Please try again.';
-        }
       },
     },
   });
@@ -59,7 +61,9 @@ function Withdraw() {
         amount: parseInt(values.amount),
         transactionType: 'out',
         status: 'pending',
-        description: 'Withdraw Request',
+        description: `Withdraw Request ${
+          values.balanceType === 'main' ? '(Main)' : '(CopyTrading)'
+        }`,
         transactionId: values.walletAddress,
       });
 
@@ -79,10 +83,28 @@ function Withdraw() {
   return (
     <DashboardLayout>
       <Frame>
-        <p className="pb-2 border-b font-semibold">
-          Current Balance: {user?.balance?.toLocaleString()} USD
-        </p>
+        <div className="pb-2 border-b">
+          <div>
+            <p className="font-semibold text-sm">
+              {form.values.balanceType === 'main'
+                ? `Main Balance: ${user?.balance?.toLocaleString()} USD`
+                : `Copy Trading: ${user?.copy_trading_profit?.toLocaleString()} USD`}
+            </p>
+          </div>
+        </div>
+
         <form onSubmit={form.onSubmit(handleSubmit)}>
+          <div className="pt-4">
+            <p className="mb-2 text-sm">Withdraw From</p>
+            <Select
+              data={[
+                { value: 'main', label: 'Main Balance' },
+                { value: 'copy_trading', label: 'Copy Trading Wallet' },
+              ]}
+              {...form.getInputProps('balanceType')}
+            />
+          </div>
+
           <div className="pt-4">
             <p className="mb-2 text-sm">Withdraw Method</p>
             <Select
@@ -91,6 +113,7 @@ function Withdraw() {
               {...form.getInputProps('method')}
             />
           </div>
+
           <div className="space-y-2 pt-5">
             <p className="text-sm">
               Withdrawal Amount{' '}
@@ -101,12 +124,14 @@ function Withdraw() {
               Min Amount: 100.00 and Max Amount: 500,000
             </p>
           </div>
+
           <div className="pt-4">
             <p className="mb-2 text-sm">
               Wallet Address <span className="text-red-500 font-bold">*</span>
             </p>
             <TextInput {...form.getInputProps('walletAddress')} />
           </div>
+
           <div className="pt-4">
             <p className="mb-2 text-sm">
               Enter Your Password{' '}
@@ -114,6 +139,7 @@ function Withdraw() {
             </p>
             <TextInput type="password" {...form.getInputProps('password')} />
           </div>
+
           <Button
             type="submit"
             loaderProps={{ type: 'bars' }}
@@ -126,14 +152,15 @@ function Withdraw() {
           </Button>
         </form>
       </Frame>
+
       <Modal opened={opened} onClose={close} centered title="Withdrawal Notice">
         <div className="space-y-4">
           <div className="flex flex-col items-center space-y-4 justify-center py-6">
             <p className="text-center">
-              Withdrawal is currently being monitored.
+              Withdrawal is currently being processed.
             </p>
             <p className="text-center text-sm">
-              Please contact support for the next steps.
+              Please contact support for any urgent inquiries.
             </p>
           </div>
           <div className="flex items-center gap-4">

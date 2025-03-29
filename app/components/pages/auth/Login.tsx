@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
 import { notifications } from '@mantine/notifications';
+import { fetchUser } from '~/services/axios';
 
 function Login() {
   const [opened, setOpened] = useState(true);
@@ -32,9 +33,12 @@ function Login() {
   const handleLogin = async (values: any) => {
     setLoading(true);
     try {
-      await login(values.email, values.password);
-      // navigate('/dashboard', { replace: true });
-      window.location.replace('/dashboard');
+      const user = await login(values.email, values.password);
+      const userInfo = await fetchUser(user.user.uid);
+
+      if (userInfo?.firstName) {
+        window.location.replace('/dashboard');
+      }
     } catch (err) {
       const error = extractFriendlyFirebaseError(err);
       notifications.show({

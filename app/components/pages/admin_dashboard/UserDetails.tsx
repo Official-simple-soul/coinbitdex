@@ -68,9 +68,15 @@ function UserDetails() {
 
     setLoading(true);
 
+    // Determine current balance based on selected type
     const currentBalance =
-      topupType === 'main' ? user.balance : user.copy_trading_profit;
+      topupType === 'main'
+        ? user.balance
+        : topupType === 'copy_trading'
+        ? user.copy_trading_profit
+        : user.total_profit;
 
+    // Calculate new balance
     const newBalance =
       actionType === 'add'
         ? currentBalance + topupAmount
@@ -87,18 +93,27 @@ function UserDetails() {
       return;
     }
 
-    const updateData: Partial<UserData> =
-      topupType === 'main'
-        ? { balance: newBalance }
-        : { copy_trading_profit: newBalance };
+    // Prepare update data based on balance type
+    const updateData: Partial<UserData> = {};
+    if (topupType === 'main') {
+      updateData.balance = newBalance;
+    } else if (topupType === 'copy_trading') {
+      updateData.copy_trading_profit = newBalance;
+    } else {
+      updateData.total_profit = newBalance;
+    }
 
     updateUser(uid, updateData)
       .then(() => {
         notifications.show({
           title: 'Success',
-          message: `Balance ${
-            actionType === 'add' ? 'increased' : 'decreased'
-          } successfully`,
+          message: `${
+            topupType === 'main'
+              ? 'Main Balance'
+              : topupType === 'copy_trading'
+              ? 'Copy Trading Profit'
+              : 'Total Profit'
+          } ${actionType === 'add' ? 'increased' : 'decreased'} successfully`,
           color: 'green',
         });
         setTopupModalOpen(false);
@@ -297,7 +312,7 @@ function UserDetails() {
             min={0}
             step={10}
             precision={2}
-            icon={<IconCash size={16} />}
+            leftSection={<IconCash size={16} />}
             description={
               actionType === 'deduct' && user ? (
                 <Text
@@ -306,7 +321,9 @@ function UserDetails() {
                     topupAmount >
                     (topupType === 'main'
                       ? user.balance
-                      : user.copy_trading_profit)
+                      : topupType === 'copy_trading'
+                      ? user.copy_trading_profit
+                      : user.total_profit)
                       ? 'red'
                       : 'dimmed'
                   }
@@ -314,11 +331,15 @@ function UserDetails() {
                   Current{' '}
                   {topupType === 'main'
                     ? 'Main Balance'
-                    : 'Copy Trading Profit'}
+                    : topupType === 'copy_trading'
+                    ? 'Copy Trading Profit'
+                    : 'Total Profit'}
                   : $
                   {topupType === 'main'
-                    ? user.balance
-                    : user.copy_trading_profit}
+                    ? user.balance?.toLocaleString()
+                    : topupType === 'copy_trading'
+                    ? user.copy_trading_profit?.toLocaleString()
+                    : user.total_profit?.toLocaleString()}
                 </Text>
               ) : null
             }
@@ -327,10 +348,13 @@ function UserDetails() {
           <Select
             label="Balance Type"
             value={topupType}
-            onChange={(val) => setTopupType(val as 'main' | 'copy_trading')}
+            onChange={(val) =>
+              setTopupType(val as 'main' | 'copy_trading' | 'total_profit')
+            }
             data={[
               { value: 'main', label: 'Main Balance' },
               { value: 'copy_trading', label: 'Copy Trading Profit' },
+              { value: 'total_profit', label: 'Total Profit' },
             ]}
             leftSection={<IconWallet size={16} />}
           />
@@ -350,7 +374,9 @@ function UserDetails() {
                   topupAmount >
                     (topupType === 'main'
                       ? user?.balance || 0
-                      : user?.copy_trading_profit || 0))
+                      : topupType === 'copy_trading'
+                      ? user?.copy_trading_profit || 0
+                      : user?.total_profit || 0))
               }
               loaderProps={{ type: 'bars' }}
               loading={loading}
