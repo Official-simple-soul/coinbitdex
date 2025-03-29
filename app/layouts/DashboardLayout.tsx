@@ -47,8 +47,14 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
     const google_box = document.getElementById('google-box');
     console.log('box', google_box);
     if (google_box) {
-      google_box.style.display =
-        google_box.style.display === 'none' ? 'block' : 'none';
+      if (
+        google_box.style.display === '' ||
+        google_box.style.display === 'none'
+      ) {
+        google_box.style.display = 'block';
+      } else {
+        google_box.style.display = 'none';
+      }
     }
   };
 
