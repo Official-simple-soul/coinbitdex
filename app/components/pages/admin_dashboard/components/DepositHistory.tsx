@@ -77,6 +77,7 @@ const DepositHistory = ({ deposits, uid }) => {
 
       await updateUser(uid, {
         balance: increment(selectedDeposit.amount),
+        total_deposit: increment(selectedDeposit.amount),
         updatedAt: new Date(),
       });
 
@@ -112,6 +113,8 @@ const DepositHistory = ({ deposits, uid }) => {
       setSelectedDeposit(null);
     }
   };
+
+  console.log(deposits);
 
   return (
     <>

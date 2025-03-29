@@ -69,7 +69,7 @@ function UserDetails() {
     setLoading(true);
 
     const currentBalance =
-      topupType === 'main' ? user.balance : user.copy_trading_balance;
+      topupType === 'main' ? user.balance : user.copy_trading_profit;
 
     const newBalance =
       actionType === 'add'
@@ -90,7 +90,7 @@ function UserDetails() {
     const updateData: Partial<UserData> =
       topupType === 'main'
         ? { balance: newBalance }
-        : { copy_trading_balance: newBalance };
+        : { copy_trading_profit: newBalance };
 
     updateUser(uid, updateData)
       .then(() => {
@@ -306,16 +306,19 @@ function UserDetails() {
                     topupAmount >
                     (topupType === 'main'
                       ? user.balance
-                      : user.copy_trading_balance)
+                      : user.copy_trading_profit)
                       ? 'red'
                       : 'dimmed'
                   }
                 >
-                  Current {topupType === 'main' ? 'Main' : 'Copy Trading'}{' '}
-                  Balance: $
+                  Current{' '}
+                  {topupType === 'main'
+                    ? 'Main Balance'
+                    : 'Copy Trading Profit'}
+                  : $
                   {topupType === 'main'
                     ? user.balance
-                    : user.copy_trading_balance}
+                    : user.copy_trading_profit}
                 </Text>
               ) : null
             }
@@ -327,7 +330,7 @@ function UserDetails() {
             onChange={(val) => setTopupType(val as 'main' | 'copy_trading')}
             data={[
               { value: 'main', label: 'Main Balance' },
-              { value: 'copy_trading', label: 'Copy Trading Balance' },
+              { value: 'copy_trading', label: 'Copy Trading Profit' },
             ]}
             leftSection={<IconWallet size={16} />}
           />
@@ -347,7 +350,7 @@ function UserDetails() {
                   topupAmount >
                     (topupType === 'main'
                       ? user?.balance || 0
-                      : user?.copy_trading_balance || 0))
+                      : user?.copy_trading_profit || 0))
               }
               loaderProps={{ type: 'bars' }}
               loading={loading}

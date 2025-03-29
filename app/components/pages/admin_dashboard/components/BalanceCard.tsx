@@ -33,10 +33,10 @@ const BalanceCard = ({ user }) => {
           <Group gap={4}>
             <IconTrendingUp size={18} opacity={0.8} />
             <Text size="sm" opacity={0.8}>
-              Total Profit
+              Copy Trading Profit
             </Text>
           </Group>
-          <Text fw={600}>${user.total_profit.toFixed(2)}</Text>
+          <Text fw={600}>${user.copy_trading_profit.toFixed(2)}</Text>
         </div>
       </Group>
     </Card>
