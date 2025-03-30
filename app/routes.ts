@@ -9,6 +9,8 @@ export default [
   route('crypto-market', 'routes/crypto_market.tsx'),
   route('buy-crypto', 'routes/buy_crypto.tsx'),
   route('ai', 'routes/ai.tsx'),
+  route('privacy', 'routes/privacy.tsx'),
+  route('legal', 'routes/legal.tsx'),
   route('dashboard', 'routes/dashboard.tsx'),
   route('dashboard/market', 'routes/market.tsx'),
   route('dashboard/spot', 'routes/spot.tsx'),

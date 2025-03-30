@@ -1,7 +1,7 @@
-import React from 'react';
+import About from '~/components/pages/about/About';
 
 function about() {
-  return <div>About</div>;
+  return <About />;
 }
 
 export default about;

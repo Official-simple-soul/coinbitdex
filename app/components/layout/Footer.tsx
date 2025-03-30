@@ -1,7 +1,7 @@
 import { Button, Stack, TextInput, Group } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import logo from '/images/logo.avif';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import giftBox from '/images/gift-box.gif';
 import sparkle from '/images/sparkle.gif';
 
@@ -81,11 +81,19 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Terms</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/"
+                <NavLink
+                  to="/privacy"
                   className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
                 >
                   Privacy & Policy
+                </NavLink>
+              </li>
+              <li>
+                <a
+                  href="/legal"
+                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
+                >
+                  Legal Terms
                 </a>
               </li>
             </ul>
@@ -96,21 +104,21 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/"
+                <NavLink
+                  to="/about"
                   className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
                 >
                   About Us
-                </a>
+                </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="/"
                   className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
                 >
                   Contact Us
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
