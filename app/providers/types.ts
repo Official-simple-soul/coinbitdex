@@ -1,4 +1,5 @@
 export interface UserData {
+  id?: string;
   uid: string;
   email: string;
   firstName?: string;
@@ -51,4 +52,9 @@ export interface KYCData {
   document?: string;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface MailData {
+  email: string;
+  message: string;
 }

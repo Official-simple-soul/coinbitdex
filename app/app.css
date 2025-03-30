@@ -46,3 +46,7 @@ body {
 #google-box {
   display: none;
 }
+
+.skiptranslate {
+  opacity: 1;
+}

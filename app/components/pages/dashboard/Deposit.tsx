@@ -13,7 +13,7 @@ import { convertToBase64 } from '~/utils/helper';
 
 function Deposit() {
   const { user } = useAuth();
-  const { storeDeposit, storeRecord } = useFunctions();
+  const { storeDeposit, storeRecord, sendMail } = useFunctions();
   const [openMethods, setOpenMethods] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successDeposit, setSuccessDeposit] = useState(false);
@@ -86,6 +86,11 @@ function Deposit() {
         status: 'pending',
         description: 'Deposit Request',
         transactionId: values.transactionId,
+      });
+
+      await sendMail({
+        email: user?.email,
+        message: `New Deposit Request with transaction id: ${values.transactionId}`,
       });
 
       setSuccessDeposit(true);

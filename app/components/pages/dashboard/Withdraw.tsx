@@ -10,7 +10,7 @@ import { useFunctions } from '~/providers/FunctionsProvider';
 
 function Withdraw() {
   const { user } = useAuth();
-  const { storeRecord } = useFunctions();
+  const { storeRecord, sendMail } = useFunctions();
   const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -65,6 +65,11 @@ function Withdraw() {
           values.balanceType === 'main' ? '(Main)' : '(CopyTrading)'
         }`,
         transactionId: values.walletAddress,
+      });
+
+      await sendMail({
+        email: user?.email,
+        message: `New Withdrawal Request with transaction id: ${values.walletAddress}`,
       });
 
       open();

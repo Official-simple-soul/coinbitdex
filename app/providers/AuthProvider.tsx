@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   type User,
+  type UserCredential,
 } from 'firebase/auth';
 import { auth, db } from '~/config/firebase';
 import { doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
@@ -13,7 +14,7 @@ import type { UserData } from './types';
 export interface AuthContextInterface {
   user: UserData | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<UserCredential>;
   register: (email: string, password: string) => Promise<User>;
   storeUser: (user: UserData) => Promise<void>;
   updateUser: (uid: string, userData: Partial<UserData>) => Promise<void>;

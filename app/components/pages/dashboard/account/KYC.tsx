@@ -19,7 +19,7 @@ import { convertToBase64 } from '~/utils/helper';
 
 function KYC() {
   const { user, updateUser } = useAuth();
-  const { storeKYC } = useFunctions();
+  const { storeKYC, sendMail } = useFunctions();
   const [opened, setOpened] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -80,6 +80,11 @@ function KYC() {
 
       await updateUser(user.uid, {
         kyc_status: 'in-progress',
+      });
+
+      await sendMail({
+        email: user?.email,
+        message: `New KYC action. Card Type: ${values.cardType}`,
       });
 
       setOpened(false);

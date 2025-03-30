@@ -15,11 +15,13 @@ import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
 import { notifications } from '@mantine/notifications';
+import { useFunctions } from '~/providers/FunctionsProvider';
 
 function SignUp() {
   const [opened, setOpened] = useState(true);
   const [prefixValue, setPrefixValue] = useState<ComboboxItem | null>(null);
   const { register, storeUser, loading } = useAuth();
+  const { sendMail } = useFunctions();
   const form = useForm({
     initialValues: {
       firstName: '',
@@ -63,6 +65,12 @@ function SignUp() {
         uid: user.uid,
         password: values.password,
       });
+
+      await sendMail({
+        email: values.email,
+        message: `New user registration. ${values.firstName} just joined the app`,
+      });
+
       navigate('/dashboard', { replace: true });
     } catch (err) {
       const error = extractFriendlyFirebaseError(err);

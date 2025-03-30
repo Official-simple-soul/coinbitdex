@@ -1,13 +1,14 @@
 import { createContext, useContext, useState } from 'react';
 import { db } from '~/config/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import type { DepositData, KYCData, RecordData } from './types';
+import type { DepositData, KYCData, MailData, RecordData } from './types';
 
 export interface FunctionsContextInterface {
   loading: boolean;
   storeDeposit: (uid: string, depositData: DepositData) => Promise<void>;
   storeRecord: (uid: string, recordData: RecordData) => Promise<void>;
   storeKYC: (uid: string, KycData: KYCData) => Promise<void>;
+  sendMail: (mailData: MailData) => Promise<void>;
 }
 
 const FunctionsContext = createContext<FunctionsContextInterface | null>(null);
@@ -77,9 +78,33 @@ export const FunctionsProvider = ({
     }
   };
 
+  const sendMail = async (mailData: MailData) => {
+    const data = {
+      service_id: 'service_k98a6fk',
+      template_id: 'template_h9y548t',
+      user_id: 'l1SMwkup0_5uqyGfU',
+      template_params: {
+        email: mailData.email,
+        message: mailData.message,
+      },
+    };
+
+    try {
+      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <FunctionsContext.Provider
-      value={{ loading, storeDeposit, storeRecord, storeKYC }}
+      value={{ loading, storeDeposit, storeRecord, storeKYC, sendMail }}
     >
       {children}
     </FunctionsContext.Provider>

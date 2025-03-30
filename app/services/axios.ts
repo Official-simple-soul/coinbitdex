@@ -10,6 +10,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from '~/config/firebase';
+import type { UserData } from '~/providers/types';
 
 export async function fetchMarketData() {
   try {
@@ -63,9 +64,14 @@ export async function fetchUsers(): Promise<User[]> {
   })) as User[];
 }
 
-export const fetchUser = async (uid: string) => {
+export const fetchUser = async (uid: string): Promise<UserData | null> => {
   const docSnap = await getDoc(doc(db, 'users', uid));
-  return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
+  return docSnap.exists()
+    ? {
+        id: docSnap.id,
+        ...(docSnap.data() as UserData),
+      }
+    : null;
 };
 
 export const fetchKYC = async (uid: string) => {

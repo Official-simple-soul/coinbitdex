@@ -33,7 +33,7 @@ function CopyTrading() {
   const [copyRatio, setCopyRatio] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const { user, updateUser } = useAuth();
-  const { storeRecord } = useFunctions();
+  const { storeRecord, sendMail } = useFunctions();
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   // const [traderCopyCode, setTraderCopyCode] = useState('');
 
@@ -95,6 +95,11 @@ function CopyTrading() {
 
       await updateUser(user.uid, {
         balance: newBalance,
+      });
+
+      await sendMail({
+        email: user?.email,
+        message: `New Copy Trade action Request on trader: ${selectedTrader?.name}`,
       });
 
       setOpened(false);
