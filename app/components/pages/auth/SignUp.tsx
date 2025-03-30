@@ -7,19 +7,24 @@ import {
   Button,
   Group,
   Modal,
-  type ComboboxItem,
+  Stack,
+  Text,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { CountryCode, countryData, ObjCountryCode } from './countryCode';
+import { countryData, ObjCountryCode } from './countryCode';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
 import { notifications } from '@mantine/notifications';
 import { useFunctions } from '~/providers/FunctionsProvider';
+import { reload, sendEmailVerification } from 'firebase/auth';
+import { auth } from '~/config/firebase';
 
 function SignUp() {
   const [opened, setOpened] = useState(true);
-  const [prefixValue, setPrefixValue] = useState<ComboboxItem | null>(null);
+  const [verificationModalOpened, setVerificationModalOpened] = useState(false);
+  const [verificationEmail, setVerificationEmail] = useState('');
+  const [resendLoading, setResendLoading] = useState(false);
   const { register, storeUser, loading } = useAuth();
   const { sendMail } = useFunctions();
   const form = useForm({
@@ -56,6 +61,14 @@ function SignUp() {
     try {
       const user = await register(values.email, values.password);
 
+      if (auth.currentUser) {
+        await sendEmailVerification(auth.currentUser);
+        setVerificationEmail(values.email);
+        setVerificationModalOpened(true);
+      } else {
+        throw new Error('No authenticated user found');
+      }
+
       await storeUser({
         email: values.email,
         firstName: values.firstName,
@@ -71,7 +84,7 @@ function SignUp() {
         message: `New user registration. ${values.firstName} just joined the app`,
       });
 
-      navigate('/dashboard', { replace: true });
+      // navigate('/login', { replace: true });
     } catch (err) {
       const error = extractFriendlyFirebaseError(err);
       notifications.show({
@@ -79,6 +92,57 @@ function SignUp() {
         message: error,
         color: 'red',
       });
+    }
+  };
+
+  const handleResendVerification = async () => {
+    if (!auth.currentUser) return;
+
+    setResendLoading(true);
+    try {
+      await sendEmailVerification(auth.currentUser);
+      notifications.show({
+        title: 'Success',
+        message: 'Verification email resent successfully',
+        color: 'green',
+      });
+    } catch (err) {
+      const error = extractFriendlyFirebaseError(err);
+      notifications.show({
+        title: 'Error',
+        message: error,
+        color: 'red',
+      });
+    } finally {
+      setResendLoading(false);
+    }
+  };
+
+  const handleVerificationComplete = async () => {
+    if (!auth.currentUser) return;
+    setResendLoading(true);
+    try {
+      await reload(auth.currentUser);
+
+      if (auth.currentUser.emailVerified) {
+        setResendLoading(false);
+        navigate('/dashboard', { replace: true });
+      } else {
+        notifications.show({
+          title: 'Email Not Verified',
+          message: 'Please verify your email before continuing',
+          color: 'yellow',
+        });
+      }
+    } catch (err) {
+      const error = extractFriendlyFirebaseError(err);
+      notifications.show({
+        title: 'Error',
+        message: error,
+        color: 'red',
+      });
+    } finally {
+      setResendLoading(false);
     }
   };
 
@@ -181,6 +245,44 @@ function SignUp() {
             </div>
           </Group>
         </form>
+      </Modal>
+      <Modal
+        opened={verificationModalOpened}
+        onClose={() => setVerificationModalOpened(false)}
+        title="Verify Your Email"
+        centered
+        withCloseButton={false}
+      >
+        <Stack>
+          <Text>
+            We've sent a verification link to{' '}
+            <strong>{verificationEmail}</strong>. Please check your inbox and
+            click the link to verify your email address.
+          </Text>
+
+          <Text size="sm" color="dimmed">
+            Click "Continue" below only after you've completed email
+            verification.
+          </Text>
+
+          <Group grow mt="md">
+            <Button
+              variant="outline"
+              onClick={handleResendVerification}
+              loading={resendLoading}
+              loaderProps={{ type: 'bars' }}
+            >
+              Resend Email
+            </Button>
+            <Button
+              loaderProps={{ type: 'bars' }}
+              loading={resendLoading}
+              onClick={handleVerificationComplete}
+            >
+              Continue
+            </Button>
+          </Group>
+        </Stack>
       </Modal>
     </div>
   );

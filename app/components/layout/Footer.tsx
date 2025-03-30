@@ -5,6 +5,14 @@ import { Link } from 'react-router';
 import giftBox from '/images/gift-box.gif';
 import sparkle from '/images/sparkle.gif';
 
+const menuItems = [
+  { label: 'Crypto Markets', path: '/crypto-market' },
+  { label: 'Crypto News', path: '#info-section' },
+  { label: 'Copy Trading', path: '/copy-trading' },
+  { label: 'AI/Grid Bots', path: '/ai' },
+  { label: 'Buy Crypto', path: '/buy-crypto' },
+];
+
 const Footer = () => {
   const isMediumScreen = useMediaQuery('(min-width: 768px)');
 
@@ -80,14 +88,6 @@ const Footer = () => {
                   Privacy & Policy
                 </a>
               </li>
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  Legal Statement
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -111,14 +111,6 @@ const Footer = () => {
                   Contact Us
                 </a>
               </li>
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  CoinbitDex Affiliate Program
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -127,21 +119,13 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold mb-4">Services</h3>
           <ul className="space-y-2">
-            {[
-              'Crypto Markets',
-              'Crypto News',
-              'Listing Application',
-              'Copy Trading',
-              'AI/Grid Bots',
-              'Buy Crypto',
-              'Bonus & Rewards',
-            ].map((service, index) => (
+            {menuItems.map((service, index) => (
               <li key={index}>
                 <a
-                  href="/"
+                  href={service.path}
                   className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
                 >
-                  {service}
+                  {service.label}
                 </a>
               </li>
             ))}

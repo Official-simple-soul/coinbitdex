@@ -129,6 +129,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  // const sendEmailVerification = async () => {
+  //   try {
+  //     await sendEmailVerification(auth.currentUser)
+  //   } catch (error) {
+  //     console.error('Error sending email verification:', error);
+  //     throw error;
+  //   }
+  // }
+
   const logout = async () => {
     try {
       await signOut(auth);

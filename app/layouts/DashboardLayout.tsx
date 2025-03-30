@@ -6,6 +6,7 @@ import ScrollingTextAnimation from '~/components/common/ScrollingText';
 import Header from '~/components/layout/dashboard/Header';
 import MobileNav from '~/components/layout/dashboard/MobileNav';
 import Sidebar from '~/components/layout/dashboard/Sidebar';
+import { auth } from '~/config/firebase';
 import { useAuth } from '~/providers/AuthProvider';
 
 interface DashboardLayoutProps {
@@ -20,10 +21,10 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate('/', { replace: true });
+    if ((!loading && !user) || !auth.currentUser?.emailVerified) {
+      logout();
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, auth.currentUser]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

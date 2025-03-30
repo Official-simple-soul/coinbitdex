@@ -1,16 +1,29 @@
 import { useForm } from '@mantine/form';
-import { TextInput, PasswordInput, Button, Modal, Group } from '@mantine/core';
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Modal,
+  Group,
+  Text,
+  Stack,
+} from '@mantine/core';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '~/providers/AuthProvider';
 import { extractFriendlyFirebaseError } from '~/utils/helper';
 import { notifications } from '@mantine/notifications';
 import { fetchUser } from '~/services/axios';
+import { auth } from '~/config/firebase';
+import { sendEmailVerification } from 'firebase/auth';
 
 function Login() {
   const [opened, setOpened] = useState(true);
   const { login, logout } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [emailVerifiedStatusModal, setEmailVerifiedStatusModal] =
+    useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
 
   const form = useForm({
     initialValues: {
@@ -30,11 +43,39 @@ function Login() {
     navigate('/');
   };
 
+  const handleResendVerification = async () => {
+    if (!auth.currentUser) return;
+
+    setResendLoading(true);
+    try {
+      await sendEmailVerification(auth.currentUser);
+      notifications.show({
+        title: 'Success',
+        message: 'Verification email resent successfully',
+        color: 'green',
+      });
+    } catch (err) {
+      const error = extractFriendlyFirebaseError(err);
+      notifications.show({
+        title: 'Error',
+        message: error,
+        color: 'red',
+      });
+    } finally {
+      setResendLoading(false);
+    }
+  };
+
   const handleLogin = async (values: any) => {
     setLoading(true);
     try {
       const user = await login(values.email, values.password);
       const userInfo = await fetchUser(user.user.uid);
+
+      if (!user?.user?.emailVerified) {
+        setEmailVerifiedStatusModal(true);
+        return;
+      }
 
       if (!userInfo?.isBlocked) {
         window.location.replace('/dashboard');
@@ -93,6 +134,43 @@ function Login() {
             </div>
           </Group>
         </form>
+      </Modal>
+      <Modal
+        opened={emailVerifiedStatusModal}
+        onClose={() => setEmailVerifiedStatusModal(false)}
+        title="Email Verification Required"
+        centered
+      >
+        <Stack>
+          <Text>
+            Your email address has not been verified yet. Please check your
+            inbox for the verification email we sent you.
+          </Text>
+
+          <Text size="sm" color="dimmed">
+            You need to verify your email before you can access your account.
+          </Text>
+
+          <Group grow mt="md">
+            <Button
+              variant="default"
+              onClick={() => {
+                setEmailVerifiedStatusModal(false);
+                logout();
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleResendVerification}
+              loading={resendLoading}
+              loaderProps={{ type: 'bars' }}
+              color="blue"
+            >
+              Resend Verification
+            </Button>
+          </Group>
+        </Stack>
       </Modal>
     </div>
   );

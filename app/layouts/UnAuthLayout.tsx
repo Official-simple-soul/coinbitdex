@@ -4,6 +4,7 @@ import React, { useEffect, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import Footer from '~/components/layout/Footer';
 import Header from '~/components/layout/Header';
+import { auth } from '~/config/firebase';
 import { useAuth } from '~/providers/AuthProvider';
 
 interface UnAuthLayoutProps {
@@ -16,7 +17,7 @@ const UnAuthLayout: React.FC<UnAuthLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (user && auth?.currentUser?.emailVerified) {
       navigate('/dashboard', { replace: true });
       notifications.show({
         title: 'Already logged in',
@@ -24,7 +25,7 @@ const UnAuthLayout: React.FC<UnAuthLayoutProps> = ({ children }) => {
         color: 'blue',
       });
     }
-  }, [user, navigate]);
+  }, [user, navigate, auth]);
 
   // if (loading) {
   //   return (
