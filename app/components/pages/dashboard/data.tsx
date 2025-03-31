@@ -183,12 +183,12 @@ export const traders = [
   },
   {
     id: 3,
-    name: 'WeiXiang',
+    name: 'Cy Watson',
     strategy: 'Perpetual Futures',
-    cumulativePnl: '+74,221.37',
-    copiers: 1442,
-    winRatio: '65.3%',
-    riskScore: 25,
+    cumulativePnl: '+174,221.37',
+    copiers: 2442,
+    winRatio: '90.3%',
+    riskScore: 15,
     copyCode: '2441Xiang0Wei3',
   },
   {

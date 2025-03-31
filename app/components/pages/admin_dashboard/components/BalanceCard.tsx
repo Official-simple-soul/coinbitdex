@@ -54,6 +54,17 @@ const BalanceCard = ({ user }) => {
             ${user.total_profit.toLocaleString()}
           </Text>
         </div>
+        <div className="flex items-center justify-between">
+          <Group gap={4}>
+            <IconWallet size={18} opacity={0.8} />
+            <Text size="xs" opacity={0.8}>
+              Total Withdraw
+            </Text>
+          </Group>
+          <Text size="sm" fw={500}>
+            ${user.total_withdraw.toLocaleString()}
+          </Text>
+        </div>
       </div>
     </Card>
   );

@@ -74,6 +74,8 @@ function UserDetails() {
         ? user.balance
         : topupType === 'copy_trading'
         ? user.copy_trading_profit
+        : topupType === 'total_withdraw'
+        ? user.total_withdraw || 0
         : user.total_profit;
 
     // Calculate new balance
@@ -99,6 +101,8 @@ function UserDetails() {
       updateData.balance = newBalance;
     } else if (topupType === 'copy_trading') {
       updateData.copy_trading_profit = newBalance;
+    } else if (topupType === 'total_withdraw') {
+      updateData.total_withdraw = newBalance;
     } else {
       updateData.total_profit = newBalance;
     }
@@ -112,6 +116,8 @@ function UserDetails() {
               ? 'Main Balance'
               : topupType === 'copy_trading'
               ? 'Copy Trading Profit'
+              : topupType === 'total_withdraw'
+              ? 'Total Withdraw'
               : 'Total Profit'
           } ${actionType === 'add' ? 'increased' : 'decreased'} successfully`,
           color: 'green',
@@ -323,6 +329,8 @@ function UserDetails() {
                       ? user.balance
                       : topupType === 'copy_trading'
                       ? user.copy_trading_profit
+                      : topupType === 'total_withdraw'
+                      ? user.total_withdraw || 0
                       : user.total_profit)
                       ? 'red'
                       : 'dimmed'
@@ -333,12 +341,16 @@ function UserDetails() {
                     ? 'Main Balance'
                     : topupType === 'copy_trading'
                     ? 'Copy Trading Profit'
+                    : topupType === 'total_withdraw'
+                    ? 'Total Withdraw'
                     : 'Total Profit'}
                   : $
                   {topupType === 'main'
                     ? user.balance?.toLocaleString()
                     : topupType === 'copy_trading'
                     ? user.copy_trading_profit?.toLocaleString()
+                    : topupType === 'total_withdraw'
+                    ? (user.total_withdraw || 0)?.toLocaleString()
                     : user.total_profit?.toLocaleString()}
                 </Text>
               ) : null
@@ -349,11 +361,18 @@ function UserDetails() {
             label="Balance Type"
             value={topupType}
             onChange={(val) =>
-              setTopupType(val as 'main' | 'copy_trading' | 'total_profit')
+              setTopupType(
+                val as
+                  | 'main'
+                  | 'copy_trading'
+                  | 'total_withdraw'
+                  | 'total_profit'
+              )
             }
             data={[
               { value: 'main', label: 'Main Balance' },
               { value: 'copy_trading', label: 'Copy Trading Profit' },
+              { value: 'total_withdraw', label: 'Total Withdraw' },
               { value: 'total_profit', label: 'Total Profit' },
             ]}
             leftSection={<IconWallet size={16} />}
@@ -376,6 +395,8 @@ function UserDetails() {
                       ? user?.balance || 0
                       : topupType === 'copy_trading'
                       ? user?.copy_trading_profit || 0
+                      : topupType === 'total_withdraw'
+                      ? user?.total_withdraw || 0
                       : user?.total_profit || 0))
               }
               loaderProps={{ type: 'bars' }}
