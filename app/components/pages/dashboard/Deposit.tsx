@@ -35,7 +35,7 @@ function Deposit() {
         const amount = parseFloat(value);
         if (isNaN(amount)) return 'Amount must be a number';
         if (amount < 100) return 'Minimum amount is 1000 USD';
-        if (amount > 10000000) return 'Maximum amount is 10,000,000 USD';
+        if (amount > 1000000000) return 'Maximum amount is 1,000,000,000 USD';
         return null;
       },
       paymentScreenshot: (value: { type: string }) => {
@@ -202,7 +202,7 @@ function Deposit() {
                 </Text>
               )}
               <p className="text-center text-gray-500 text-xs mt-1">
-                Min: 100.00 USD & Max: 10,000,000.00 USD
+                Min: 100.00 USD & Max: 1,000,000,000.00 USD
               </p>
             </div>
             <div className="pt-4">
