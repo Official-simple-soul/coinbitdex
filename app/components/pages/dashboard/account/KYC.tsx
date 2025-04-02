@@ -45,7 +45,8 @@ function KYC() {
       tier: 'Tier 3',
       key: 3,
       status: kycStatus === 3 ? 'active' : 'locked',
-      description: 'Contact support to achieve tier 3 features.',
+      description:
+        'To be eligible, you have to perform two more trades regulations. Contact support for assistance',
       icon: <IconShield size={30} className="text-purple-500" />,
     },
   ];

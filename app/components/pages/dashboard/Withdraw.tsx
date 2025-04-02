@@ -3,6 +3,7 @@ import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { useState } from 'react';
+import { NavLink } from 'react-router';
 import Frame from '~/components/common/Frame';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useAuth } from '~/providers/AuthProvider';
@@ -161,20 +162,20 @@ function Withdraw() {
       <Modal opened={opened} onClose={close} centered title="Withdrawal Notice">
         <div className="space-y-4">
           <div className="flex flex-col items-center space-y-4 justify-center py-6">
-            <p className="text-center">
-              Withdrawal is currently being processed.
-            </p>
+            <p className="text-center">Your withdrawal is on Hold.</p>
             <p className="text-center text-sm">
-              Please contact support for any urgent inquiries.
+              Please meet tier 3 requirements to be able to withdraw. This is a
+              security approach to protect user account
             </p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="grid grid-cols-2 items-center gap-4">
             <Button fullWidth color="red" onClick={close}>
               Close
             </Button>
-            <Button fullWidth onClick={() => {}}>
-              Contact Support
-            </Button>
+
+            <NavLink to={'/dashboard/kyc'}>
+              <Button fullWidth>Upgrade Tier</Button>
+            </NavLink>
           </div>
         </div>
       </Modal>
