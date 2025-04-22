@@ -223,12 +223,12 @@ export const traders = [
   },
   {
     id: 7,
-    name: 'SvenLarsen',
+    name: 'Anne FX',
     strategy: 'Perpetual Futures',
-    cumulativePnl: '+40,432.33',
-    copiers: 923,
-    winRatio: '77.8%',
-    riskScore: 22,
+    cumulativePnl: '+70,432.33',
+    copiers: 1923,
+    winRatio: '87.8%',
+    riskScore: 12,
     copyCode: '239Larsen0Sven7',
   },
   {
