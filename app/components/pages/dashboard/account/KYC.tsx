@@ -37,14 +37,14 @@ function KYC() {
       tier: 'Tier 2',
       key: 2,
       status:
-        kycStatus === 2 ? 'active' : kycStatus === 1 ? 'pending' : 'completed',
+        kycStatus === 1 ? 'pending' : 'completed',
       description: 'Upload a valid ID to unlock higher limits and features.',
       icon: <IconShield size={30} className="text-green-500" />,
     },
     {
       tier: 'Tier 3',
       key: 3,
-      status: kycStatus === 3 ? 'active' : 'locked',
+      status: kycStatus === 3 ? 'completed' : 'locked',
       description:
         'To be eligible, you have to perform two more trades regulations. Contact support for assistance',
       icon: <IconShield size={30} className="text-purple-500" />,
