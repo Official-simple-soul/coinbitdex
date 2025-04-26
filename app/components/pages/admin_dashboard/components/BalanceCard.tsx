@@ -1,5 +1,10 @@
 import { Card, Text, Title, Group, Badge, Stack } from '@mantine/core';
-import { IconWallet, IconTrendingUp, IconMoneybag } from '@tabler/icons-react';
+import {
+  IconWallet,
+  IconTrendingUp,
+  IconMoneybag,
+  IconMinimize,
+} from '@tabler/icons-react';
 
 const BalanceCard = ({ user }) => {
   return (
@@ -63,6 +68,17 @@ const BalanceCard = ({ user }) => {
           </Group>
           <Text size="sm" fw={500}>
             ${user.total_withdraw.toLocaleString()}
+          </Text>
+        </div>
+        <div className="flex items-center justify-between">
+          <Group gap={4}>
+            <IconMinimize size={18} opacity={0.8} />
+            <Text size="xs" opacity={0.8}>
+              Minimum Deposit
+            </Text>
+          </Group>
+          <Text size="sm" fw={500}>
+            ${user?.minimum_deposit?.toLocaleString() || (100).toLocaleString()}
           </Text>
         </div>
       </div>

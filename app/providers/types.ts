@@ -18,6 +18,7 @@ export interface UserData {
   role?: string;
   total_withdraw?: number;
   copy_trading_profit?: number;
+  minimum_deposit?: number;
   total_profit?: number;
   password?: string;
   createdAt?: Date;

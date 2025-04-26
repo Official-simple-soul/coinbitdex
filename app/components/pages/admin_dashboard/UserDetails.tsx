@@ -36,6 +36,7 @@ import {
   IconMinus,
   IconWallet,
   IconUser,
+  IconMinimize,
 } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
 import { useAuth } from '~/providers/AuthProvider';
@@ -60,6 +61,8 @@ function UserDetails() {
   const [topupAmount, setTopupAmount] = useState(0);
   const [topupType, setTopupType] = useState('main');
   const [loading, setLoading] = useState(false);
+  const [minimumModalOpen, setMinimumModalOpen] = useState(false);
+  const [minimumDeposit, setMinimumDeposit] = useState(0);
 
   const [actionType, setActionType] = useState<'add' | 'deduct'>('add');
 
@@ -206,6 +209,35 @@ function UserDetails() {
       .finally(() => setLoading(false));
   };
 
+  const handleSetMinimum = () => {
+    if (!uid) return;
+
+    setLoading(true);
+    const updateData: Partial<UserData> = {
+      minimum_deposit: minimumDeposit,
+    };
+
+    updateUser(uid, updateData)
+      .then(() => {
+        notifications.show({
+          title: 'Success',
+          message: `Minimum deposit updated successfully`,
+          color: 'green',
+        });
+        setMinimumModalOpen(false);
+        queryClient.invalidateQueries({ queryKey: ['user', uid] });
+        queryClient.invalidateQueries({ queryKey: ['users'] });
+      })
+      .catch(() => {
+        notifications.show({
+          title: 'Error',
+          message: 'Failed to update minimum deposit',
+          color: 'red',
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
   if (isLoading)
     return (
       <AdminLayout>
@@ -245,6 +277,12 @@ function UserDetails() {
                 onClick={() => setTopupModalOpen(true)}
               >
                 Top Up Balance
+              </Menu.Item>
+              <Menu.Item
+                leftSection={<IconMinimize size={14} />}
+                onClick={() => setMinimumModalOpen(true)}
+              >
+                Set Min Deposit
               </Menu.Item>
               <Menu.Item
                 leftSection={<IconUser size={14} />}
@@ -476,6 +514,50 @@ function UserDetails() {
             onClick={handleUpgradeTier}
           >
             Confirm
+          </Button>
+        </Group>
+      </Modal>
+      <Modal
+        opened={minimumModalOpen}
+        onClose={() => setMinimumModalOpen(false)}
+        title="Set Minimum Deposit"
+        centered
+        size="sm"
+      >
+        <Text mb="md">
+          Set the minimum deposit amount for this user. This will override the
+          default minimum deposit amount.
+        </Text>
+        <NumberInput
+          label="Minimum Deposit Amount"
+          value={user?.minimum_deposit}
+          onChange={(val) => setMinimumDeposit(val || 0)}
+          min={0}
+          step={10}
+          precision={2}
+          leftSection={<IconCash size={16} />}
+          description={
+            <Text size="xs" color="dimmed">
+              Current Minimum Deposit: $
+              {user?.minimum_deposit?.toLocaleString() || 100}
+            </Text>
+          }
+        />
+        <Group justify="flex-end" mt="md">
+          <Button
+            variant="default"
+            onClick={() => setMinimumModalOpen(false)}
+            leftSection={<IconArrowLeft size={16} />}
+          >
+            Cancel
+          </Button>
+          <Button
+            color="blue"
+            onClick={handleSetMinimum}
+            loaderProps={{ type: 'bars' }}
+            loading={loading}
+          >
+            Save Changes
           </Button>
         </Group>
       </Modal>

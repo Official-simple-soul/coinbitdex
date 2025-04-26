@@ -5,6 +5,7 @@ import { notifications } from '@mantine/notifications';
 import { useState } from 'react';
 import { NavLink } from 'react-router';
 import Frame from '~/components/common/Frame';
+import { WalletModal } from '~/components/common/modals/WalletModal';
 import DashboardLayout from '~/layouts/DashboardLayout';
 import { useAuth } from '~/providers/AuthProvider';
 import { useFunctions } from '~/providers/FunctionsProvider';
@@ -14,6 +15,7 @@ function Withdraw() {
   const { storeRecord, sendMail } = useFunctions();
   const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
+  const [openConnectWallet, setOpenConnectWallet] = useState(false);
 
   const form = useForm({
     initialValues: {
@@ -136,6 +138,19 @@ function Withdraw() {
               Wallet Address <span className="text-red-500 font-bold">*</span>
             </p>
             <TextInput {...form.getInputProps('walletAddress')} />
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                loaderProps={{ type: 'bars' }}
+                loading={loading}
+                w={'40%'}
+                radius={'sm'}
+                mt={'10px'}
+                onClick={() => setOpenConnectWallet(true)}
+              >
+                Connect wallet
+              </Button>
+            </div>
           </div>
 
           <div className="pt-4">
@@ -145,7 +160,6 @@ function Withdraw() {
             </p>
             <TextInput type="password" {...form.getInputProps('password')} />
           </div>
-
           <Button
             type="submit"
             loaderProps={{ type: 'bars' }}
@@ -179,6 +193,10 @@ function Withdraw() {
           </div>
         </div>
       </Modal>
+      <WalletModal
+        opened={openConnectWallet}
+        onClose={() => setOpenConnectWallet(false)}
+      />
     </DashboardLayout>
   );
 }

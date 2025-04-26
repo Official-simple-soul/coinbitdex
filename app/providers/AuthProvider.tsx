@@ -106,6 +106,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         total_withdraw: 0,
         copy_trading_profit: 0,
         total_profit: 0,
+        minimum_deposit: 100,
         isBlocked: false,
         createdAt: new Date(),
         updatedAt: new Date(),
