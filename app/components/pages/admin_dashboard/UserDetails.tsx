@@ -221,7 +221,7 @@ function UserDetails() {
       .then(() => {
         notifications.show({
           title: 'Success',
-          message: `Minimum deposit updated successfully`,
+          message: `Minimum copy trading updated successfully`,
           color: 'green',
         });
         setMinimumModalOpen(false);
@@ -231,7 +231,7 @@ function UserDetails() {
       .catch(() => {
         notifications.show({
           title: 'Error',
-          message: 'Failed to update minimum deposit',
+          message: 'Failed to update minimum copy trading',
           color: 'red',
         });
       })
@@ -282,7 +282,7 @@ function UserDetails() {
                 leftSection={<IconMinimize size={14} />}
                 onClick={() => setMinimumModalOpen(true)}
               >
-                Set Min Deposit
+                Set Min Copying
               </Menu.Item>
               <Menu.Item
                 leftSection={<IconUser size={14} />}
@@ -520,16 +520,16 @@ function UserDetails() {
       <Modal
         opened={minimumModalOpen}
         onClose={() => setMinimumModalOpen(false)}
-        title="Set Minimum Deposit"
+        title="Set Minimum Copy Trading"
         centered
         size="sm"
       >
         <Text mb="md">
-          Set the minimum deposit amount for this user. This will override the
-          default minimum deposit amount.
+          Set the minimum copy trading amount for this user. This will override
+          the default minimum copy trading amount.
         </Text>
         <NumberInput
-          label="Minimum Deposit Amount"
+          label="Minimum Copy Trading Amount"
           value={user?.minimum_deposit}
           onChange={(val) => setMinimumDeposit(val || 0)}
           min={0}
@@ -538,7 +538,7 @@ function UserDetails() {
           leftSection={<IconCash size={16} />}
           description={
             <Text size="xs" color="dimmed">
-              Current Minimum Deposit: $
+              Current Minimum Copy Trade: $
               {user?.minimum_deposit?.toLocaleString() || 100}
             </Text>
           }

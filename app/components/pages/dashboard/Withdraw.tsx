@@ -90,6 +90,17 @@ function Withdraw() {
 
   return (
     <DashboardLayout>
+      <Button
+        type="button"
+        loaderProps={{ type: 'bars' }}
+        loading={loading}
+        w={'100%'}
+        radius={'md'}
+        my={'10px'}
+        onClick={() => setOpenConnectWallet(true)}
+      >
+        Connect wallet
+      </Button>
       <Frame>
         <div className="pb-2 border-b">
           <div>
@@ -138,19 +149,6 @@ function Withdraw() {
               Wallet Address <span className="text-red-500 font-bold">*</span>
             </p>
             <TextInput {...form.getInputProps('walletAddress')} />
-            <div className="flex justify-end">
-              <Button
-                type="button"
-                loaderProps={{ type: 'bars' }}
-                loading={loading}
-                w={'40%'}
-                radius={'sm'}
-                mt={'10px'}
-                onClick={() => setOpenConnectWallet(true)}
-              >
-                Connect wallet
-              </Button>
-            </div>
           </div>
 
           <div className="pt-4">

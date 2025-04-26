@@ -74,7 +74,7 @@ const BalanceCard = ({ user }) => {
           <Group gap={4}>
             <IconMinimize size={18} opacity={0.8} />
             <Text size="xs" opacity={0.8}>
-              Minimum Deposit
+              Minimum Copy Trading
             </Text>
           </Group>
           <Text size="sm" fw={500}>

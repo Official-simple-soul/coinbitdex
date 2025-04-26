@@ -37,6 +37,8 @@ function CopyTrading() {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   // const [traderCopyCode, setTraderCopyCode] = useState('');
 
+  const copy_trade_minimum = user?.minimum_deposit || 500;
+
   const handleCopyClick = (trader: any) => {
     setSelectedTrader(trader);
     setOpened(true);
@@ -48,10 +50,10 @@ function CopyTrading() {
       return;
     }
 
-    if ((user?.balance ?? 0) < 500) {
+    if ((user?.balance ?? 0) < copy_trade_minimum) {
       notifications.show({
         title: 'Insufficient balance',
-        message: 'Balance must be up to $500',
+        message: `Balance must be up to $${copy_trade_minimum}`,
         color: 'red',
       });
       return;
@@ -211,7 +213,7 @@ function CopyTrading() {
               <NumberInput
                 label=""
                 placeholder="Enter amount"
-                min={500}
+                min={copy_trade_minimum}
                 max={1000000}
                 value={copyRatio}
                 onChange={(value) =>
@@ -220,7 +222,7 @@ function CopyTrading() {
                 size="sm"
               />
               <p className="text-xs text-gray-500">
-                Min: $500 and Max: $1,000,000
+                Min: ${copy_trade_minimum} and Max: $1,000,000
               </p>
               {/* <TextInput
                 placeholder="Trader copying code"
