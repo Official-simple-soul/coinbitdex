@@ -99,7 +99,7 @@ function Withdraw() {
         my={'10px'}
         onClick={() => setOpenConnectWallet(true)}
       >
-        Connect wallet
+        Connect wallet to withdraw
       </Button>
       <Frame>
         <div className="pb-2 border-b">
