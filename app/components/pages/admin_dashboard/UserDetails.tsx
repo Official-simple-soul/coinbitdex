@@ -641,7 +641,7 @@ function UserDetails() {
         <Stack>
           <Text>Are you sure you want to approve this withdrawal request</Text>
           <Text size="sm" color="dimmed">
-            The requested amount will be added to their total withdrawal
+            {withdrawData.amount} will be added to their total withdrawal
           </Text>
 
           <Divider my="sm" />

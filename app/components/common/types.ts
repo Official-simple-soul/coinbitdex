@@ -24,7 +24,7 @@ export interface TransactionDataCompProps {
   active: number;
   tradeHistoryItems: { id: string; [key: string]: any }[];
   setConfirmApproveWithdraw: (value: boolean) => void;
-  setWithdrawData: (value: null) => void;
+  setWithdrawData: (data: { id: string; [key: string]: any }) => void;
 }
 
 export interface summary {

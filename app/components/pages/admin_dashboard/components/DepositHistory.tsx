@@ -128,7 +128,7 @@ const DepositHistory = ({ deposits, uid }) => {
         <Stack gap={4} pos="relative">
           <LoadingOverlay visible={loading} overlayBlur={2} />
 
-          {deposits?.map((deposit) => (
+          {deposits?.map((deposit: any) => (
             <Paper key={deposit.id} withBorder p="md" radius="sm" shadow="xs">
               <Group justify="space-between" mb="xs">
                 <Group gap={4}>
