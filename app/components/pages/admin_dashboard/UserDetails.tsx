@@ -265,9 +265,9 @@ function UserDetails() {
     setLoading(true);
 
     try {
-      const newBalance = user?.balance - withdrawData.amount;
+      const newBalance = user?.balance - withdrawData?.amount;
       const updateData: Partial<UserData> = {
-        total_withdraw: increment(parseInt(withdrawData.amount)),
+        total_withdraw: increment(parseInt(withdrawData?.amount)),
         balance: newBalance,
       };
 
@@ -276,7 +276,7 @@ function UserDetails() {
         'users',
         uid,
         'userRecords',
-        withdrawData.id
+        withdrawData?.id
       );
       await updateDoc(transactionRef, {
         status: 'completed',
@@ -641,7 +641,7 @@ function UserDetails() {
         <Stack>
           <Text>Are you sure you want to approve this withdrawal request</Text>
           <Text size="sm" color="dimmed">
-            {withdrawData.amount} will be added to their total withdrawal
+            {withdrawData?.amount} will be added to their total withdrawal
           </Text>
 
           <Divider my="sm" />
