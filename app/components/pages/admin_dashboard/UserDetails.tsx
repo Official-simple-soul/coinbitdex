@@ -42,7 +42,8 @@ import { notifications } from '@mantine/notifications';
 import { useAuth } from '~/providers/AuthProvider';
 import type { UserData } from '~/providers/types';
 import { useQueryClient } from '@tanstack/react-query';
-import { increment } from 'firebase/firestore';
+import { doc, increment, updateDoc } from 'firebase/firestore';
+import { db } from '~/config/firebase';
 
 function UserDetails() {
   const queryClient = useQueryClient();
@@ -63,6 +64,8 @@ function UserDetails() {
   const [loading, setLoading] = useState(false);
   const [minimumModalOpen, setMinimumModalOpen] = useState(false);
   const [minimumDeposit, setMinimumDeposit] = useState(0);
+  const [confirmApproveWithdraw, setConfirmApproveWithdraw] = useState(false);
+  const [withdrawData, setWithdrawData] = useState(null);
 
   const [actionType, setActionType] = useState<'add' | 'deduct'>('add');
 
@@ -238,6 +241,70 @@ function UserDetails() {
       .finally(() => setLoading(false));
   };
 
+  const handleApproveWithdrawalRequest = async () => {
+    if (!uid) return;
+
+    if ((withdrawData?.amount || 0) < 100) {
+      notifications.show({
+        title: 'Error',
+        message: 'Minimum withdrawal is $100',
+        color: 'red',
+      });
+      return;
+    }
+
+    if (withdrawData?.amount > (user?.balance || 0)) {
+      notifications.show({
+        title: 'Error',
+        message: 'User cannot withdraw more than balance',
+        color: 'red',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const newBalance = user?.balance - withdrawData.amount;
+      const updateData: Partial<UserData> = {
+        total_withdraw: increment(parseInt(withdrawData.amount)),
+        balance: newBalance,
+      };
+
+      const transactionRef = doc(
+        db,
+        'users',
+        uid,
+        'userRecords',
+        withdrawData.id
+      );
+      await updateDoc(transactionRef, {
+        status: 'completed',
+        updatedAt: new Date(),
+      });
+
+      await updateUser(uid, updateData);
+
+      notifications.show({
+        title: 'Success',
+        message: `withdraw request approved successfully`,
+        color: 'green',
+      });
+      queryClient.invalidateQueries({ queryKey: ['user', uid] });
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions', uid] });
+    } catch (error) {
+      notifications.show({
+        title: 'Error',
+        message: 'Failed to update tier status',
+        color: 'red',
+      });
+    } finally {
+      setLoading(false);
+      setConfirmApproveWithdraw(false);
+    }
+  };
+
   if (isLoading)
     return (
       <AdminLayout>
@@ -316,6 +383,8 @@ function UserDetails() {
           <TransactionDataComp
             active={1}
             tradeHistoryItems={transactions || []}
+            setConfirmApproveWithdraw={setConfirmApproveWithdraw}
+            setWithdrawData={setWithdrawData}
           />
         </div>
       </Stack>
@@ -560,6 +629,41 @@ function UserDetails() {
             Save Changes
           </Button>
         </Group>
+      </Modal>
+
+      <Modal
+        opened={confirmApproveWithdraw}
+        onClose={() => setConfirmApproveWithdraw(false)}
+        title={'Are you sure you want to approve this withdrawal request'}
+        size="sm"
+        centered
+      >
+        <Stack>
+          <Text>Are you sure you want to approve this withdrawal request</Text>
+          <Text size="sm" color="dimmed">
+            The requested amount will be added to their total withdrawal
+          </Text>
+
+          <Divider my="sm" />
+
+          <Group justify="space-between">
+            <Button
+              variant="default"
+              onClick={() => setConfirmApproveWithdraw(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              color={'teal'}
+              leftSection={<IconCheck size={16} />}
+              onClick={handleApproveWithdrawalRequest}
+              loaderProps={{ type: 'bars' }}
+              loading={loading}
+            >
+              Approve
+            </Button>
+          </Group>
+        </Stack>
       </Modal>
     </AdminLayout>
   );

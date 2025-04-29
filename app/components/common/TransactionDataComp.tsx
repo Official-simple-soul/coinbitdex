@@ -1,11 +1,14 @@
 import { convertFirestoreTimestampToDate } from '~/utils/helper';
 import type { TransactionDataCompProps } from './types';
 import { IconCheck, IconClock } from '@tabler/icons-react';
-import { Card, Text } from '@mantine/core';
+import { Button, Card, Text } from '@mantine/core';
+import { useAuth } from '~/providers/AuthProvider';
 
 function TransactionDataComp({
   active,
   tradeHistoryItems,
+  setConfirmApproveWithdraw,
+  setWithdrawData,
 }: TransactionDataCompProps) {
   const filteredTransactions = tradeHistoryItems?.filter((record) => {
     if (active === 1) return true;
@@ -15,7 +18,9 @@ function TransactionDataComp({
     return false;
   });
 
-  if (tradeHistoryItems < 1) {
+  const { user } = useAuth();
+
+  if (tradeHistoryItems?.length < 1) {
     return <Text size="xs">No deposit from this user</Text>;
   }
 
@@ -73,6 +78,20 @@ function TransactionDataComp({
                 </div>
               </div>
             </div>
+            {user?.role === 'admin' &&
+              record.type === 'withdraw' &&
+              record.status === 'pending' && (
+                <div className="flex justify-end mt-3">
+                  <Button
+                    size="xs"
+                    onClick={() => {
+                      setConfirmApproveWithdraw(true), setWithdrawData(record);
+                    }}
+                  >
+                    Approve Withdrawal
+                  </Button>
+                </div>
+              )}
           </Card>
         );
       })}

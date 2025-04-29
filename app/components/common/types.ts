@@ -23,6 +23,8 @@ export interface CryptoCardProps {
 export interface TransactionDataCompProps {
   active: number;
   tradeHistoryItems: { id: string; [key: string]: any }[];
+  setConfirmApproveWithdraw: (value: boolean) => void;
+  setWithdrawData: (value: null) => void;
 }
 
 export interface summary {

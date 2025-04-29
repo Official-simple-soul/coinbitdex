@@ -243,7 +243,7 @@ export const traders = [
   },
   {
     id: 9,
-    name: 'DmitryIvanov',
+    name: 'Harry Clinton',
     strategy: 'Perpetual Futures',
     cumulativePnl: '+18,542.78',
     copiers: 678,
