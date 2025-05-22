@@ -15,19 +15,20 @@ function Dashboard() {
       <div className="min-h-screen w-full">
         <h1 className="font-bold mb-6">Hi {user?.firstName}</h1>
         <Frame>
-          <div className="flex items-center justify-between text-gray-700">
+          {/* <div className="flex items-center justify-between text-gray-700"> */}
+          <div className="space-y-4 text-gray-700">
             <div className="">
               <h3 className="font-bold text-xs">Main Wallet</h3>
               <h1 className="text-xl font-bold">
                 ${user?.balance?.toLocaleString()}
               </h1>
             </div>
-            {/* <div className="">
+            <div className="">
               <h3 className="font-bold text-xs">Copy Trading Wallet</h3>
               <h1 className="text-xl font-bold">
                 ${user?.copy_trading_balance?.toLocaleString()}
               </h1>
-            </div> */}
+            </div>
           </div>
           <div className="grid grid-cols-4 justify-between">
             {mainWalletItems.map((wallet, index) => (

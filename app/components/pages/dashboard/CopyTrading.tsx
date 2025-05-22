@@ -77,7 +77,7 @@ function CopyTrading() {
     //   return;
     // }
 
-    if (!user?.uid || !user?.balance) {
+    if (!user?.uid || !user?.balance || !user.copy_trading_balance) {
       throw new Error('User ID is required to store the record');
     }
 
@@ -94,9 +94,11 @@ function CopyTrading() {
       });
 
       const newBalance = user.balance - copyRatio;
+      const newCopyBalance = user.copy_trading_balance + copyRatio;
 
       await updateUser(user.uid, {
         balance: newBalance,
+        copy_trading_balance: newCopyBalance,
       });
 
       await sendMail({
