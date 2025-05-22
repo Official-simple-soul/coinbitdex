@@ -59,25 +59,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <meta
           property="og:image"
-          content="https://www.coinbitdex.com/images/logo.avif"
+          content="https://static.wixstatic.com/media/c9104a_b53ba5d542704e1585e7e64705c7d349~mv2.png/v1/fill/w_480,h_114,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_4_wht-removebg-preview.png"
         />
         <meta property="og:image:type" content="image/avif" />
         <meta property="og:image:width" content="600" />
         <meta property="og:image:height" content="315" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.coinbitdex.com/" />
-        <meta name="twitter:title" content="Coinbitdex" />
-        <meta
-          name="twitter:description"
-          content="Your one stop trading assist platform"
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coinbitdex.com/images/logo.avif"
-        />
-
         <link rel="icon" href="/favicon.ico" />
         <Meta />
         <Links />
