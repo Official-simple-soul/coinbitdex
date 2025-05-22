@@ -48,6 +48,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name="description"
           content="Your one stop trading assist platform"
         />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.coinbitdex.com/" />
+        <meta property="og:title" content="Coinbitdex" />
+        <meta
+          property="og:description"
+          content="Your one stop trading assist platform"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coinbitdex.com/images/logo.avif"
+        />
+        <meta property="og:image:type" content="image/avif" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="315" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.coinbitdex.com/" />
+        <meta name="twitter:title" content="Coinbitdex" />
+        <meta
+          name="twitter:description"
+          content="Your one stop trading assist platform"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coinbitdex.com/images/logo.avif"
+        />
+
         <link rel="icon" href="/favicon.ico" />
         <Meta />
         <Links />
