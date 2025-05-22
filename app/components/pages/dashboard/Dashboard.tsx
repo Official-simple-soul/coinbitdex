@@ -17,13 +17,13 @@ function Dashboard() {
         <Frame>
           {/* <div className="flex items-center justify-between text-gray-700"> */}
           <div className="space-y-4 text-gray-700">
-            <div className="">
+            <div className="border-b pb-1">
               <h3 className="font-bold text-xs">Main Wallet</h3>
               <h1 className="text-xl font-bold">
                 ${user?.balance?.toLocaleString()}
               </h1>
             </div>
-            <div className="">
+            <div className="border-b pb-1">
               <h3 className="font-bold text-xs">Copy Trading Wallet</h3>
               <h1 className="text-xl font-bold">
                 ${user?.copy_trading_balance?.toLocaleString()}
