@@ -24,7 +24,7 @@ function Dashboard() {
               </h1>
             </div>
             <div className="border-b pb-1">
-              <h3 className="font-bold text-xs">Copy Trading Wallet</h3>
+              <h3 className="font-bold text-xs">Copy Trading Profit</h3>
               <h1 className="text-xl font-bold">
                 ${user?.copy_trading_balance?.toLocaleString()}
               </h1>
@@ -44,7 +44,16 @@ function Dashboard() {
           </div>
         </Frame>
         <SummaryDataComp summaryData={summaryData} />
-        <div className="mt-5">
+        <div className="mt-5 space-y-3">
+          <Frame>
+            <div className="flex justify-between">
+              <img src="/images/referrals.png" alt="" className="size-8" />
+              <div className="">
+                <h3 className="text-xs">Referral Earn</h3>
+                <h1 className="text-sm font-bold">${user?.total_profit}</h1>
+              </div>
+            </div>
+          </Frame>
           <Frame>
             <div className="flex justify-between">
               <img src="/images/referrals.png" alt="" className="size-8" />

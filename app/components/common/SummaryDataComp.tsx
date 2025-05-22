@@ -7,7 +7,7 @@ function SummaryDataComp({ summaryData }: SUMMARYDATA) {
         {summaryData.map((summaryItem: summary) => (
           <div
             key={summaryItem?.id}
-            className="rounded-md px-4 py-2 bg-white shadow-xl border"
+            className={`rounded-xl px-4 py-2 bg-white shadow border`}
           >
             <div
               className={`flex ${

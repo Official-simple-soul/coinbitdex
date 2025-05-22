@@ -40,20 +40,20 @@ export const summaryItems = (data: UserData) => {
       slug: 'withdraw',
     },
 
-    {
-      id: 3,
-      title: 'CopyTrade Profit',
-      amount: data?.copy_trading_profit,
-      icon: '/images/copy-profit-summary.png',
-      slug: '',
-    },
-    {
-      id: 4,
-      title: 'Total Profit',
-      amount: data?.total_profit,
-      icon: '/images/profit-summary.png',
-      slug: '',
-    },
+    // {
+    //   id: 3,
+    //   title: 'CopyTrade Profit',
+    //   amount: data?.copy_trading_profit,
+    //   icon: '/images/copy-profit-summary.png',
+    //   slug: '',
+    // },
+    // {
+    //   id: 3,
+    //   title: 'Total Profit',
+    //   amount: data?.total_profit,
+    //   icon: '/images/profit-summary.png',
+    //   slug: '',
+    // },
   ];
 };
 
