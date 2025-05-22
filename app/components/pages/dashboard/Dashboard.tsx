@@ -49,7 +49,7 @@ function Dashboard() {
             <div className="flex justify-between">
               <img src="/images/referrals.png" alt="" className="size-8" />
               <div className="">
-                <h3 className="text-xs">Referral Earn</h3>
+                <h3 className="text-xs">Total Profit</h3>
                 <h1 className="text-sm font-bold">${user?.total_profit}</h1>
               </div>
             </div>
