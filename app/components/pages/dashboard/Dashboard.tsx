@@ -46,18 +46,26 @@ function Dashboard() {
         <SummaryDataComp summaryData={summaryData} />
         <div className="mt-5 space-y-3">
           <Frame>
-            <div className="flex justify-between">
-              <img src="/images/referrals.png" alt="" className="size-8" />
-              <div className="">
+            <div className="grid grid-cols-10 justify-between">
+              <div className="col-span-7">
+                <img
+                  src="/images/profit-summary.png"
+                  alt=""
+                  className="size-8"
+                />
+              </div>
+              <div className="col-span-3">
                 <h3 className="text-xs">Total Profit</h3>
                 <h1 className="text-sm font-bold">${user?.total_profit}</h1>
               </div>
             </div>
           </Frame>
           <Frame>
-            <div className="flex justify-between">
-              <img src="/images/referrals.png" alt="" className="size-8" />
-              <div className="">
+            <div className="grid grid-cols-10  justify-between">
+              <div className="col-span-7">
+                <img src="/images/referrals.png" alt="" className="size-8 " />
+              </div>
+              <div className="col-span-3">
                 <h3 className="text-xs">Referral Earn</h3>
                 <h1 className="text-sm font-bold">${user?.referral_earn}</h1>
               </div>
