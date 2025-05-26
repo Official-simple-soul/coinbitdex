@@ -26,7 +26,7 @@ function Dashboard() {
             <div className="border-b pb-1">
               <h3 className="font-bold text-xs">Copy Trading Profit</h3>
               <h1 className="text-xl font-bold">
-                ${user?.copy_trading_balance?.toLocaleString()}
+                ${user?.copy_trading_profit?.toLocaleString()}
               </h1>
             </div>
           </div>
