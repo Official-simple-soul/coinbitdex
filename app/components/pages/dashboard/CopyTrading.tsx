@@ -74,7 +74,7 @@ function CopyTrading() {
     //     message: 'Invalid copy code',
     //     color: 'red',
     //   });
-    //   return;
+    //   return
     // }
 
     if (!user?.uid || !user?.balance || !user.copy_trading_profit) {
