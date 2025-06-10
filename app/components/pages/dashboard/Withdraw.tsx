@@ -140,7 +140,7 @@ function Withdraw() {
             </p>
             <TextInput type="number" {...form.getInputProps('amount')} />
             <p className="text-gray-500 text-xs">
-              Min Amount: 100.00 and Max Amount: 500,000
+              Min Amount: 200.00 and Max Amount: 1,000,000,000
             </p>
           </div>
 
