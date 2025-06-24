@@ -257,7 +257,7 @@ function SignUp() {
           <Text>
             We've sent a verification link to{' '}
             <strong>{verificationEmail}</strong>. Please check your inbox and
-            click the link to verify your email address.
+            click the link to verify your email address. Check your mail spam if link did not appear in inbix
           </Text>
 
           <Text size="sm" color="dimmed">
