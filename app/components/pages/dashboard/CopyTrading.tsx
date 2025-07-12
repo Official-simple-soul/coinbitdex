@@ -94,7 +94,7 @@ function CopyTrading() {
       });
 
       const newBalance = (user.balance || 0) - copyRatio;
-      const newCopyBalance = (user.copy_trading_balance || 0) + copyRatio;
+      const newCopyBalance = (user.copy_trading_profit || 0) + copyRatio;
 
       await updateUser(user.uid, {
         balance: newBalance,
