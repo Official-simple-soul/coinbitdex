@@ -20,17 +20,17 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!loading && !user) {
-      logout();
-    }
-  }, [user, loading, navigate]);
+  // useEffect(() => {
+  //   if (!loading && !user) {
+  //     logout();
+  //   }
+  // }, [user, loading, navigate]);
 
-  useEffect(() => {
-    if (!loading && !auth.currentUser?.emailVerified) {
-      logout();
-    }
-  }, [loading, navigate, auth]);
+  // useEffect(() => {
+  //   if (!loading && !auth.currentUser?.emailVerified) {
+  //     logout();
+  //   }
+  // }, [loading, navigate, auth]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
