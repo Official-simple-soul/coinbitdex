@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 import type { UserData } from '~/providers/types';
 
 interface UsersTableProps {
-  users: UserData[];
+  users: UserData[] | undefined;
   isLoading: boolean;
 }
 

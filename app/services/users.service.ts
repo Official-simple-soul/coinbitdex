@@ -7,10 +7,17 @@ import {
   fetchUsers,
 } from './axios';
 
-export function useListUsers() {
+// export function useListUsers() {
+//   return useQuery({
+//     queryKey: ['users'],
+//     queryFn: fetchUsers,
+//   });
+// }
+
+export function useListUsers(email?: string) {
   return useQuery({
-    queryKey: ['users'],
-    queryFn: fetchUsers,
+    queryKey: ['users', email],
+    queryFn: () => fetchUsers(email),
   });
 }
 

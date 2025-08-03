@@ -1,12 +1,13 @@
-import axios from 'axios';
 import type { User } from 'firebase/auth';
 import {
   collection,
   doc,
+  endAt,
   getDoc,
   getDocs,
   orderBy,
   query,
+  startAt,
   where,
 } from 'firebase/firestore';
 import { db } from '~/config/firebase';
@@ -55,8 +56,20 @@ export const listRecords = async (uid: string) => {
   }
 };
 
-export async function fetchUsers(): Promise<User[]> {
-  const q = query(collection(db, 'users'));
+export async function fetchUsers(email?: string): Promise<User[]> {
+  let q;
+
+  if (email) {
+    q = query(
+      collection(db, 'users'),
+      orderBy('email'),
+      startAt(email),
+      endAt(email + '\uf8ff') // Firestore trick for prefix match
+    );
+  } else {
+    q = query(collection(db, 'users'));
+  }
+
   const snapshot = await getDocs(q);
   return snapshot.docs.map((doc) => ({
     id: doc.id,
