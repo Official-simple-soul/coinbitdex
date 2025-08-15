@@ -1,3 +1,4 @@
+
 import type { UserData } from '~/providers/types';
 
 export const mainWalletItems = [
@@ -163,11 +164,11 @@ export const recordOptions = [
 export const traders = [
   {
     id: 1,
-    name: 'OmarHassan',
+    name: 'Riley Greyson',
     strategy: 'Perpetual Futures',
     cumulativePnl: '+92,378.12',
-    copiers: 1923,
-    winRatio: '58.4%',
+    copiers: 2913,
+    winRatio: '92.7%',
     riskScore: 20,
     copyCode: '3291Hassan0Omar1',
   },
