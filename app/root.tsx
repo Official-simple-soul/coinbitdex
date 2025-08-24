@@ -74,7 +74,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <GoogleTranslateWidget />
         <ScrollRestoration />
         <Scripts />
-        {/* <SmartsuppChat /> */}
+        <SmartsuppChat />
       </body>
     </html>
   );
@@ -90,8 +90,8 @@ export default function App() {
         <AuthProvider>
           <FunctionsProvider>
             <I18nextProvider i18n={i18n}>
-              <Flag />
-              {/* <Outlet /> */}
+              {/* <Flag /> */}
+              <Outlet />
             </I18nextProvider>
           </FunctionsProvider>
         </AuthProvider>
