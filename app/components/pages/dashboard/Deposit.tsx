@@ -52,11 +52,11 @@ function Deposit() {
   });
 
   const handleSubmit = async (values: any) => {
-    if (values?.paymentScreenshot?.size > 500000) {
+    if (values?.paymentScreenshot?.size > 3000000) {
       notifications.show({
         title: 'Error',
         message:
-          'Your SSN card file size exceeds the limit (500kb). Please try again.',
+          'Your SSN card file size exceeds the limit (3 MB). Please try again.',
         color: 'red',
       });
       return;
