@@ -1,4 +1,3 @@
-
 import type { UserData } from '~/providers/types';
 
 export const mainWalletItems = [
@@ -62,26 +61,26 @@ export const methods = [
   {
     type: 'btc',
     icon: '/images/bitcoin.png',
-    qr: '/wallet/btc.jpeg',
-    wallet_address: 'bc1qgknfvf0tm6kkurcgs3v9tjashqkvy493ns7eva',
+    qr: '/wallet/btc2.jpeg',
+    wallet_address: 'bc1q0scus7sxcr2a64pqfmz6hntqy5uq0p32plqfan',
   },
   {
     type: 'eth',
     icon: '/images/ethereum.png',
-    qr: '/wallet/eth.jpeg',
-    wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
+    qr: '/wallet/eth2.jpeg',
+    wallet_address: '0x0b406c07835Ec3Aa495FE87d2DB65A453f2b19bF',
   },
   {
     type: 'usdt-eth',
     icon: '/images/tether.png',
-    qr: '/wallet/usdt-eth.jpeg',
-    wallet_address: '0x562985F9a0aAd0Ffc3381Ad0b13dD8cF76444b9B',
+    qr: '/wallet/usdt-eth2.jpeg',
+    wallet_address: '0x0b406c07835Ec3Aa495FE87d2DB65A453f2b19bF',
   },
   {
     type: 'usdt-tron',
     icon: '/images/tether.png',
-    qr: '/wallet/usdt-tron.jpeg',
-    wallet_address: 'TZAVxf3qpQ1LCb8H8ZAz4Ci3jQiVJDVTd8',
+    qr: '/wallet/usdt-tron2.jpeg',
+    wallet_address: 'TEy6njSAhite1fwuoeUEe9pz2tu8Ezg7Pb',
   },
 ];
 
