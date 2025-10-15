@@ -20,8 +20,8 @@ function Deposit() {
   const [paymentMethod, setPaymentMethod] = useState({
     type: 'btc',
     icon: '/images/bitcoin.png',
-    qr: '/wallet/btc.jpeg',
-    wallet_address: 'bc1qgknfvf0tm6kkurcgs3v9tjashqkvy493ns7eva',
+    qr: '/wallet/btc2.jpeg',
+    wallet_address: 'bc1q0scus7sxcr2a64pqfmz6hntqy5uq0p32plqfan',
   });
 
   const form = useForm({
