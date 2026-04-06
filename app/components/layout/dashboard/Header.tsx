@@ -22,7 +22,10 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
       }}
     >
       <div className="flex justify-between items-center">
-        <button onClick={toggleSidebar} className="lg:hidden text-slate-300 hover:text-white transition-colors">
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden text-slate-300 hover:text-white transition-colors"
+        >
           <IconMenu2 className="w-6 h-6" />
         </button>
         <div className="flex flex-col leading-none">

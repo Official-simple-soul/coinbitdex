@@ -88,14 +88,17 @@ function AccountInfo() {
 
         <Frame>
           <div className="flex items-center gap-4">
-            <div className="rounded-full p-2" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <div
+              className="rounded-full p-2"
+              style={{ background: 'rgba(255,255,255,0.06)' }}
+            >
               <Avatar
                 src={
                   avatar_url?.src
                     ? avatar_url.src
                     : profileImage
-                    ? URL.createObjectURL(profileImage)
-                    : null
+                      ? URL.createObjectURL(profileImage)
+                      : null
                 }
                 alt="Profile"
                 size={50}

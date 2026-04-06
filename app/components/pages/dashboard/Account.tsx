@@ -31,7 +31,10 @@ function Account() {
       <div className="space-y-6">
         <Frame>
           <div className="flex flex-col items-center justify-center">
-            <div className="rounded-full p-3" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <div
+              className="rounded-full p-3"
+              style={{ background: 'rgba(255,255,255,0.06)' }}
+            >
               <Avatar
                 src={avatar_url?.src || null}
                 alt={user?.firstName}

@@ -36,8 +36,7 @@ function KYC() {
     {
       tier: 'Tier 2',
       key: 2,
-      status:
-        kycStatus === 1 ? 'pending' : 'completed',
+      status: kycStatus === 1 ? 'pending' : 'completed',
       description: 'Upload a valid ID to unlock higher limits and features.',
       icon: <IconShield size={30} className="text-green-500" />,
     },
@@ -142,7 +141,9 @@ function KYC() {
                     </span>
                   )}
                 </div>
-                <p className="text-slate-400 mt-1 text-xs">{tier.description}</p>
+                <p className="text-slate-400 mt-1 text-xs">
+                  {tier.description}
+                </p>
 
                 {tier.status === 'pending' && (
                   <Button

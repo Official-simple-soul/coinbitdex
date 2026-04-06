@@ -39,7 +39,10 @@ const Sidebar = ({
         borderColor: 'rgba(255,255,255,0.08)',
       }}
     >
-      <div className="flex justify-between items-center p-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+      <div
+        className="flex justify-between items-center p-4 border-b"
+        style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      >
         <div className="flex items-center gap-2">
           <Avatar
             src={avatar_url?.src || null}
@@ -56,7 +59,10 @@ const Sidebar = ({
             </p>
           </div>
         </div>
-        <button onClick={toggleSidebar} className="lg:hidden text-slate-300 hover:text-white">
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden text-slate-300 hover:text-white"
+        >
           <IconX className="w-6 h-6" />
         </button>
       </div>
@@ -85,7 +91,10 @@ const Sidebar = ({
           ))}
         </ul>
       </nav>
-      <div className="p-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+      <div
+        className="p-4 border-t"
+        style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      >
         <NavLink
           to={''}
           className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors"

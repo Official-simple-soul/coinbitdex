@@ -144,8 +144,12 @@ function CopyTrading() {
                       className="size-16"
                     />
                     <div className="">
-                      <h1 className="font-bold text-slate-100">{trader.name}</h1>
-                      <p className="text-slate-400 text-sm">{trader.strategy}</p>
+                      <h1 className="font-bold text-slate-100">
+                        {trader.name}
+                      </h1>
+                      <p className="text-slate-400 text-sm">
+                        {trader.strategy}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -278,8 +282,8 @@ function CopyTrading() {
                     selectedTrader.riskScore > 80
                       ? 'red'
                       : selectedTrader.riskScore > 50
-                      ? 'yellow'
-                      : 'green'
+                        ? 'yellow'
+                        : 'green'
                   }
                 />
               </div>
