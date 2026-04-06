@@ -1,6 +1,7 @@
 // components/admin/Layout/Navbar.tsx
 import { NavLink, ScrollArea } from '@mantine/core';
 import {
+  IconHome,
   IconDashboard,
   IconUsers,
   IconCash,
@@ -23,21 +24,30 @@ export function AdminNavbar() {
   const { pathname } = useLocation();
   const currentPath = pathname;
 
+  const getRenderableIcon = (icon: any) => {
+    if (typeof icon === 'function') return icon;
+    if (icon && typeof icon === 'object' && '$$typeof' in icon) return icon;
+    return IconHome;
+  };
+
   return (
     <div>
       <div>
-        {navItems.map((item) => (
-          <NavLink
-            key={item.label}
-            active={currentPath === item.href}
-            label={item.label}
-            leftSection={<item.icon size={18} />}
-            onClick={() => router(item.href)}
-            variant="filled"
-            color="blue"
-            className="rounded-md mb-1 hover:bg-blue-50 dark:hover:bg-blue-900/30"
-          />
-        ))}
+        {navItems.map((item) => {
+          const ItemIcon = getRenderableIcon(item.icon);
+          return (
+            <NavLink
+              key={item.label}
+              active={currentPath === item.href}
+              label={item.label}
+              leftSection={<ItemIcon size={18} />}
+              onClick={() => router(item.href)}
+              variant="filled"
+              color="blue"
+              className="rounded-md mb-1 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+            />
+          );
+        })}
       </div>
 
       {/* <div>

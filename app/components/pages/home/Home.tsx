@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import UnAuthLayout from '../../../layouts/UnAuthLayout';
-import Marquee from 'react-fast-marquee';
+import MarqueeImport from 'react-fast-marquee';
 import smallTradeChart from '/images/small-trading-chart.gif';
 import laptopPhone from '/images/laptop-phone.webp';
 import chart1 from '/images/chart-1.png';
@@ -12,6 +12,8 @@ import chart4 from '/images/chart-4.png';
 import chart5 from '/images/chart-5.png';
 import chart6 from '/images/chart-6.png';
 import { Advcash, Banxa, MoonPay, TradingView, Xanpool } from '~/utils/Svgs';
+
+const Marquee = (MarqueeImport as any)?.default ?? MarqueeImport;
 
 /* ─── Animated Counter Hook ─── */
 function useCounter(target: number, duration = 2000, inView = true) {
@@ -211,11 +213,11 @@ const steps = [
 
 /* ─── Partners ─── */
 const partners = [
-  { logo: Advcash, name: 'Advcash' },
-  { logo: Banxa, name: 'Banxa' },
-  { logo: Xanpool, name: 'Xanpool' },
-  { logo: TradingView, name: 'TradingView' },
-  { logo: MoonPay, name: 'MoonPay' },
+  { logo: <Advcash />, name: 'Advcash' },
+  { logo: <Banxa />, name: 'Banxa' },
+  { logo: <Xanpool />, name: 'Xanpool' },
+  { logo: <TradingView />, name: 'TradingView' },
+  { logo: <MoonPay />, name: 'MoonPay' },
 ];
 
 const chartImages = [
@@ -1857,7 +1859,7 @@ const Home: React.FC = () => {
                     }}
                   >
                     <div className="opacity-50 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      {React.createElement(p.logo)}
+                      {p.logo}
                     </div>
                   </div>
                 ))}

@@ -1,4 +1,5 @@
 import {
+  IconHome,
   IconLogout,
   IconPhone,
   IconUserCircle,
@@ -26,6 +27,12 @@ const Sidebar = ({
 }: SidebarProps) => {
   const { user } = useAuth();
   const avatar_url = base64ToImage(user?.avatar_url || '');
+
+  const getRenderableIcon = (icon: any) => {
+    if (typeof icon === 'function') return icon;
+    if (icon && typeof icon === 'object' && '$$typeof' in icon) return icon;
+    return IconHome;
+  };
 
   return (
     <div
@@ -72,23 +79,26 @@ const Sidebar = ({
       </div>
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
-          {sidebarItems.map((item, index) => (
-            <li key={index}>
-              <NavLink
-                to={item.href}
-                className={({ isActive }) =>
-                  `flex items-center space-x-2 px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                    isActive
-                      ? 'text-white bg-blue-500/20 border border-blue-400/30'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`
-                }
-              >
-                <item.icon className="w-6 h-6" />
-                <span>{item.label}</span>
-              </NavLink>
-            </li>
-          ))}
+          {sidebarItems.map((item, index) => {
+            const ItemIcon = getRenderableIcon(item.icon);
+            return (
+              <li key={index}>
+                <NavLink
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2 px-3 py-2.5 rounded-xl transition-all duration-200 ${
+                      isActive
+                        ? 'text-white bg-blue-500/20 border border-blue-400/30'
+                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    }`
+                  }
+                >
+                  <ItemIcon className="w-6 h-6" />
+                  <span>{item.label}</span>
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
       </nav>
       <div
