@@ -39,7 +39,7 @@ function Transactions() {
           </div>
         ) : transactions.length < 1 ? (
           <div className="h-[70vh] w-full flex justify-center items-center">
-            <p className="text-center text-gray-500">No transactions found.</p>
+            <p className="text-center text-slate-400">No transactions found.</p>
           </div>
         ) : (
           <TransactionDataComp

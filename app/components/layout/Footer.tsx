@@ -1,191 +1,200 @@
-import { Button, Stack, TextInput, Group } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import logo from '/images/logo.avif';
 import { Link, NavLink } from 'react-router';
-import giftBox from '/images/gift-box.gif';
-import sparkle from '/images/sparkle.gif';
+import { motion } from 'framer-motion';
+import logo from '/images/logo.avif';
 
-const menuItems = [
-  { label: 'Crypto Markets', path: '/crypto-market' },
-  { label: 'Crypto News', path: '#info-section' },
-  { label: 'Copy Trading', path: '/copy-trading' },
-  { label: 'AI/Grid Bots', path: '/ai' },
-  { label: 'Buy Crypto', path: '/buy-crypto' },
+const footerLinks = {
+  Products: [
+    { label: 'Crypto Markets',  href: '/crypto-market' },
+    { label: 'Copy Trading',    href: '/copy-trading' },
+    { label: 'AI/Grid Bots',   href: '/ai' },
+    { label: 'Buy Crypto',      href: '/buy-crypto' },
+    { label: 'Spot Trading',    href: '/dashboard/spot' },
+    { label: 'Futures',         href: '/dashboard/futures' },
+  ],
+  Company: [
+    { label: 'About Us',      href: '/about' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Legal Terms',   href: '/legal' },
+  ],
+  Account: [
+    { label: 'Login',     href: '/login' },
+    { label: 'Register',  href: '/signup' },
+    { label: 'Dashboard', href: '/dashboard' },
+  ],
+};
+
+const socialLinks = [
+  { icon: '𝕏', label: 'Twitter', href: '#' },
+  { icon: 'in', label: 'LinkedIn', href: '#' },
+  { icon: '▶', label: 'YouTube', href: '#' },
+  { icon: '✈', label: 'Telegram', href: '#' },
 ];
 
 const Footer = () => {
-  const isMediumScreen = useMediaQuery('(min-width: 768px)');
-
   return (
-    <footer className="bg-white text-black py-12 px-6 md:px-16">
-      <section id="giftBox-section" className="py-12 md:w-[80%] mx-auto">
-        <div className="flex flex-col sm:flex-row ">
-          <div className="sm:w-[55%]">
-            <h1 className="text-3xl font-bold mb-4">
-              Register to Claim Bonuses of up to 9125 USDT.
-            </h1>
-            <p className="text-gray-600 mb-6">It only takes a few minutes.</p>
-            <div className="flex items-center">
-              <Group
-                style={{
-                  border: '1px solid blue',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 0,
-                }}
-              >
-                {' '}
-                <TextInput
-                  placeholder="Your email address"
-                  style={{
-                    flex: 1,
-                    border: 'none',
-                  }}
-                  radius={0}
-                  styles={{
-                    input: { border: 'none', borderRadius: 0 },
-                  }}
-                />{' '}
-                <Link to="/signup">
-                  <Button
-                    style={{
-                      height: '45px',
-                      borderTopLeftRadius: 8,
-                      borderBottomLeftRadius: 8,
-                    }}
-                    color="blue"
-                  >
-                    Register Now!
-                  </Button>
-                </Link>
-              </Group>
-            </div>
+    <footer
+      style={{
+        backgroundColor: '#040710',
+        borderTop: '1px solid rgba(255,255,255,0.07)',
+        color: 'var(--text-secondary)',
+      }}
+    >
+      {/* Top CTA Banner */}
+      <div
+        className="py-14 px-6 md:px-16"
+        style={{
+          background: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(139,92,246,0.06) 100%)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div className="container-xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-[480px]">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">
+              Ready to Start Trading?
+            </h2>
+            <p className="text-base" style={{ color: 'var(--text-secondary)' }}>
+              Join 1M+ traders. Register today and claim up to 9,125 USDT in bonuses.
+            </p>
           </div>
-          <div className="mt-8 sm:w-[45%] flex justify-center relative">
-            <img
-              src={sparkle}
-              alt="Sparkle"
-              className="absolute w-[40%] -top-12 left-1"
-            />
-            <img src={giftBox} alt="Gift Box" className="w-[100%]" />
-          </div>
-        </div>
-      </section>
-
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Column 1: Terms */}
-        <div className="flex flex-col justify-between">
-          <div className="">
-            <h3 className="font-semibold mb-4">Terms</h3>
-            <ul className="space-y-2">
-              <li>
-                <NavLink
-                  to="/privacy"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  Privacy & Policy
-                </NavLink>
-              </li>
-              <li>
-                <a
-                  href="/legal"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  Legal Terms
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Company */}
-          <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <NavLink
-                  to="/about"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  About Us
-                </NavLink>
-              </li>
-              {/* <li>
-                <a
-                  href="/"
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  Contact Us
-                </a>
-              </li> */}
-            </ul>
-          </div>
-        </div>
-
-        {/* Column 3: Services */}
-        <div>
-          <h3 className="font-semibold mb-4">Services</h3>
-          <ul className="space-y-2">
-            {menuItems.map((service, index) => (
-              <li key={index}>
-                <a
-                  href={service.path}
-                  className="text-gray-400 hover:text-blue-500 md:hover:text-gray-900 md:hover:underline"
-                >
-                  {service.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Column 4: Form side */}
-        <div className="col-span-2 h-full flex-col">
-          <div className="">
-            <h3 className="font-semibold mb-4">Subscribe to Our Newsletter</h3>
-            <form
-            //  onSubmit={handleSubmit}
+          <Link to="/signup">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary px-9 py-4 text-base whitespace-nowrap"
+              style={{ borderRadius: '12px', fontSize: '15px', fontWeight: 700 }}
             >
-              <Stack>
-                <TextInput
-                  label="Email *"
-                  placeholder=""
-                  // required
-                  size="md"
-                  styles={(theme) => ({
-                    input: {
-                      backgroundColor: isMediumScreen ? 'white' : '#1f2937',
-                      color: isMediumScreen ? 'black' : 'white',
-                      border:
-                        '1px solid ' + (isMediumScreen ? '#ccc' : '#374151'),
-                      transition: 'background-color 0.3s ease',
-                    },
-                  })}
-                />
-                <Button type="submit" color="blue" c="black" w="50%">
-                  Subscribe
-                </Button>
-              </Stack>
-            </form>
-          </div>
-
-          <div className="md:flex justify-between mt-16">
-            <p className="text-gray-400 mr-5">
-              +1 (618) 362-2134 | support@coinbitdex.com
-            </p>
-            <p className="text-gray-400">
-              +1 (618) 362-2134 | support@coinbitdex.com
-            </p>
-          </div>
-          <p className="flex items-center justify-center text-gray-300 mt-5 md:mt-0">
-            500 Terry Francois St, San Francisco, CA 94158
-          </p>
+              Create Free Account →
+            </motion.button>
+          </Link>
         </div>
       </div>
-      <div className="mt-10 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm border-t border-gray-700 pt-6">
-        <img src={logo} alt="CoinbitDex" className="h-6 mb-4 md:mb-0" />
-        <p>&copy; 2019-2025 CoinBitDex.com. All Rights Reserved.</p>
+
+      {/* Main Footer Grid */}
+      <div className="container-xl py-16 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+
+          {/* Brand Column */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-block mb-5">
+              <img src={logo} alt="CoinbitDex" className="h-9" />
+            </Link>
+            <p className="text-sm leading-relaxed mb-6 max-w-[280px]" style={{ color: 'var(--text-secondary)' }}>
+              The most trusted decentralized crypto exchange. Secure, fast, and built for every type of trader.
+            </p>
+
+            {/* Contact */}
+            <div className="space-y-2 text-sm mb-6" style={{ color: 'var(--text-muted)' }}>
+              <p>📧 support@coinbitdex.com</p>
+              <p>📞 +1 (618) 362-2134</p>
+              <p>📍 500 Terry Francois St, San Francisco, CA</p>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold transition-all duration-200 hover:scale-110"
+                  style={{
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'var(--text-secondary)',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(59,130,246,0.15)';
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(59,130,246,0.4)';
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#60a5fa';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.06)';
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.08)';
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-secondary)';
+                  }}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link Columns */}
+          {Object.entries(footerLinks).map(([group, links]) => (
+            <div key={group}>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-5">{group}</h3>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <NavLink
+                      to={link.href}
+                      className="text-sm transition-colors duration-200 hover:text-white"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
+                      {link.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Newsletter */}
+        <div
+          className="mt-14 pt-10 rounded-2xl px-6 py-8"
+          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="font-display text-xl font-bold text-white mb-1">Stay Updated</h3>
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                Get market insights, new features, and trading tips delivered to your inbox.
+              </p>
+            </div>
+            <div className="flex w-full md:w-auto gap-2">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 md:w-64 px-4 py-3 rounded-xl text-sm outline-none focus:ring-2 transition-all"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: 'white',
+                  minWidth: '0',
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59,130,246,0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59,130,246,0.15)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              />
+              <button className="btn-primary px-6 py-3 whitespace-nowrap text-sm" style={{ borderRadius: '12px' }}>
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+          className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="CoinbitDex" className="h-5 opacity-50" />
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+              © 2019–2026 CoinBitDex.com. All Rights Reserved.
+            </p>
+          </div>
+          <div className="flex gap-5 text-xs" style={{ color: 'var(--text-muted)' }}>
+            <NavLink to="/privacy" className="hover:text-white transition-colors">Privacy Policy</NavLink>
+            <NavLink to="/legal" className="hover:text-white transition-colors">Legal Terms</NavLink>
+          </div>
+        </div>
       </div>
     </footer>
   );

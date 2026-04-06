@@ -126,7 +126,7 @@ function CopyTrading() {
         <Frame>
           <div className="pb-2 border-b">
             <p className="font-semibold">Trending Traders</p>
-            <p className="text-gray-500 mt-1 text-sm">
+            <p className="text-slate-400 mt-1 text-sm">
               Trending 10 traders in the last 30 days
             </p>
           </div>
@@ -144,8 +144,8 @@ function CopyTrading() {
                       className="size-16"
                     />
                     <div className="">
-                      <h1 className="font-bold text-gray-800">{trader.name}</h1>
-                      <p className="text-gray-500 text-sm">{trader.strategy}</p>
+                      <h1 className="font-bold text-slate-100">{trader.name}</h1>
+                      <p className="text-slate-400 text-sm">{trader.strategy}</p>
                     </div>
                   </div>
                 </div>
@@ -163,19 +163,19 @@ function CopyTrading() {
                   <p className="font-bold text-sm text-green-500">
                     {trader.cumulativePnl}
                   </p>
-                  <p className="text-xs text-gray-500">Cummulative PnL</p>
+                  <p className="text-xs text-slate-400">Cummulative PnL</p>
                 </div>
                 <div className="text-center">
                   <p className="font-bold text-sm text-green-500">
                     {trader.copiers}
                   </p>
-                  <p className="text-xs text-gray-500">Copiers</p>
+                  <p className="text-xs text-slate-400">Copiers</p>
                 </div>
                 <div className="text-right">
                   <p className="font-bold text-sm text-green-500">
                     {trader.winRatio}
                   </p>
-                  <p className="text-xs text-gray-500">Win Ratio</p>
+                  <p className="text-xs text-slate-400">Win Ratio</p>
                 </div>
               </div>
             </div>
@@ -199,10 +199,10 @@ function CopyTrading() {
                   className="size-16"
                 />
                 <div className="">
-                  <h1 className="font-bold text-gray-800">
+                  <h1 className="font-bold text-slate-900">
                     {selectedTrader.name}
                   </h1>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-slate-600 text-sm">
                     {selectedTrader.strategy}
                   </p>
                 </div>
@@ -223,7 +223,7 @@ function CopyTrading() {
                 }
                 size="sm"
               />
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-600">
                 Min: ${copy_trade_minimum} and Max: $1,000,000
               </p>
               {/* <TextInput

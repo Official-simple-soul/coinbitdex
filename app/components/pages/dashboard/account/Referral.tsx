@@ -16,8 +16,8 @@ function Referral() {
         </NavLink>
         <Frame>
           <div className="flex items-center w-full">
-            <div className="w-full border rounded-l h-8 bg-gray-100 flex items-center justify-center pl-2 overflow-hidden">
-              <p className="text-gray-700">
+            <div className="w-full border border-white/15 rounded-l h-8 bg-white/5 flex items-center justify-center pl-2 overflow-hidden">
+              <p className="text-slate-200">
                 https://coinbitdex/{user?.referral_id}
               </p>
             </div>

@@ -88,7 +88,7 @@ function AccountInfo() {
 
         <Frame>
           <div className="flex items-center gap-4">
-            <div className="bg-gray-100 rounded-full p-2">
+            <div className="rounded-full p-2" style={{ background: 'rgba(255,255,255,0.06)' }}>
               <Avatar
                 src={
                   avatar_url?.src
@@ -140,7 +140,7 @@ function AccountInfo() {
                   alt="Profile Preview"
                   size={80}
                   radius="50%"
-                  className="border-2 border-gray-200"
+                  className="border-2 border-white/20"
                 >
                   {!profileImage && <IconUser size={60} />}
                 </Avatar>

@@ -1,11 +1,17 @@
 import NavOne from './Nav';
-import ScrollingTextAnimation from '../common/ScrollingText';
 
 const Header = () => {
   return (
-    <header className="sticky top-0  shadow-md h-auto text-black font-semibold z-50 bg-white">
+    <header
+      className="sticky top-0 z-50 glass-nav"
+      style={{
+        background: 'rgba(6, 9, 20, 0.85)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+      }}
+    >
       <NavOne />
-      <ScrollingTextAnimation />
     </header>
   );
 };

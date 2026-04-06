@@ -164,8 +164,8 @@ function Deposit() {
             </div>
             <img src={paymentMethod.qr} alt="" className="size-60" />
             <div className="flex items-center w-full">
-              <div className="w-full border rounded-l h-8 bg-gray-100 flex items-center justify-center pl-2 overflow-hidden">
-                <p className="text-gray-700 text-xs">
+              <div className="w-full border border-white/15 rounded-l h-8 bg-white/5 flex items-center justify-center pl-2 overflow-hidden">
+                <p className="text-slate-200 text-xs">
                   {paymentMethod.wallet_address}
                 </p>
               </div>
@@ -180,7 +180,7 @@ function Deposit() {
               </div>
             </div>
           </div>
-          <p className="text-xs text-center text-gray-600">
+          <p className="text-xs text-center text-slate-400">
             Fill the below information after making your payment
           </p>
           <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -201,7 +201,7 @@ function Deposit() {
                   {form.errors.amount}
                 </Text>
               )}
-              <p className="text-center text-gray-500 text-xs mt-1">
+              <p className="text-center text-slate-400 text-xs mt-1">
                 Min: 100.00 USD & Max: 1,000,000,000.00 USD
               </p>
             </div>

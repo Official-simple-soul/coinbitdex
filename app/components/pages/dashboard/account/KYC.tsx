@@ -142,7 +142,7 @@ function KYC() {
                     </span>
                   )}
                 </div>
-                <p className="text-gray-600 mt-1 text-xs">{tier.description}</p>
+                <p className="text-slate-400 mt-1 text-xs">{tier.description}</p>
 
                 {tier.status === 'pending' && (
                   <Button

@@ -74,7 +74,10 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div
+      className="min-h-screen flex flex-col lg:flex-row"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
+    >
       <MobileNav />
       <Sidebar
         isOpen={isSidebarOpen}
@@ -87,7 +90,14 @@ const DashboardLayout = ({ children, pathname = '' }: DashboardLayoutProps) => {
         <Header toggleSidebar={toggleSidebar} />
         {pathname === 'dashboard' && <ScrollingTextAnimation />}
 
-        <main className="flex-1 px-4 pt-4 pb-24 md:p-8 bg-gray-50 min-h-screen">
+        <main
+          className="flex-1 px-4 pt-4 pb-24 md:p-8 min-h-screen"
+          style={{
+            background:
+              'radial-gradient(circle at top right, rgba(59, 130, 246, 0.12) 0%, transparent 35%), var(--bg-primary)',
+            color: 'var(--text-primary)',
+          }}
+        >
           {children}
         </main>
       </div>

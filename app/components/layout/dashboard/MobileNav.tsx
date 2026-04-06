@@ -3,7 +3,15 @@ import { sidebarItems } from './sideBarItems';
 
 const MobileNav = () => {
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50">
+    <div
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t"
+      style={{
+        background: 'rgba(8, 14, 30, 0.96)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderColor: 'rgba(255,255,255,0.08)',
+      }}
+    >
       <div className="grid grid-cols-5 items-center p-2">
         {sidebarItems
           .filter((e) => e.label !== 'Transactions')
@@ -11,10 +19,16 @@ const MobileNav = () => {
             <NavLink
               to={item.href}
               key={index}
-              className="p-2 flex flex-col items-center"
+              className={({ isActive }) =>
+                `p-2 flex flex-col items-center rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? 'bg-blue-500/20 text-blue-300'
+                    : 'text-slate-300 hover:text-white'
+                }`
+              }
             >
               <item.icon className="size-5" />
-              <span className="text-[10px] text-gray-800">{item.label}</span>
+              <span className="text-[10px]">{item.label}</span>
             </NavLink>
           ))}
       </div>
